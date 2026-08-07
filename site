@@ -458,3 +458,284 @@ export function Toaster() {
 EOF
 
 echo "✅ UI components done"
+cat > hooks/useMousePosition.ts << 'EOF'
+"use client"
+
+import { useState, useEffect } from "react"
+
+export function useMousePosition() {
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  useEffect(() => {
+    const update = (e: MouseEvent) => setPosition({ x: e.clientX, y: e.clientY })
+    window.addEventListener("mousemove", update)
+    return () => window.removeEventListener("mousemove", update)
+  }, [])
+  return position
+}
+EOF
+
+cat > hooks/useScrollProgress.ts << 'EOF'
+"use client"
+
+import { useState, useEffect } from "react"
+
+export function useScrollProgress() {
+  const [progress, setProgress] = useState(0)
+  useEffect(() => {
+    const update = () => {
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      setProgress(docHeight > 0 ? scrollTop / docHeight : 0)
+    }
+    window.addEventListener("scroll", update, { passive: true })
+    update()
+    return () => window.removeEventListener("scroll", update)
+  }, [])
+  return progress
+}
+EOF
+
+cat > hooks/useTheme.ts << 'EOF'
+"use client"
+
+import { useTheme as useNextTheme } from "next-themes"
+
+export function useTheme() {
+  const { theme, setTheme, resolvedTheme } = useNextTheme()
+  return { theme, setTheme, resolvedTheme }
+}
+EOF
+
+cat > components/theme-provider.tsx << 'EOF'
+"use client"
+
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+
+type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>
+
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+}
+EOF
+
+cat > components/custom-cursor.tsx << 'EOF'
+"use client"
+
+import { useEffect, useState } from "react"
+import { motion, useMotionValue, useSpring } from "framer-motion"
+
+export function CustomCursor() {
+  const [isHovering, setIsHovering] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const cursorX = useMotionValue(-100)
+  const cursorY = useMotionValue(-100)
+  const springConfig = { damping: 25, stiffness: 300 }
+  const cursorXSpring = useSpring(cursorX, springConfig)
+  const cursorYSpring = useSpring(cursorY, springConfig)
+
+  useEffect(() => {
+    const moveCursor = (e: MouseEvent) => {
+      cursorX.set(e.clientX)
+      cursorY.set(e.clientY)
+      setIsVisible(true)
+    }
+    const handleEnter = () => setIsHovering(true)
+    const handleLeave = () => setIsHovering(false)
+
+    window.addEventListener("mousemove", moveCursor)
+    document.querySelectorAll("a, button, [role='button']").forEach((el) => {
+      el.addEventListener("mouseenter", handleEnter)
+      el.addEventListener("mouseleave", handleLeave)
+    })
+    return () => {
+      window.removeEventListener("mousemove", moveCursor)
+    }
+  }, [cursorX, cursorY])
+
+  if (typeof window === "undefined") return null
+  return (
+    <>
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        style={{ x: cursorXSpring, y: cursorYSpring }}
+      >
+        <motion.div
+          animate={{ width: isHovering ? 48 : 12, height: isHovering ? 48 : 12, opacity: isVisible ? 1 : 0 }}
+          className="rounded-full bg-white -translate-x-1/2 -translate-y-1/2"
+          transition={{ type: "spring", damping: 20, stiffness: 300 }}
+        />
+      </motion.div>
+    </>
+  )
+}
+EOF
+
+cat > components/navigation/navbar.tsx << 'EOF'
+"use client"
+
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X, Sun, Moon } from "lucide-react"
+import { useTheme } from "@/hooks/useTheme"
+import { siteConfig } from "@/lib/config"
+import { cn } from "@/lib/utils"
+
+export function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const { theme, setTheme } = useTheme()
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark")
+
+  return (
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          scrolled
+            ? "bg-white/70 dark:bg-[#0D1117]/70 backdrop-blur-2xl border-b border-border/50 shadow-sm"
+            : "bg-transparent"
+        )}
+      >
+        <div className="container max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <a href="#" className="font-bold text-xl tracking-tight">
+            Evtin<span className="text-evtin-blue">.</span>
+          </a>
+
+          <nav className="hidden md:flex items-center gap-8">
+            {siteConfig.nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors relative group"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-evtin-blue group-hover:w-full transition-all duration-300" />
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <button
+              onClick={toggleTheme}
+              className="w-9 h-9 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+              aria-label="Toggle theme"
+            >
+              <AnimatePresence mode="wait">
+                {theme === "dark" ? (
+                  <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                    <Sun className="w-4 h-4" />
+                  </motion.div>
+                ) : (
+                  <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                    <Moon className="w-4 h-4" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+
+            <button
+              className="md:hidden w-9 h-9 rounded-full glass flex items-center justify-center"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
+        </div>
+      </motion.header>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-20 px-6 md:hidden"
+          >
+            <nav className="flex flex-col gap-6">
+              {siteConfig.nav.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-2xl font-medium"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
+EOF
+
+cat > app/layout.tsx << 'EOF'
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Navbar } from "@/components/navigation/navbar"
+import { CustomCursor } from "@/components/custom-cursor"
+import { Toaster } from "@/components/ui/toaster"
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+
+export const metadata: Metadata = {
+  title: "Evtin Studio — Premium Creative Agency",
+  description: "We craft digital experiences that elevate brands and drive results. Strategy, design, and development for ambitious companies.",
+  keywords: ["creative agency", "web design", "branding", "digital strategy", "development"],
+  authors: [{ name: "Evtin Studio" }],
+  creator: "Evtin Studio",
+  metadataBase: new URL("https://evtinstudio.com"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://evtinstudio.com",
+    siteName: "Evtin Studio",
+    title: "Evtin Studio — Premium Creative Agency",
+    description: "We craft digital experiences that elevate brands and drive results.",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Evtin Studio" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Evtin Studio — Premium Creative Agency",
+    description: "We craft digital experiences that elevate brands and drive results.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} storageKey="evtin-theme">
+          <CustomCursor />
+          <Navbar />
+          <main>{children}</main>
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+EOF
+
+echo "✅ Step 4 done"
