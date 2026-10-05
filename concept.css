@@ -1,0 +1,42 @@
+html{scroll-padding-top:72px}
+/* Shared chrome for concept pages: studio bar + case notes + footer.
+   Each concept defines its own visual system inline; this file stays neutral. */
+*{box-sizing:border-box}
+body{margin:0}
+.cbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;height:52px;padding:0 4vw;background:#21172b;color:#f5efdf;font:11px/1 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
+.cbar a{color:inherit;text-decoration:none}
+.cbar a:hover{text-decoration:underline;text-underline-offset:4px}
+.cbar .cbrand{font:800 18px/1 Manrope,Arial,sans-serif;letter-spacing:-.06em;text-transform:none}
+.cbar .ctag{background:#b9ff73;color:#21172b;padding:5px 8px;white-space:nowrap}
+.cbar .cright{display:flex;align-items:center;gap:18px}
+.cbar .lang{border:1px solid currentColor;border-radius:99px;padding:6px 10px;background:none;color:inherit;font:inherit;cursor:pointer}
+.cbar :focus-visible,.cnotes :focus-visible,.cfoot :focus-visible{outline:3px solid #b9ff73;outline-offset:3px}
+
+.cnotes{background:#21172b;color:#f5efdf;padding:9vw 6vw;font-family:Manrope,Arial,sans-serif}
+.cnotes .chead{font:11px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#b4a8b5}
+.cnotes h2{font-size:clamp(38px,5vw,72px);line-height:.9;letter-spacing:-.06em;margin:24px 0 56px;max-width:900px}
+.cnotes .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(245,239,223,.25)}
+.cnotes .cgrid>div{padding:28px 28px 28px 0}
+.cnotes .cgrid>div+div{padding-left:28px;border-left:1px solid rgba(245,239,223,.25)}
+.cnotes h3{font:11px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#b9ff73;margin:0 0 14px}
+.cnotes p,.cnotes li{font-size:16px;line-height:1.55;color:#d5cbd2;margin:0}
+.cnotes ul{margin:0;padding-left:18px}
+.cnotes li+li{margin-top:6px}
+.cnotes .ccta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(245,239,223,.25)}
+.cnotes .ccta strong{font-size:clamp(28px,3.4vw,48px);letter-spacing:-.05em;line-height:1}
+.cnotes .ccta a{background:#b9ff73;color:#21172b;padding:16px 20px;font:600 12px 'DM Mono',monospace;text-transform:uppercase;text-decoration:none}
+.cnotes .ccta a:hover{background:#ff6d61}
+
+.cfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:22px 6vw;background:#141016;color:#b4a8b5;font:10px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
+.cfoot a{color:#f5efdf}
+
+@media(max-width:760px){
+  .cbar{padding:0 16px;gap:10px}
+  .cbar .cback-long{display:none}
+  .cnotes{padding:72px 20px}
+  .cnotes .cgrid{grid-template-columns:1fr}
+  .cnotes .cgrid>div,.cnotes .cgrid>div+div{padding:24px 0;border-left:0;border-bottom:1px solid rgba(245,239,223,.25)}
+  .cfoot{padding:20px;flex-direction:column}
+}
+@media(max-width:400px){.cbar .ctag{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

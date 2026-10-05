@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="ATELIER 07 — an EVTIN Studio concept for an interior studio. Original practice work, not a client.">
+<title>ATELIER 07 — EVTIN Studio Concept</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2321172b'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='800' font-size='20' text-anchor='middle' fill='%23b9ff73'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="fonts/cormorant-garamond-normal-latin-2fed1d.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/cormorant-garamond-italic-latin-dccf20.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/jost-normal-latin-35841f.woff2" as="font" type="font/woff2" crossorigin>
+<link href="fonts/fonts.css" rel="stylesheet">
+<link rel="stylesheet" href="concept.css">
+<style>
+:root{--stone:#e9e4da;--stone2:#dcd5c8;--gr:#1f201d;--olive:#56603d;--clay:#a47c63;--mute:#5f5a51;--line:rgba(31,32,29,.16)}
+body{background:var(--stone);color:var(--gr);font-family:Jost,Arial,sans-serif;font-weight:300}
+.a-cap{font:400 11px Jost,sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.a-serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300}
+
+.a-top{display:flex;justify-content:space-between;align-items:center;padding:22px 5vw}
+.a-top .a-logo{font:400 15px Jost,sans-serif;letter-spacing:.42em}
+.a-top nav{display:flex;gap:32px}
+.a-top a{color:inherit;text-decoration:none}
+.a-top a:hover{color:var(--olive)}
+
+.a-hero{display:grid;grid-template-columns:7fr 5fr;gap:4vw;padding:3vw 5vw 7vw;align-items:end}
+.a-hero h1{margin:0;font:300 clamp(64px,10vw,168px)/.86 'Cormorant Garamond',Georgia,serif;letter-spacing:-.02em}
+.a-hero h1 i{color:var(--olive)}
+.a-hero p{font-size:19px;line-height:1.6;color:var(--mute);max-width:420px;margin:0 0 28px}
+.a-room{aspect-ratio:5/4;position:relative;background:linear-gradient(180deg,#d8d0c1 0 62%,#b9a68f 62% 100%);overflow:hidden}
+.a-room .win{position:absolute;left:14%;top:12%;width:34%;height:44%;background:linear-gradient(160deg,#f6f2ea,#e4ddcf);box-shadow:inset 0 0 0 6px #cfc6b6}
+.a-room .light{position:absolute;left:14%;top:56%;width:52%;height:30%;background:linear-gradient(170deg,rgba(255,250,240,.55),transparent);clip-path:polygon(0 0,66% 0,100% 100%,30% 100%)}
+.a-room .sofa{position:absolute;right:10%;bottom:20%;width:44%;height:14%;background:var(--olive);border-radius:6px 6px 2px 2px}
+.a-room .lamp{position:absolute;right:20%;top:18%;width:2px;height:28%;background:var(--gr)}
+.a-room .lamp::after{content:"";position:absolute;left:-18px;bottom:-14px;width:38px;height:20px;background:var(--clay);border-radius:20px 20px 0 0}
+.a-room figcaption{position:absolute;left:16px;bottom:14px}
+
+.a-chapters{display:grid;grid-template-columns:220px 1fr;border-top:1px solid var(--line)}
+.a-index{position:sticky;top:52px;align-self:start;padding:40px 0 40px 5vw}
+.a-index ol{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px}
+.a-index a{color:var(--mute);text-decoration:none;font-size:15px}
+.a-index a.on{color:var(--gr)}
+.a-index a.on::before{content:"— "}
+.a-ch{padding:7vw 5vw 7vw 3vw;border-left:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:4vw}
+.a-ch+.a-ch{border-top:1px solid var(--line)}
+.a-num{font:300 clamp(80px,10vw,160px)/.8 'Cormorant Garamond',Georgia,serif;color:#8f6a52}
+.a-ch h2{font:300 clamp(40px,4.6vw,72px)/.95 'Cormorant Garamond',Georgia,serif;margin:20px 0 22px}
+.a-ch p{font-size:17px;line-height:1.65;color:var(--mute);max-width:480px}
+.a-facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:32px}
+.a-facts div{padding:16px 12px 0 0}
+.a-facts strong{display:block;font:300 30px 'Cormorant Garamond',Georgia,serif;margin-top:6px}
+.a-swatches{display:flex;gap:10px;margin-top:28px}
+.a-swatches span{width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+
+.a-plan{background:#f3efe7;border:1px solid var(--line);padding:24px;align-self:start}
+.a-plan svg{width:100%;height:auto;display:block}
+.a-plan .rm{fill:#ebe5da;stroke:var(--gr);stroke-width:1.5;cursor:pointer;transition:fill .25s}
+.a-plan .rm:hover,.a-plan .rm.on{fill:#c9b7a3}.a-plan .rm.on{stroke:var(--olive);stroke-width:3}
+.a-plan .rm:focus{outline:none}.a-plan .rm:focus-visible{stroke:var(--olive);stroke-width:4}
+.a-plan text{font:400 9px Jost,sans-serif;letter-spacing:.14em;fill:var(--gr);pointer-events:none;text-transform:uppercase}
+.a-note{min-height:84px;border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+.a-note b{display:block;font:400 22px 'Cormorant Garamond',Georgia,serif}
+.a-note span{font-size:15px;color:var(--mute)}
+.a-tall{aspect-ratio:3/4;position:relative;overflow:hidden}
+
+.a-mat{background:var(--gr);color:var(--stone);padding:8vw 5vw}
+.a-mat h2{font:300 clamp(44px,5vw,84px)/.95 'Cormorant Garamond',Georgia,serif;margin:16px 0 48px;max-width:760px}
+.a-mgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.a-mgrid button{all:unset;cursor:pointer;display:block}
+.a-mgrid .sw{aspect-ratio:1;display:block;transition:transform .3s}
+.a-mgrid button:hover .sw,.a-mgrid button[aria-pressed=true] .sw{transform:translateY(-6px)}
+.a-mgrid button:focus-visible{outline:2px solid var(--clay);outline-offset:4px}
+.a-mgrid .nm{display:block;margin-top:12px;font:400 11px Jost,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.a-mgrid button[aria-pressed=true] .nm{color:#c29a7f}
+.a-mdesc{margin-top:36px;font:300 clamp(22px,2.2vw,30px)/1.35 'Cormorant Garamond',Georgia,serif;max-width:760px;min-height:3em;color:#d9d2c5}
+.t-trav{background:repeating-linear-gradient(8deg,#e4d9c6 0 7px,#d9ccb5 7px 9px,#e9dfcd 9px 19px)}
+.t-oak{background:repeating-linear-gradient(90deg,#b98d60 0 3px,#a87b50 3px 4px,#c29a6e 4px 11px)}
+.t-lin{background:repeating-linear-gradient(0deg,#d8d1c3 0 1px,#e4ddd0 1px 3px),#ded6c8;background-blend-mode:multiply}
+.t-steel{background:linear-gradient(135deg,#6f7270,#9a9d9a 45%,#5d605e)}
+.t-clay{background:radial-gradient(circle at 30% 30%,#c08c6e,#a06a4f)}
+
+.a-process{padding:8vw 5vw}
+.a-process h2{font:300 clamp(44px,5vw,84px)/.95 'Cormorant Garamond',Georgia,serif;margin:16px 0 48px}
+.a-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--gr)}
+.a-steps li{padding:22px 24px 0 0}
+.a-steps li+li{padding-left:24px;border-left:1px solid var(--line)}
+.a-steps h3{font:300 28px 'Cormorant Garamond',Georgia,serif;margin:10px 0}
+.a-steps p{font-size:15px;line-height:1.6;color:var(--mute);margin:0}
+:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
+
+@media(max-width:900px){
+  .a-top nav a:not(:last-child){display:none}
+  .a-hero{grid-template-columns:1fr;padding:24px 20px 64px}
+  .a-hero h1{font-size:17vw}
+  .a-chapters{grid-template-columns:1fr}
+  .a-index{display:none}
+  .a-ch{grid-template-columns:1fr;border-left:0;padding:64px 20px}
+  .a-mat,.a-process{padding:72px 20px}
+  .a-mgrid{grid-template-columns:repeat(3,1fr)}
+  .a-steps{grid-template-columns:1fr 1fr}
+  .a-steps li:nth-child(3){padding-left:0;border-left:0}
+  .a-steps li{padding-bottom:24px}
+}
+@media(max-width:480px){.a-steps{grid-template-columns:1fr}.a-steps li+li{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<header class="cbar">
+  <a class="cbrand" href="./">EVTIN®</a>
+  <span class="ctag" data-i18n="bar.tag">Concept / Demo · 03</span>
+  <div class="cright"><a href="./#work" data-i18n="bar.back">← <span class="cback-long">Back to </span>work</a><button class="lang" type="button" data-lang aria-label="RU — Русская версия">RU</button></div>
+</header>
+
+<main>
+<div class="a-top">
+  <span class="a-logo">ATELIER 07</span>
+  <nav class="a-cap" aria-label="Demo site"><a href="#ch1" data-i18n="a.nav.proj">Projects</a><a href="#materials" data-i18n="a.nav.mat">Materials</a><a href="#process" data-i18n="a.nav.proc">Process</a></nav>
+</div>
+
+<section class="a-hero">
+  <div>
+    <span class="a-cap" data-i18n="a.h.k">Interior studio · residential & small hospitality</span>
+    <h1 data-i18n="a.h.t">Space<br><i>with</i> memory.</h1>
+  </div>
+  <div>
+    <p data-i18n="a.h.p">We design rooms that get better with use: honest materials, daylight first, and furniture that earns its place.</p>
+    <figure class="a-room" style="margin:0" aria-hidden="true"><div class="win"></div><div class="light"></div><div class="lamp"></div><div class="sofa"></div><figcaption class="a-cap">Study 07 / living room</figcaption></figure>
+  </div>
+</section>
+
+<div class="a-chapters">
+  <aside class="a-index" aria-label="Chapters">
+    <span class="a-cap" data-i18n="a.idx">Chapters</span>
+    <ol><li><a href="#ch1" class="on">I. <span data-i18n="a.c1.s">Embankment flat</span></a></li><li><a href="#ch2">II. <span data-i18n="a.c2.s">Bakery counter</span></a></li><li><a href="#ch3">III. <span data-i18n="a.c3.s">Writer's room</span></a></li></ol>
+  </aside>
+  <div>
+    <article class="a-ch" id="ch1">
+      <div>
+        <div class="a-num">I</div>
+        <h2 data-i18n="a.c1.t">A flat on the embankment</h2>
+        <p data-i18n="a.c1.p">A 1910s apartment with four tall windows and no corridor. We took out two partitions, kept the original floor and let the light decide where people sit. Tap a room on the plan to read the material notes.</p>
+        <div class="a-facts"><div><span class="a-cap" data-i18n="a.area">Area</span><strong>86 m²</strong></div><div><span class="a-cap" data-i18n="a.time">Time</span><strong data-i18n="a.c1.w">14 weeks</strong></div><div><span class="a-cap" data-i18n="a.year">Year</span><strong>2026</strong></div></div>
+        <div class="a-swatches" aria-hidden="true"><span class="t-oak"></span><span class="t-lin"></span><span class="t-trav"></span><span style="background:var(--olive)"></span></div>
+      </div>
+      <div class="a-plan">
+        <svg viewBox="0 0 300 220" role="group" aria-label="Floor plan">
+          <rect class="rm on" data-room="living" x="10" y="10" width="160" height="120" tabindex="0" role="button" aria-label="Living room"/>
+          <rect class="rm" data-room="kitchen" x="170" y="10" width="120" height="80" tabindex="0" role="button" aria-label="Kitchen"/>
+          <rect class="rm" data-room="bed" x="170" y="90" width="120" height="120" tabindex="0" role="button" aria-label="Bedroom"/>
+          <rect class="rm" data-room="bath" x="10" y="130" width="70" height="80" tabindex="0" role="button" aria-label="Bathroom"/>
+          <rect class="rm" data-room="study" x="80" y="130" width="90" height="80" tabindex="0" role="button" aria-label="Study"/>
+          <text x="20" y="28" data-i18n="a.r.living">Living</text><text x="180" y="28" data-i18n="a.r.kitchen">Kitchen</text><text x="180" y="108" data-i18n="a.r.bed">Bedroom</text><text x="18" y="148" data-i18n="a.r.bath">Bath</text><text x="88" y="148" data-i18n="a.r.study">Study</text>
+          <path d="M10 10h40M70 10h40M130 10h30" stroke="#a47c63" stroke-width="4"/>
+        </svg>
+        <div class="a-note" aria-atomic="true" aria-live="polite"><b id="roomName">Living room</b><span id="roomNote">Original oak parquet, restored. Lime-wash walls so daylight stays soft in the evening.</span></div>
+      </div>
+    </article>
+
+    <article class="a-ch" id="ch2">
+      <div>
+        <div class="a-num">II</div>
+        <h2 data-i18n="a.c2.t">A counter for a neighbourhood bakery</h2>
+        <p data-i18n="a.c2.p">Twenty-two square metres, one long travertine counter and a window that works as the shop sign. The queue was designed before the furniture.</p>
+        <div class="a-facts"><div><span class="a-cap" data-i18n="a.area">Area</span><strong>22 m²</strong></div><div><span class="a-cap" data-i18n="a.time">Time</span><strong data-i18n="a.c2.w">6 weeks</strong></div><div><span class="a-cap" data-i18n="a.year">Year</span><strong>2025</strong></div></div>
+        <div class="a-swatches" aria-hidden="true"><span class="t-trav"></span><span class="t-steel"></span><span class="t-clay"></span></div>
+      </div>
+      <div class="a-tall t-trav" aria-hidden="true"><div style="position:absolute;inset:auto 0 0 0;height:38%;background:#cbb89c"></div><div style="position:absolute;left:10%;right:10%;bottom:38%;height:6%;background:#efe6d6"></div></div>
+    </article>
+
+    <article class="a-ch" id="ch3">
+      <div>
+        <div class="a-num">III</div>
+        <h2 data-i18n="a.c3.t">A room for writing, nothing else</h2>
+        <p data-i18n="a.c3.p">One desk facing a wall, not the window. Shelving in linen-wrapped panels to soften sound. The view is a reward, not a distraction.</p>
+        <div class="a-facts"><div><span class="a-cap" data-i18n="a.area">Area</span><strong>11 m²</strong></div><div><span class="a-cap" data-i18n="a.time">Time</span><strong data-i18n="a.c3.w">4 weeks</strong></div><div><span class="a-cap" data-i18n="a.year">Year</span><strong>2025</strong></div></div>
+        <div class="a-swatches" aria-hidden="true"><span class="t-lin"></span><span class="t-oak"></span><span style="background:var(--gr)"></span></div>
+      </div>
+      <div class="a-tall" style="background:var(--olive)" aria-hidden="true"><div class="t-lin" style="position:absolute;left:12%;right:12%;top:10%;height:46%"></div><div class="t-oak" style="position:absolute;left:12%;right:12%;top:64%;height:4%"></div></div>
+    </article>
+  </div>
+</div>
+
+<section class="a-mat" id="materials">
+  <span class="a-cap" data-i18n="a.m.k">Material library</span>
+  <h2 data-i18n="a.m.t">Five materials. Every project starts here.</h2>
+  <div class="a-mgrid" role="group" aria-label="Materials">
+    <button type="button" data-m="trav" aria-pressed="true"><span class="sw t-trav"></span><span class="nm" data-i18n="a.m.trav">Travertine</span></button>
+    <button type="button" data-m="oak" aria-pressed="false"><span class="sw t-oak"></span><span class="nm" data-i18n="a.m.oak">Smoked oak</span></button>
+    <button type="button" data-m="lin" aria-pressed="false"><span class="sw t-lin"></span><span class="nm" data-i18n="a.m.lin">Linen</span></button>
+    <button type="button" data-m="steel" aria-pressed="false"><span class="sw t-steel"></span><span class="nm" data-i18n="a.m.steel">Blackened steel</span></button>
+    <button type="button" data-m="clay" aria-pressed="false"><span class="sw t-clay"></span><span class="nm" data-i18n="a.m.clay">Clay plaster</span></button>
+  </div>
+  <p class="a-mdesc" id="mdesc" aria-live="polite"></p>
+</section>
+
+<section class="a-process" id="process">
+  <span class="a-cap" data-i18n="a.p.k">Process</span>
+  <h2 data-i18n="a.p.t">Four steps, no surprises.</h2>
+  <ol class="a-steps">
+    <li><span class="a-cap">01 · 1–2 w</span><h3 data-i18n="a.p.1t">Listening</h3><p data-i18n="a.p.1p">How you actually live, not how a magazine says you should.</p></li>
+    <li><span class="a-cap">02 · 2–3 w</span><h3 data-i18n="a.p.2t">Plan & light</h3><p data-i18n="a.p.2p">Layouts tested against daylight and daily routes.</p></li>
+    <li><span class="a-cap">03 · 2 w</span><h3 data-i18n="a.p.3t">Materials</h3><p data-i18n="a.p.3p">Physical samples on your table, never only renders.</p></li>
+    <li><span class="a-cap">04 · 6–10 w</span><h3 data-i18n="a.p.4t">Site</h3><p data-i18n="a.p.4p">Weekly visits and one person responsible for every detail.</p></li>
+  </ol>
+</section>
+</main>
+
+<section class="cnotes" aria-labelledby="notes-t">
+  <div class="chead" data-i18n="notes.k">Case notes — how this concept was designed</div>
+  <h2 id="notes-t" data-i18n="notes.t">A portfolio where projects are chapters, not thumbnails.</h2>
+  <div class="cgrid">
+    <div><h3 data-i18n="notes.b.h">Brief</h3><p data-i18n="notes.b.p">A fictional interior studio whose work is about material and light. The usual grid of tiny photos and a list of services flattens exactly what makes them good.</p></div>
+    <div><h3 data-i18n="notes.d.h">Decisions</h3><ul><li data-i18n="notes.d.1">Each project is a chapter with facts (area, time, year), a palette and a plan you can explore.</li><li data-i18n="notes.d.2">A material library replaces “our services” — it shows taste instead of claiming it.</li><li data-i18n="notes.d.3">Calm serif, stone and olive tones, lots of air. No carousel anywhere.</li></ul></div>
+    <div><h3 data-i18n="notes.x.h">What you'd get</h3><ul><li data-i18n="notes.x.1">Chapter-based project template you can reuse for every new case</li><li data-i18n="notes.x.2">Interactive plan and material blocks, ready for real photos</li><li data-i18n="notes.x.3">Clear process section that pre-answers client questions</li></ul></div>
+  </div>
+  <div class="ccta"><strong data-i18n="notes.cta">Want your own version?</strong><a href="./#contact" data-i18n="notes.btn">Start a real project ↗</a></div>
+</section>
+<footer class="cfoot"><span data-i18n="foot.l">Concept / demo — original practice work, not a client. Projects and figures are fictional.</span><a href="./#work" data-i18n="foot.r">Back to EVTIN Studio ↗</a></footer>
+
+<script src="concept-atelier07.i18n.js"></script>
+<script src="concept.js"></script>
+<script src="concept-atelier07.js"></script>
+</body>
+</html>
