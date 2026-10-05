@@ -48,11 +48,21 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 7. Fonts self-hosted (Google Fonts was reachable this session); favicon added to concept pages.
 8. QA again at 375/768/1440, EN+RU, all pages: no horizontal overflow, no JS errors, no external requests; only 404 is the missing portrait.
 
+9. ECC audit pass (session 2): Lighthouse CLI plus the ECC agents a11y-architect, seo-specialist, code-reviewer and security-reviewer. The ECC chrome-devtools MCP cannot start Chrome in this container (runs as root, no /opt/google/chrome), so Lighthouse runs from the CLI against /opt/pw-browsers chromium. Fixed:
+   - a11y: kicker, 06:42 and Atelier contrast; dark focus ring on light sections; burger focus management; scroll-padding under sticky bars; language button names ("RU — Русская версия"); duplicate mock links removed from tab order; FAQ marker excluded from the accessible name; NOIR ticker pause button, size-state fill, product-labelled size groups, announced toast; Atelier floor plan focus ring, aria-pressed, translated room names; aria-atomic on live regions; submit uses aria-disabled.
+   - Bugs: 06:42 status follows St. Petersburg time; NOIR mobile hero no longer clipped; no hole when filtering the drop; ticker gap on wide screens; form status retranslates on language switch; 15s fetch timeout; maxlength on fields.
+   - SEO: keyword title/description (EN+RU), JSON-LD (WebSite, Person, ProfessionalService with €500/€900 offers), og:site_name/locale, twitter:image, kicker "EVTIN STUDIO — WEB DESIGN".
+   - Security: CSP and other headers; inline scripts moved to files; repo-only files return 404.
+   - Fonts: Oswald (cyrillic) behind Anton, Manrope behind Instrument Sans, Fraunces 400; above-the-fold fonts preloaded (CLS on NOIR 0.205 → 0, Atelier 0.136 → 0.017).
+   - Result: Lighthouse accessibility 100 on all 4 pages; best practices 100 on concepts, 96 on home only because of the missing portrait; SEO 100 on home (concepts are noindex by design).
+
 ## Next steps
 1. Optionally replace the drawn mock of the musician project with a real screenshot.
 2. If the domain is not `evtstudio.netlify.app`, update index.html head, robots.txt and sitemap.xml.
 3. After Ivan approves: open a PR into `main` → Netlify deploy → live QA (form, links, language, mobile).
-4. Later: cookie-less analytics (Plausible/Umami) with a form-submit goal; outreach plan.
+4. Formspree dashboard (Ivan): turn on spam filtering/CAPTCHA and restrict the form to the final domain.
+5. Remaining low-priority a11y: some English-only aria-labels and decorative strings in RU mode (nav 'Main', burger 'Menu', NOIR ticker, 06:42 menu item names); no visible 'required' cue on the form.
+6. Later: cookie-less analytics (Plausible/Umami) with a form-submit goal; outreach plan.
 
 ## Open questions for Ivan
 - Which domain is correct: `evtstudio` or `evtinstudio`?
