@@ -1,3 +1,4 @@
+html{scroll-padding-top:72px}
 /* Shared chrome for concept pages: studio bar + case notes + footer.
    Each concept defines its own visual system inline; this file stays neutral. */
 *{box-sizing:border-box}

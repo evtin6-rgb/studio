@@ -6,10 +6,11 @@
 <meta name="description" content="ATELIER 07 — an EVTIN Studio concept for an interior studio. Original practice work, not a client.">
 <title>ATELIER 07 — EVTIN Studio Concept</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2321172b'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='800' font-size='20' text-anchor='middle' fill='%23b9ff73'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="fonts/cormorant-garamond-normal-latin-2fed1d.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/cormorant-garamond-italic-latin-dccf20.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/jost-normal-latin-35841f.woff2" as="font" type="font/woff2" crossorigin>
 <link href="fonts/fonts.css" rel="stylesheet">
 <link rel="stylesheet" href="concept.css">
 <style>
-:root{--stone:#e9e4da;--stone2:#dcd5c8;--gr:#1f201d;--olive:#56603d;--clay:#a47c63;--mute:#6f6a60;--line:rgba(31,32,29,.16)}
+:root{--stone:#e9e4da;--stone2:#dcd5c8;--gr:#1f201d;--olive:#56603d;--clay:#a47c63;--mute:#5f5a51;--line:rgba(31,32,29,.16)}
 body{background:var(--stone);color:var(--gr);font-family:Jost,Arial,sans-serif;font-weight:300}
 .a-cap{font:400 11px Jost,sans-serif;letter-spacing:.24em;text-transform:uppercase}
 .a-serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300}
@@ -40,7 +41,7 @@ body{background:var(--stone);color:var(--gr);font-family:Jost,Arial,sans-serif;f
 .a-index a.on::before{content:"— "}
 .a-ch{padding:7vw 5vw 7vw 3vw;border-left:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:4vw}
 .a-ch+.a-ch{border-top:1px solid var(--line)}
-.a-num{font:300 clamp(80px,10vw,160px)/.8 'Cormorant Garamond',Georgia,serif;color:var(--clay)}
+.a-num{font:300 clamp(80px,10vw,160px)/.8 'Cormorant Garamond',Georgia,serif;color:#8f6a52}
 .a-ch h2{font:300 clamp(40px,4.6vw,72px)/.95 'Cormorant Garamond',Georgia,serif;margin:20px 0 22px}
 .a-ch p{font-size:17px;line-height:1.65;color:var(--mute);max-width:480px}
 .a-facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:32px}
@@ -52,7 +53,8 @@ body{background:var(--stone);color:var(--gr);font-family:Jost,Arial,sans-serif;f
 .a-plan{background:#f3efe7;border:1px solid var(--line);padding:24px;align-self:start}
 .a-plan svg{width:100%;height:auto;display:block}
 .a-plan .rm{fill:#ebe5da;stroke:var(--gr);stroke-width:1.5;cursor:pointer;transition:fill .25s}
-.a-plan .rm:hover,.a-plan .rm:focus,.a-plan .rm.on{fill:#c9b7a3;outline:none}
+.a-plan .rm:hover,.a-plan .rm.on{fill:#c9b7a3}.a-plan .rm.on{stroke:var(--olive);stroke-width:3}
+.a-plan .rm:focus{outline:none}.a-plan .rm:focus-visible{stroke:var(--olive);stroke-width:4}
 .a-plan text{font:400 9px Jost,sans-serif;letter-spacing:.14em;fill:var(--gr);pointer-events:none;text-transform:uppercase}
 .a-note{min-height:84px;border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
 .a-note b{display:block;font:400 22px 'Cormorant Garamond',Georgia,serif}
@@ -67,7 +69,7 @@ body{background:var(--stone);color:var(--gr);font-family:Jost,Arial,sans-serif;f
 .a-mgrid button:hover .sw,.a-mgrid button[aria-pressed=true] .sw{transform:translateY(-6px)}
 .a-mgrid button:focus-visible{outline:2px solid var(--clay);outline-offset:4px}
 .a-mgrid .nm{display:block;margin-top:12px;font:400 11px Jost,sans-serif;letter-spacing:.2em;text-transform:uppercase}
-.a-mgrid button[aria-pressed=true] .nm{color:var(--clay)}
+.a-mgrid button[aria-pressed=true] .nm{color:#c29a7f}
 .a-mdesc{margin-top:36px;font:300 clamp(22px,2.2vw,30px)/1.35 'Cormorant Garamond',Georgia,serif;max-width:760px;min-height:3em;color:#d9d2c5}
 .t-trav{background:repeating-linear-gradient(8deg,#e4d9c6 0 7px,#d9ccb5 7px 9px,#e9dfcd 9px 19px)}
 .t-oak{background:repeating-linear-gradient(90deg,#b98d60 0 3px,#a87b50 3px 4px,#c29a6e 4px 11px)}
@@ -102,9 +104,9 @@ body{background:var(--stone);color:var(--gr);font-family:Jost,Arial,sans-serif;f
 </head>
 <body>
 <header class="cbar">
-  <a class="cbrand" href="index.html">EVTIN®</a>
+  <a class="cbrand" href="./">EVTIN®</a>
   <span class="ctag" data-i18n="bar.tag">Concept / Demo · 03</span>
-  <div class="cright"><a href="index.html#work" data-i18n="bar.back">← <span class="cback-long">Back to </span>work</a><button class="lang" type="button" data-lang aria-label="Switch language">RU</button></div>
+  <div class="cright"><a href="./#work" data-i18n="bar.back">← <span class="cback-long">Back to </span>work</a><button class="lang" type="button" data-lang aria-label="RU — Русская версия">RU</button></div>
 </header>
 
 <main>
@@ -148,7 +150,7 @@ body{background:var(--stone);color:var(--gr);font-family:Jost,Arial,sans-serif;f
           <text x="20" y="28" data-i18n="a.r.living">Living</text><text x="180" y="28" data-i18n="a.r.kitchen">Kitchen</text><text x="180" y="108" data-i18n="a.r.bed">Bedroom</text><text x="18" y="148" data-i18n="a.r.bath">Bath</text><text x="88" y="148" data-i18n="a.r.study">Study</text>
           <path d="M10 10h40M70 10h40M130 10h30" stroke="#a47c63" stroke-width="4"/>
         </svg>
-        <div class="a-note" aria-live="polite"><b id="roomName">Living room</b><span id="roomNote">Original oak parquet, restored. Lime-wash walls so daylight stays soft in the evening.</span></div>
+        <div class="a-note" aria-atomic="true" aria-live="polite"><b id="roomName">Living room</b><span id="roomNote">Original oak parquet, restored. Lime-wash walls so daylight stays soft in the evening.</span></div>
       </div>
     </article>
 
@@ -209,40 +211,12 @@ body{background:var(--stone);color:var(--gr);font-family:Jost,Arial,sans-serif;f
     <div><h3 data-i18n="notes.d.h">Decisions</h3><ul><li data-i18n="notes.d.1">Each project is a chapter with facts (area, time, year), a palette and a plan you can explore.</li><li data-i18n="notes.d.2">A material library replaces “our services” — it shows taste instead of claiming it.</li><li data-i18n="notes.d.3">Calm serif, stone and olive tones, lots of air. No carousel anywhere.</li></ul></div>
     <div><h3 data-i18n="notes.x.h">What you'd get</h3><ul><li data-i18n="notes.x.1">Chapter-based project template you can reuse for every new case</li><li data-i18n="notes.x.2">Interactive plan and material blocks, ready for real photos</li><li data-i18n="notes.x.3">Clear process section that pre-answers client questions</li></ul></div>
   </div>
-  <div class="ccta"><strong data-i18n="notes.cta">Want your own version?</strong><a href="index.html#contact" data-i18n="notes.btn">Start a real project ↗</a></div>
+  <div class="ccta"><strong data-i18n="notes.cta">Want your own version?</strong><a href="./#contact" data-i18n="notes.btn">Start a real project ↗</a></div>
 </section>
-<footer class="cfoot"><span data-i18n="foot.l">Concept / demo — original practice work, not a client. Projects and figures are fictional.</span><a href="index.html#work" data-i18n="foot.r">Back to EVTIN Studio ↗</a></footer>
+<footer class="cfoot"><span data-i18n="foot.l">Concept / demo — original practice work, not a client. Projects and figures are fictional.</span><a href="./#work" data-i18n="foot.r">Back to EVTIN Studio ↗</a></footer>
 
-<script>
-window.CONCEPT_I18N={
-en:{"meta.title":"ATELIER 07 — EVTIN Studio Concept","bar.tag":"Concept / Demo · 03","bar.back":"← <span class=\"cback-long\">Back to </span>work","a.nav.proj":"Projects","a.nav.mat":"Materials","a.nav.proc":"Process","a.h.k":"Interior studio · residential & small hospitality","a.h.t":"Space<br><i>with</i> memory.","a.h.p":"We design rooms that get better with use: honest materials, daylight first, and furniture that earns its place.","a.idx":"Chapters","a.c1.s":"Embankment flat","a.c2.s":"Bakery counter","a.c3.s":"Writer's room","a.c1.t":"A flat on the embankment","a.c1.p":"A 1910s apartment with four tall windows and no corridor. We took out two partitions, kept the original floor and let the light decide where people sit. Tap a room on the plan to read the material notes.","a.area":"Area","a.time":"Time","a.year":"Year","a.c1.w":"14 weeks","a.c2.w":"6 weeks","a.c3.w":"4 weeks","a.r.living":"Living","a.r.kitchen":"Kitchen","a.r.bed":"Bedroom","a.r.bath":"Bath","a.r.study":"Study","a.c2.t":"A counter for a neighbourhood bakery","a.c2.p":"Twenty-two square metres, one long travertine counter and a window that works as the shop sign. The queue was designed before the furniture.","a.c3.t":"A room for writing, nothing else","a.c3.p":"One desk facing a wall, not the window. Shelving in linen-wrapped panels to soften sound. The view is a reward, not a distraction.","a.m.k":"Material library","a.m.t":"Five materials. Every project starts here.","a.m.trav":"Travertine","a.m.oak":"Smoked oak","a.m.lin":"Linen","a.m.steel":"Blackened steel","a.m.clay":"Clay plaster","a.p.k":"Process","a.p.t":"Four steps, no surprises.","a.p.1t":"Listening","a.p.1p":"How you actually live, not how a magazine says you should.","a.p.2t":"Plan & light","a.p.2p":"Layouts tested against daylight and daily routes.","a.p.3t":"Materials","a.p.3p":"Physical samples on your table, never only renders.","a.p.4t":"Site","a.p.4p":"Weekly visits and one person responsible for every detail.","notes.k":"Case notes — how this concept was designed","notes.t":"A portfolio where projects are chapters, not thumbnails.","notes.b.h":"Brief","notes.b.p":"A fictional interior studio whose work is about material and light. The usual grid of tiny photos and a list of services flattens exactly what makes them good.","notes.d.h":"Decisions","notes.d.1":"Each project is a chapter with facts (area, time, year), a palette and a plan you can explore.","notes.d.2":"A material library replaces “our services” — it shows taste instead of claiming it.","notes.d.3":"Calm serif, stone and olive tones, lots of air. No carousel anywhere.","notes.x.h":"What you'd get","notes.x.1":"Chapter-based project template you can reuse for every new case","notes.x.2":"Interactive plan and material blocks, ready for real photos","notes.x.3":"Clear process section that pre-answers client questions","notes.cta":"Want your own version?","notes.btn":"Start a real project ↗","foot.l":"Concept / demo — original practice work, not a client. Projects and figures are fictional.","foot.r":"Back to EVTIN Studio ↗",
-"room.living":["Living room","Original oak parquet, restored. Lime-wash walls so daylight stays soft in the evening."],"room.kitchen":["Kitchen","Travertine worktop, no upper cabinets — one open shelf in blackened steel."],"room.bed":["Bedroom","Linen curtains floor to ceiling, clay plaster behind the bed for warmth."],"room.bath":["Bathroom","Microcement floor and walls, one niche lit from below."],"room.study":["Study","A former pantry. Built-in oak desk and a door that closes properly."],
-"mat.trav":"Travertine — porous, warm and imperfect. We leave it honed, never polished, so it ages with the room.","mat.oak":"Smoked oak — darker without stain. Used for floors and anything hands touch every day.","mat.lin":"Linen — curtains, wrapped panels, upholstery. Softens sound as much as light.","mat.steel":"Blackened steel — thin shelves, frames and handles. The only hard line in the palette.","mat.clay":"Clay plaster — breathable walls with a matte, slightly uneven surface that holds shadow."},
-ru:{"meta.title":"ATELIER 07 — концепт EVTIN Studio","bar.tag":"Концепт / демо · 03","bar.back":"← <span class=\"cback-long\">Назад к </span>работам","a.nav.proj":"Проекты","a.nav.mat":"Материалы","a.nav.proc":"Процесс","a.h.k":"Интерьерная студия · жильё и небольшие заведения","a.h.t":"Пространство<br><i>с</i> памятью.","a.h.p":"Мы проектируем интерьеры, которые с годами становятся лучше: честные материалы, сначала свет, и мебель, которая заслужила своё место.","a.idx":"Главы","a.c1.s":"Квартира на набережной","a.c2.s":"Прилавок пекарни","a.c3.s":"Комната писателя","a.c1.t":"Квартира на набережной","a.c1.p":"Квартира 1910-х с четырьмя высокими окнами и без коридора. Мы убрали две перегородки, сохранили исходный пол и дали свету решить, где будут сидеть люди. Нажмите на комнату на плане, чтобы прочитать заметки о материалах.","a.area":"Площадь","a.time":"Срок","a.year":"Год","a.c1.w":"14 недель","a.c2.w":"6 недель","a.c3.w":"4 недели","a.r.living":"Гостиная","a.r.kitchen":"Кухня","a.r.bed":"Спальня","a.r.bath":"Ванная","a.r.study":"Кабинет","a.c2.t":"Прилавок для районной пекарни","a.c2.p":"Двадцать два квадратных метра, один длинный прилавок из травертина и окно, которое работает как вывеска. Очередь спроектировали раньше мебели.","a.c3.t":"Комната только для письма","a.c3.p":"Один стол лицом к стене, а не к окну. Стеллажи из панелей, обтянутых льном, гасят звук. Вид из окна — награда, а не отвлечение.","a.m.k":"Библиотека материалов","a.m.t":"Пять материалов. С них начинается каждый проект.","a.m.trav":"Травертин","a.m.oak":"Морёный дуб","a.m.lin":"Лён","a.m.steel":"Воронёная сталь","a.m.clay":"Глиняная штукатурка","a.p.k":"Процесс","a.p.t":"Четыре шага, без сюрпризов.","a.p.1t":"Слушаем","a.p.1p":"Как вы живёте на самом деле, а не как советует журнал.","a.p.2t":"План и свет","a.p.2p":"Планировки проверяем по дневному свету и ежедневным маршрутам.","a.p.3t":"Материалы","a.p.3p":"Живые образцы у вас на столе, а не только рендеры.","a.p.4t":"Стройка","a.p.4p":"Еженедельные выезды и один человек, отвечающий за каждую деталь.","notes.k":"Заметки к кейсу — как придуман этот концепт","notes.t":"Портфолио, где проекты — главы, а не миниатюры.","notes.b.h":"Задача","notes.b.p":"Вымышленная интерьерная студия, чья работа — про материал и свет. Привычная сетка маленьких фото и список услуг уплощают именно то, что делает их хорошими.","notes.d.h":"Решения","notes.d.1":"Каждый проект — глава с фактами (площадь, срок, год), палитрой и планом, который можно изучить.","notes.d.2":"Библиотека материалов вместо «наших услуг» — она показывает вкус, а не заявляет о нём.","notes.d.3":"Спокойная антиква, тона камня и оливы, много воздуха. Никаких каруселей.","notes.x.h":"Что вы получите","notes.x.1":"Шаблон проекта-главы, который можно переиспользовать для каждого нового кейса","notes.x.2":"Интерактивный план и блоки материалов, готовые к реальным фото","notes.x.3":"Понятный раздел о процессе, который заранее отвечает на вопросы клиента","notes.cta":"Хотите свою версию?","notes.btn":"Начать реальный проект ↗","foot.l":"Концепт / демо — оригинальный учебный проект, не клиент. Проекты и цифры вымышлены.","foot.r":"Назад в EVTIN Studio ↗",
-"room.living":["Гостиная","Исходный дубовый паркет, отреставрирован. Известковая покраска стен, чтобы вечерний свет оставался мягким."],"room.kitchen":["Кухня","Столешница из травертина, без верхних шкафов — одна открытая полка из воронёной стали."],"room.bed":["Спальня","Льняные шторы от пола до потолка, глиняная штукатурка за изголовьем для тепла."],"room.bath":["Ванная","Микроцемент на полу и стенах, одна ниша с подсветкой снизу."],"room.study":["Кабинет","Бывшая кладовая. Встроенный дубовый стол и дверь, которая нормально закрывается."],
-"mat.trav":"Травертин — пористый, тёплый и неидеальный. Оставляем его шлифованным, не полированным, чтобы он старел вместе с комнатой.","mat.oak":"Морёный дуб — темнее без морилки. Для полов и всего, к чему каждый день прикасаются руки.","mat.lin":"Лён — шторы, обтянутые панели, обивка. Смягчает звук так же, как свет.","mat.steel":"Воронёная сталь — тонкие полки, рамы и ручки. Единственная жёсткая линия в палитре.","mat.clay":"Глиняная штукатурка — дышащие стены с матовой, чуть неровной поверхностью, которая держит тень."}};
-</script>
+<script src="concept-atelier07.i18n.js"></script>
 <script src="concept.js"></script>
-<script>
-(function(){
-  var T=window.CONCEPT_I18N,html=document.documentElement,L=function(k){return (T[html.lang]||T.en)[k]};
-  var rooms=document.querySelectorAll('.rm'),cur='living';
-  function showRoom(){var r=L('room.'+cur);document.getElementById('roomName').textContent=r[0];document.getElementById('roomNote').textContent=r[1];rooms.forEach(function(x){x.classList.toggle('on',x.dataset.room===cur)})}
-  rooms.forEach(function(r){
-    r.addEventListener('click',function(){cur=r.dataset.room;showRoom()});
-    r.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();cur=r.dataset.room;showRoom()}});
-  });
-  var mats=document.querySelectorAll('[data-m]'),mcur='trav';
-  function showMat(){document.getElementById('mdesc').textContent=L('mat.'+mcur);mats.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.m===mcur)})}
-  mats.forEach(function(b){b.addEventListener('click',function(){mcur=b.dataset.m;showMat()})});
-  function all(){showRoom();showMat()}
-  all();new MutationObserver(all).observe(html,{attributes:true,attributeFilter:['lang']});
-  if('IntersectionObserver' in window){
-    var links=document.querySelectorAll('.a-index a');
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-40% 0px -55% 0px'});
-    document.querySelectorAll('.a-ch').forEach(function(s){io.observe(s)});
-  }
-})();
-</script>
+<script src="concept-atelier07.js"></script>
 </body>
 </html>

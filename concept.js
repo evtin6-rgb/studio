@@ -7,7 +7,7 @@ if(!T[l])l='en';
 document.documentElement.lang=l;
 document.querySelectorAll('[data-i18n]').forEach(function(e){var v=T[l][e.dataset.i18n];if(v!==undefined)e.innerHTML=v});
 if(T[l]['meta.title'])document.title=T[l]['meta.title'];
-if(btn)btn.textContent=l==='en'?'RU':'EN';
+if(btn){var to=l==='en'?'ru':'en';btn.textContent=to.toUpperCase();btn.lang=to;btn.setAttribute('aria-label',to==='ru'?'RU — Русская версия':'EN — English version')}
 try{localStorage.setItem('evtin-lang',l)}catch(e){}
 }
 apply(lang);
