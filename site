@@ -14,7 +14,7 @@ cat > package.json << 'EOF'
     "start": "next start"
   },
   "dependencies": {
-    "next": "14.2.5",
+    "next": "14.2.35",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "framer-motion": "^11.3.0",
@@ -34,7 +34,7 @@ cat > package.json << 'EOF'
     "postcss": "^8.4.39",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
-    "eslint-config-next": "14.2.5"
+    "eslint-config-next": "14.2.35"
   }
 }
 EOF
@@ -772,11 +772,13 @@ export const metadata: Metadata = {
     siteName: "Evtin Studio",
     title: "Evtin Studio — Premium Creative Agency",
     description: "We craft digital experiences that elevate brands and drive results.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Evtin Studio" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Evtin Studio — Premium Creative Agency",
     description: "We craft digital experiences that elevate brands and drive results.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -1128,14 +1130,14 @@ export default function Home() {
 }
 EOF
 
-cat > app/opengraph-image.tsx << 'EOF'
+mkdir -p app/og-image.png
+cat > app/og-image.png/route.tsx << 'EOF'
 import { ImageResponse } from "next/og"
 
-export const alt = "Evtin Studio — Premium Creative Agency"
-export const size = { width: 1200, height: 630 }
-export const contentType = "image/png"
+// Rendered once at build time to dist/og-image.png (static export).
+export const dynamic = "force-static"
 
-export default function OpengraphImage() {
+export function GET() {
   return new ImageResponse(
     (
       <div
@@ -1154,7 +1156,7 @@ export default function OpengraphImage() {
         <div style={{ fontSize: 40, marginTop: 24, color: "#93c5fd" }}>Premium Creative Agency</div>
       </div>
     ),
-    size
+    { width: 1200, height: 630 }
   )
 }
 EOF
