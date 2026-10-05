@@ -59,6 +59,7 @@
     world: store.get('world', 'meadow'),
     loco: store.get('loco', 'red'),
     sound: store.get('sound', true),
+    music: store.get('music', true),
   };
   let premium = false;
   let stars = store.get('stars', 0);
@@ -174,6 +175,74 @@
     bonk() { this.osc('sine', 240, 150, 0.22, 0.3); },
     giggle() { [700, 900, 760, 1040].forEach((f, i) => this.osc('sine', f, f * 1.25, 0.07, 0.14, i * 0.08)); },
     sparkle() { this.osc('sine', 1400 + Math.random() * 600, 0, 0.15, 0.08); },
+    // «голоса» зверят: [волна, частота от, частота до, длительность, задержка, громкость]
+    voice(type) {
+      const V = {
+        bunny: [['sine', 900, 1400, 0.09, 0, 0.22], ['sine', 950, 1500, 0.09, 0.12, 0.22]],
+        bear: [['triangle', 170, 120, 0.45, 0, 0.35]],
+        cat: [['triangle', 560, 820, 0.18, 0, 0.25], ['triangle', 820, 480, 0.3, 0.18, 0.25]],
+        frog: [['square', 170, 150, 0.08, 0, 0.08], ['square', 210, 160, 0.12, 0.11, 0.08]],
+        pig: [['square', 320, 200, 0.14, 0, 0.07], ['square', 300, 190, 0.14, 0.2, 0.07]],
+        duck: [['sawtooth', 520, 380, 0.13, 0, 0.07], ['sawtooth', 520, 380, 0.13, 0.17, 0.07]],
+        fox: [['sine', 800, 1250, 0.1, 0, 0.22], ['sine', 850, 1300, 0.1, 0.14, 0.22]],
+        panda: [['sine', 380, 620, 0.22, 0, 0.28]],
+      }[type] || [];
+      V.forEach(([w, f0, f1, d, dl, v]) => this.osc(w, f0, f1, d, v, dl));
+    },
+  };
+
+  // ---------------------------------------------------------------- музыка
+  // Простая весёлая мелодия, синтезируется на лету и тихо играет во время поездки.
+  const Music = {
+    gain: null, timer: null, next: 0, step: 0,
+    BEAT: 60 / 116,
+    // [нота MIDI или 0 для паузы, длительность в долях]
+    MELODY: [
+      [72, 1], [76, 1], [79, 1], [76, 1], [77, 1], [81, 1], [79, 2],
+      [76, 1], [79, 1], [84, 1], [79, 1], [74, 1], [77, 1], [76, 2],
+      [72, 1], [76, 1], [79, 1], [76, 1], [77, 1], [81, 1], [79, 1], [77, 1],
+      [76, 1], [74, 1], [71, 1], [74, 1], [72, 3], [0, 1],
+    ],
+    BASS: [48, 53, 48, 55, 48, 53, 55, 48],
+    start() {
+      if (!settings.music || this.timer) return;
+      const ac = Sfx.ensure(); if (!ac) return;
+      if (!this.gain) { this.gain = ac.createGain(); this.gain.connect(Sfx.master); }
+      this.gain.gain.cancelScheduledValues(ac.currentTime);
+      this.gain.gain.setValueAtTime(settings.sound ? 0.5 : 0, ac.currentTime);
+      this.next = ac.currentTime + 0.1; this.step = 0; this.bassT = this.next; this.bar = 0;
+      this.timer = setInterval(() => this.tick(), 100);
+    },
+    stop() {
+      if (this.timer) clearInterval(this.timer);
+      this.timer = null;
+      if (this.gain && Sfx.ac) this.gain.gain.setTargetAtTime(0, Sfx.ac.currentTime, 0.1);
+    },
+    tone(f, t, d, type, vol) {
+      const ac = Sfx.ac, o = ac.createOscillator(), g = ac.createGain();
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol, t + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+      o.connect(g); g.connect(this.gain);
+      o.start(t); o.stop(t + d + 0.05);
+    },
+    tick() {
+      const ac = Sfx.ac; if (!ac || !settings.sound) return;
+      const ahead = ac.currentTime + 0.4;
+      while (this.next < ahead) {
+        const [n, len] = this.MELODY[this.step % this.MELODY.length];
+        if (n) this.tone(440 * Math.pow(2, (n - 69) / 12), this.next, len * this.BEAT * 0.9, 'triangle', 0.06);
+        this.next += len * this.BEAT;
+        this.step++;
+      }
+      while (this.bassT < ahead) {
+        const n = this.BASS[this.bar % this.BASS.length];
+        this.tone(440 * Math.pow(2, (n - 69) / 12), this.bassT, this.BEAT * 0.8, 'sine', 0.09);
+        this.tone(440 * Math.pow(2, (n + 7 - 69) / 12), this.bassT + this.BEAT * 2, this.BEAT * 0.8, 'sine', 0.06);
+        this.bassT += this.BEAT * 4; this.bar++;
+      }
+    },
   };
 
   // ---------------------------------------------------------------- layout
@@ -782,6 +851,7 @@
     a.fx = a.wx; a.fy = PLAT_TOP - 86;
     const p = seatPos(s.w, s.i);
     a.tx = p.x + G.dist; a.ty = p.y;
+    Sfx.voice(a.type);
     Sfx.boing();
     G.boarded = (G.boarded || 0) + 1;
   }
@@ -1054,8 +1124,10 @@
     show(ui.menu, false); show(ui.hud, true);
     renderProgress();
     honk(true);
+    Music.start();
   }
   function toMenu() {
+    Music.stop();
     G.mode = 'menu'; G.animals = []; G.balloons = []; G.seats = G.seats.map(() => [null, null]);
     show(ui.hud, false); show(ui.menu, true);
     buildMenu();
@@ -1101,6 +1173,7 @@
   function openParents() { renderParents(); show(ui.parents, true); }
   function renderParents() {
     $('btnSound').classList.toggle('on', settings.sound);
+    $('btnMusic').classList.toggle('on', settings.music);
     $('subStatus').textContent = premium ? 'Подписка активна — все миры и поезда открыты' : 'Открывает 3 мира и 3 поезда';
     $('btnSub').textContent = premium ? 'Управлять' : 'Подробнее';
     show($('demoNote'), !Billing.state.native);
@@ -1173,7 +1246,15 @@
   $('btnHome').addEventListener('click', () => { Sfx.pop(); toMenu(); });
   $('btnHonk').addEventListener('click', () => honk());
   $('btnParents').addEventListener('click', () => openGate(openParents));
-  $('btnSound').addEventListener('click', () => { settings.sound = !settings.sound; store.set('sound', settings.sound); renderParents(); if (settings.sound) Sfx.pop(); });
+  $('btnSound').addEventListener('click', () => {
+    settings.sound = !settings.sound; store.set('sound', settings.sound); renderParents();
+    if (settings.sound) Sfx.pop(); else Music.stop();
+  });
+  $('btnMusic').addEventListener('click', () => {
+    settings.music = !settings.music; store.set('music', settings.music); renderParents();
+    if (!settings.music) Music.stop();
+    // в меню музыка не играет — включится при следующей поездке
+  });
   $('btnSub').addEventListener('click', () => { if (premium) Billing.manage(); else { show(ui.parents, false); openPaywall(); } });
   $('btnRestore').addEventListener('click', () => { Billing.restore(); });
   $('payRestore').addEventListener('click', (e) => { e.preventDefault(); Billing.restore(); });
