@@ -64,7 +64,8 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
    - 06:42: live clock, open status and timeline all use the visitor's local time (Ivan chose this); hours 07:30–19:00; coffee card uses Region / Process: Washed / Roasted / Best for / Tasting notes.
    - Prices carry both values (`data-eur` / `data-rub`), formatted by `concept.js` on language switch: RU → RUB, EN → EUR. NOIR RUB = EUR×100 (Ivan's example). 06:42 EUR menu prices are my proposal.
    - Home pricing: €300 / 30 000 ₽ landing, €500 / 50 000 ₽ full site (data-eur/data-rub, formatted in script.js).
-   - Still open with Ivan: 06:42 "Where" and "Beans" copy, work-card tags / CTA / disclaimer wording.
+   - 06:42 facts: "St. Petersburg. A street you won't find on the map." / "We roast on Mondays. By Friday, it's whatever's left." (roast date shows the latest Monday); calculator unit "мл" in RU.
+   - Tags: "Concept 01/02/03" (RU "Концепт") on home cards and concept bars. CTA "View concept" and disclaimer wording unchanged.
 
 ## Next steps
 1. Optionally replace the drawn mock of the musician project with a real screenshot.
