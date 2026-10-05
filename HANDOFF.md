@@ -12,7 +12,9 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - Formspree: `https://formspree.io/f/mnpagjqg`, subject `New enquiry — EVTIN Studio`.
 - Instagram https://www.instagram.com/evtinivan · Telegram https://t.me/video_s_meropriyatiy
 - Language key in localStorage: `evtin-lang` (shared by the home page and the concept pages).
-- Live site (per Ivan): https://evtstudio.netlify.app/ (the old dossier says `evtinstudio`; **not confirmed yet**). The sandbox proxy blocks `*.netlify.app`, so the live site cannot be fetched from here.
+- Domain (confirmed by Ivan, session 2): https://evtinstudio.netlify.app/ — used in canonical, OG, JSON-LD, robots.txt and sitemap.xml.
+- Deadline (Ivan, session 2): launch by **2026-10-07**.
+- The sandbox proxy blocks `*.netlify.app`, so the live site cannot be fetched from here.
 
 ## Repo layout (static site, no build)
 - `index.html`, `styles.css`, `script.js`: home page (Hero → Approach → Work → What I do → How it works → Price & scope → About → FAQ → Contact, numbered 01–09)
@@ -58,14 +60,13 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 
 ## Next steps
 1. Optionally replace the drawn mock of the musician project with a real screenshot.
-2. If the domain is not `evtstudio.netlify.app`, update index.html head, robots.txt and sitemap.xml.
+2. Portrait: Ivan shared it as a Google Photos link, but this sandbox cannot reach Google Photos. Upload `assets/ivan-03.webp` (about 860×1100) to the branch directly.
 3. After Ivan approves: open a PR into `main` → Netlify deploy → live QA (form, links, language, mobile).
 4. Formspree dashboard (Ivan): turn on spam filtering/CAPTCHA and restrict the form to the final domain.
 5. Remaining low-priority a11y: some English-only aria-labels and decorative strings in RU mode (nav 'Main', burger 'Menu', NOIR ticker, 06:42 menu item names); no visible 'required' cue on the form.
 6. Later: cookie-less analytics (Plausible/Umami) with a form-submit goal; outreach plan.
 
 ## Open questions for Ivan
-- Which domain is correct: `evtstudio` or `evtinstudio`?
 - Upload `assets/ivan-03.webp` (and `ivan-01.webp` if wanted).
 - Has the live site changed since the dossier build? If so, send the current files.
 
