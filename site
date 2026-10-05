@@ -1,4 +1,7 @@
-mkdir -p app/api/contact components/ui components/sections components/navigation hooks lib types public
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p app components/ui components/sections components/navigation hooks lib public
 
 cat > package.json << 'EOF'
 {
@@ -54,7 +57,7 @@ cat > tsconfig.json << 'EOF'
     "plugins": [{ "name": "next" }],
     "paths": { "@/*": ["./*"] }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "dist/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
 EOF
@@ -84,7 +87,23 @@ cat > next-env.d.ts << 'EOF'
 /// <reference types="next/image-types/global" />
 EOF
 
-echo "✅ Config files created"cat > tailwind.config.ts << 'EOF'
+cat > .eslintrc.json << 'EOF'
+{
+  "extends": "next/core-web-vitals"
+}
+EOF
+
+cat > .gitignore << 'EOF'
+node_modules/
+.next/
+dist/
+next-env.d.ts
+*.tsbuildinfo
+EOF
+
+echo "✅ Config files created"
+
+cat > tailwind.config.ts << 'EOF'
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -274,7 +293,44 @@ export const siteConfig = {
   },
   nav: [
     { label: "About", href: "#about" },
-    {cat > components/ui/button.tsx << 'EOF'
+    { label: "Services", href: "#services" },
+    { label: "Work", href: "#work" },
+    { label: "Contact", href: "#contact" },
+  ],
+  services: [
+    {
+      title: "Brand Strategy",
+      description: "Positioning, naming and messaging that give your brand a clear, confident voice.",
+    },
+    {
+      title: "Web Design",
+      description: "Distinctive interfaces designed around your users and built to convert.",
+    },
+    {
+      title: "Development",
+      description: "Fast, accessible, scalable websites and products built on modern tooling.",
+    },
+    {
+      title: "Digital Marketing",
+      description: "Campaigns and content that reach the right audience and drive measurable growth.",
+    },
+  ],
+  work: [
+    { title: "Northwind", category: "Branding · Web", year: "2024" },
+    { title: "Lumen Health", category: "Product Design", year: "2024" },
+    { title: "Atlas Finance", category: "Web Development", year: "2023" },
+    { title: "Kinfolk Coffee", category: "Brand Identity", year: "2023" },
+  ],
+  stats: [
+    { value: "120+", label: "Projects delivered" },
+    { value: "8", label: "Years of experience" },
+    { value: "40+", label: "Happy clients" },
+    { value: "12", label: "Industry awards" },
+  ],
+}
+EOF
+
+cat > components/ui/button.tsx << 'EOF'
 "use client"
 
 import * as React from "react"
@@ -526,6 +582,7 @@ import { useEffect, useState } from "react"
 import { motion, useMotionValue, useSpring } from "framer-motion"
 
 export function CustomCursor() {
+  const [mounted, setMounted] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const cursorX = useMotionValue(-100)
@@ -535,25 +592,29 @@ export function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig)
 
   useEffect(() => {
+    setMounted(true)
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
       setIsVisible(true)
     }
-    const handleEnter = () => setIsHovering(true)
-    const handleLeave = () => setIsHovering(false)
+    const handleOver = (e: MouseEvent) => {
+      const target = e.target as Element | null
+      setIsHovering(!!target?.closest("a, button, [role='button']"))
+    }
+    const handleLeave = () => setIsVisible(false)
 
     window.addEventListener("mousemove", moveCursor)
-    document.querySelectorAll("a, button, [role='button']").forEach((el) => {
-      el.addEventListener("mouseenter", handleEnter)
-      el.addEventListener("mouseleave", handleLeave)
-    })
+    document.addEventListener("mouseover", handleOver)
+    document.addEventListener("mouseleave", handleLeave)
     return () => {
       window.removeEventListener("mousemove", moveCursor)
+      document.removeEventListener("mouseover", handleOver)
+      document.removeEventListener("mouseleave", handleLeave)
     }
   }, [cursorX, cursorY])
 
-  if (typeof window === "undefined") return null
+  if (!mounted) return null
   return (
     <>
       <motion.div
@@ -584,9 +645,12 @@ import { cn } from "@/lib/utils"
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
+  const theme = mounted ? resolvedTheme : undefined
 
   useEffect(() => {
+    setMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
@@ -708,13 +772,11 @@ export const metadata: Metadata = {
     siteName: "Evtin Studio",
     title: "Evtin Studio — Premium Creative Agency",
     description: "We craft digital experiences that elevate brands and drive results.",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Evtin Studio" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Evtin Studio — Premium Creative Agency",
     description: "We craft digital experiences that elevate brands and drive results.",
-    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -739,3 +801,367 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 EOF
 
 echo "✅ Step 4 done"
+
+cat > components/sections/hero.tsx << 'EOF'
+"use client"
+
+import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { siteConfig } from "@/lib/config"
+
+export function Hero() {
+  return (
+    <section className="relative min-h-screen flex items-center overflow-hidden noise">
+      <div className="absolute -top-40 -right-40 w-[32rem] h-[32rem] rounded-full bg-evtin-blue/20 blur-3xl animate-pulse-soft" />
+      <div className="absolute -bottom-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-evtin-purple/20 blur-3xl animate-pulse-soft" />
+      <div className="container relative max-w-6xl mx-auto px-6 pt-24">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-6"
+        >
+          {siteConfig.tagline}
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] max-w-4xl"
+        >
+          We build brands that <span className="text-gradient">move people.</span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl"
+        >
+          {siteConfig.description}
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="mt-10 flex flex-wrap gap-4"
+        >
+          <a href="#contact">
+            <Button size="lg" className="rounded-full gap-2">
+              Start a project <ArrowRight className="w-4 h-4" />
+            </Button>
+          </a>
+          <a href="#work">
+            <Button size="lg" variant="outline" className="rounded-full">
+              View our work
+            </Button>
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+EOF
+
+cat > components/sections/about.tsx << 'EOF'
+"use client"
+
+import { motion } from "framer-motion"
+import { siteConfig } from "@/lib/config"
+
+export function About() {
+  return (
+    <section id="about" className="py-24 md:py-32 scroll-mt-16">
+      <div className="container max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-sm uppercase tracking-[0.2em] text-evtin-blue mb-4">About us</p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+            A small studio with a big appetite for craft.
+          </h2>
+          <p className="mt-6 text-muted-foreground text-lg">
+            {siteConfig.name} is an independent team of strategists, designers and engineers.
+            We partner with ambitious companies to shape how they look, sound and work online.
+          </p>
+        </motion.div>
+        <div className="grid grid-cols-2 gap-6">
+          {siteConfig.stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="glass rounded-2xl p-6"
+            >
+              <div className="text-4xl font-bold text-gradient">{stat.value}</div>
+              <div className="mt-2 text-sm text-muted-foreground">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+EOF
+
+cat > components/sections/services.tsx << 'EOF'
+"use client"
+
+import { motion } from "framer-motion"
+import { Compass, Palette, Code2, TrendingUp } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { siteConfig } from "@/lib/config"
+
+const icons = [Compass, Palette, Code2, TrendingUp]
+
+export function Services() {
+  return (
+    <section id="services" className="py-24 md:py-32 bg-secondary/40 scroll-mt-16">
+      <div className="container max-w-6xl mx-auto px-6">
+        <p className="text-sm uppercase tracking-[0.2em] text-evtin-blue mb-4">Services</p>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight max-w-2xl">
+          Everything you need to launch and grow.
+        </h2>
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {siteConfig.services.map((service, i) => {
+            const Icon = icons[i % icons.length]
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Card className="h-full hover:-translate-y-1 transition-transform duration-300">
+                  <CardHeader>
+                    <div className="w-11 h-11 rounded-xl bg-evtin-blue/10 text-evtin-blue flex items-center justify-center mb-4">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">{service.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+EOF
+
+cat > components/sections/work.tsx << 'EOF'
+"use client"
+
+import { motion } from "framer-motion"
+import { ArrowUpRight } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { siteConfig } from "@/lib/config"
+
+const gradients = [
+  "from-evtin-blue to-evtin-cyan",
+  "from-evtin-purple to-evtin-blue",
+  "from-evtin-cyan to-evtin-purple",
+  "from-evtin-blue to-evtin-purple",
+]
+
+export function Work() {
+  return (
+    <section id="work" className="py-24 md:py-32 scroll-mt-16">
+      <div className="container max-w-6xl mx-auto px-6">
+        <p className="text-sm uppercase tracking-[0.2em] text-evtin-blue mb-4">Selected work</p>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight max-w-2xl">
+          Projects we&apos;re proud of.
+        </h2>
+        <div className="mt-14 grid md:grid-cols-2 gap-8">
+          {siteConfig.work.map((project, i) => (
+            <motion.article
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
+              className="group"
+            >
+              <div
+                className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${gradients[i % gradients.length]} flex items-end p-6 overflow-hidden`}
+              >
+                <span className="text-white/90 text-5xl md:text-6xl font-bold tracking-tight group-hover:scale-105 transition-transform duration-500 origin-bottom-left">
+                  {project.title}
+                </span>
+              </div>
+              <div className="mt-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <h3 className="font-semibold text-lg">{project.title}</h3>
+                  <Badge variant="secondary">{project.year}</Badge>
+                </div>
+                <span className="flex items-center gap-1 text-sm text-muted-foreground">
+                  {project.category}
+                  <ArrowUpRight className="w-4 h-4" />
+                </span>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+EOF
+
+cat > components/sections/contact.tsx << 'EOF'
+"use client"
+
+import { useState } from "react"
+import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { siteConfig } from "@/lib/config"
+
+// The site is a static export (no server), so the form opens the visitor's
+// mail client with the message prefilled instead of posting to an API route.
+export function Contact() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const subject = encodeURIComponent(`Project inquiry from ${name}`)
+    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`)
+    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`
+  }
+
+  const inputClass =
+    "w-full rounded-lg border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+
+  return (
+    <section id="contact" className="py-24 md:py-32 bg-secondary/40 scroll-mt-16">
+      <div className="container max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+        <div>
+          <p className="text-sm uppercase tracking-[0.2em] text-evtin-blue mb-4">Contact</p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Let&apos;s make something great.</h2>
+          <p className="mt-6 text-muted-foreground text-lg">
+            Tell us about your project and we&apos;ll get back to you within two business days.
+          </p>
+          <ul className="mt-10 space-y-4 text-sm">
+            <li className="flex items-center gap-3">
+              <Mail className="w-4 h-4 text-evtin-blue" />
+              <a href={`mailto:${siteConfig.email}`} className="hover:underline">{siteConfig.email}</a>
+            </li>
+            <li className="flex items-center gap-3">
+              <Phone className="w-4 h-4 text-evtin-blue" />
+              <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="hover:underline">{siteConfig.phone}</a>
+            </li>
+            <li className="flex items-center gap-3">
+              <MapPin className="w-4 h-4 text-evtin-blue" />
+              <span>{siteConfig.address}</span>
+            </li>
+          </ul>
+        </div>
+        <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 md:p-8 space-y-4">
+          <input required placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} className={inputClass} />
+          <input required type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} />
+          <textarea required rows={5} placeholder="Tell us about your project" value={message} onChange={(e) => setMessage(e.target.value)} className={inputClass} />
+          <Button type="submit" size="lg" className="w-full rounded-full gap-2">
+            Send message <Send className="w-4 h-4" />
+          </Button>
+        </form>
+      </div>
+    </section>
+  )
+}
+EOF
+
+cat > components/sections/footer.tsx << 'EOF'
+import { Separator } from "@/components/ui/separator"
+import { siteConfig } from "@/lib/config"
+
+export function Footer() {
+  return (
+    <footer className="py-12">
+      <div className="container max-w-6xl mx-auto px-6">
+        <Separator className="mb-8" />
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
+          <div className="flex gap-6">
+            {Object.entries(siteConfig.social).map(([name, href]) => (
+              <a key={name} href={href} target="_blank" rel="noopener noreferrer" className="capitalize hover:text-foreground transition-colors">
+                {name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
+EOF
+
+cat > app/page.tsx << 'EOF'
+import { Hero } from "@/components/sections/hero"
+import { About } from "@/components/sections/about"
+import { Services } from "@/components/sections/services"
+import { Work } from "@/components/sections/work"
+import { Contact } from "@/components/sections/contact"
+import { Footer } from "@/components/sections/footer"
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
+      <About />
+      <Services />
+      <Work />
+      <Contact />
+      <Footer />
+    </>
+  )
+}
+EOF
+
+cat > app/opengraph-image.tsx << 'EOF'
+import { ImageResponse } from "next/og"
+
+export const alt = "Evtin Studio — Premium Creative Agency"
+export const size = { width: 1200, height: 630 }
+export const contentType = "image/png"
+
+export default function OpengraphImage() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          padding: 80,
+          background: "linear-gradient(135deg, #0D1117 0%, #1e1b4b 100%)",
+          color: "white",
+        }}
+      >
+        <div style={{ fontSize: 96, fontWeight: 700 }}>Evtin Studio</div>
+        <div style={{ fontSize: 40, marginTop: 24, color: "#93c5fd" }}>Premium Creative Agency</div>
+      </div>
+    ),
+    size
+  )
+}
+EOF
+
+cat > app/icon.svg << 'EOF'
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#0D1117"/><text x="16" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#fff">E</text><circle cx="25" cy="21" r="2.5" fill="#3B82F6"/></svg>
+EOF
+
+echo "✅ Sections and page done"
+echo "Next: npm install && npm run build  (static site is written to ./dist)"
