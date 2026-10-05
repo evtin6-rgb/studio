@@ -13,7 +13,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - Instagram https://www.instagram.com/evtinivan · Telegram https://t.me/video_s_meropriyatiy
 - Language key in localStorage: `evtin-lang` (shared by the home page and the concept pages).
 - Domain (confirmed by Ivan, session 2): https://evtinstudio.netlify.app/ — used in canonical, OG, JSON-LD, robots.txt and sitemap.xml.
-- Deadline (Ivan, session 2): launch by **2026-10-07**.
+- Deadline (Ivan, session 2): test launch by **2026-10-08**.
 - The sandbox proxy blocks `*.netlify.app`, so the live site cannot be fetched from here.
 
 ## Repo layout (static site, no build)
@@ -23,7 +23,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - `concept.js`: shared i18n for the concept pages. It reads `window.CONCEPT_I18N` and applies `data-i18n` via innerHTML.
 - `fonts/`: self-hosted woff2 (latin + cyrillic) plus `fonts/fonts.css`, shared by all pages. DM Mono has no Cyrillic, so RU mono labels fall back to the system monospace (same as before).
 - `robots.txt`, `sitemap.xml` (home only; concepts are `noindex`), `assets/og.png` (1200×630)
-- `netlify.toml` (publish ".", long cache on `/fonts/*`), `assets/` (**`ivan-03.webp` portrait is still missing; Ivan must upload it**)
+- `netlify.toml` (publish ".", long cache on `/fonts/*`), `assets/` (portraits ivan-01/02/03.webp, og.png)
 - `.claude/settings.json` enables the ECC plugin (`ecc@ecc`, affaan-m/everything-claude-code)
 
 ## Done so far
@@ -60,7 +60,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 
 ## Next steps
 1. Optionally replace the drawn mock of the musician project with a real screenshot.
-2. Portrait: Ivan shared it as a Google Photos link, but this sandbox cannot reach Google Photos. Upload `assets/ivan-03.webp` (about 860×1100) to the branch directly.
+2. Portraits added (session 2): `assets/ivan-03.webp` in the hero; `ivan-01.webp` and `ivan-02.webp` are spare shots from the same session (could go into About instead of the IE circle if Ivan wants).
 3. After Ivan approves: open a PR into `main` → Netlify deploy → live QA (form, links, language, mobile).
 4. Formspree dashboard (Ivan): turn on spam filtering/CAPTCHA and restrict the form to the final domain.
 5. Remaining low-priority a11y: some English-only aria-labels and decorative strings in RU mode (nav 'Main', burger 'Menu', NOIR ticker, 06:42 menu item names); no visible 'required' cue on the form.
