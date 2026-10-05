@@ -58,6 +58,13 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
    - Fonts: Oswald (cyrillic) behind Anton, Manrope behind Instrument Sans, Fraunces 400; above-the-fold fonts preloaded (CLS on NOIR 0.205 → 0, Atelier 0.136 → 0.017).
    - Result: Lighthouse accessibility 100 on all 4 pages; best practices 100 on concepts, 96 on home only because of the missing portrait; SEO 100 on home (concepts are noindex by design).
 
+10. Copy & logic pass from Ivan's brief (session 2, after launch):
+   - Hero "Websites / that sound / like you." (RU "Сайты, / которые звучат / как вы."); musician card = press kit + booking; Ivan's own texts for work intro and the three concept cards.
+   - Footer mail link labelled "Gmail" in both languages.
+   - 06:42: live clock, open status and timeline all use the visitor's local time (Ivan chose this); hours 07:30–19:00; coffee card uses Region / Process: Washed / Roasted / Best for / Tasting notes.
+   - Prices carry both values (`data-eur` / `data-rub`), formatted by `concept.js` on language switch: RU → RUB, EN → EUR. NOIR RUB = EUR×100 (Ivan's example). 06:42 EUR menu prices are my proposal.
+   - Still open with Ivan: home pricing in RUB, 06:42 "Where" and "Beans" copy, work-card tags / CTA / disclaimer wording.
+
 ## Next steps
 1. Optionally replace the drawn mock of the musician project with a real screenshot.
 2. Portraits added (session 2): `assets/ivan-03.webp` in the hero; `ivan-01.webp` and `ivan-02.webp` are spare shots from the same session (could go into About instead of the IE circle if Ivan wants).
