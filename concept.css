@@ -1,1 +1,41 @@
-:root{--ink:#21172b;--paper:#f5efdf;--lime:#b9ff73;--coral:#ff6d61;--lav:#c7b6ff}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif}a{color:inherit}:focus-visible{outline:3px solid var(--coral);outline-offset:3px}.nav{height:75px;padding:0 5vw;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(33,23,43,.2);position:sticky;top:0;background:rgba(245,239,223,.93);backdrop-filter:blur(12px);z-index:5}.logo{font-weight:800;font-size:24px;letter-spacing:-.07em;text-decoration:none}.navlinks{display:flex;gap:25px;align-items:center;font:10px 'DM Mono',monospace;text-transform:uppercase}.back{text-decoration:none}.hero{min-height:83vh;padding:8vw 5vw;position:relative;overflow:hidden;display:flex;align-items:center}.meta{font:10px 'DM Mono',monospace;letter-spacing:.12em;margin-bottom:28px}.hero h1{font-size:clamp(75px,13vw,190px);line-height:.75;letter-spacing:-.1em;margin:0;position:relative;z-index:2}.hero em{font-family:Georgia,serif;font-weight:400}.shape{position:absolute;border-radius:50%;width:45vw;height:45vw;right:-8vw;top:10vw;background:var(--lime)}.intro{background:var(--ink);color:var(--paper);padding:8vw 5vw;display:grid;grid-template-columns:1fr 1fr;gap:8vw}.intro h2{font-size:clamp(40px,6vw,80px);line-height:.85;letter-spacing:-.08em;margin:0}.intro p{font-size:19px;line-height:1.5;color:#c5bac2;max-width:650px}.details{padding:5vw;display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.block{padding:28px;min-height:350px}.block small{font:10px 'DM Mono',monospace;letter-spacing:.1em}.block h3{font-size:clamp(42px,6vw,85px);line-height:.8;letter-spacing:-.08em;margin:70px 0 0}.b1{grid-column:span 7;background:var(--lime)}.b2{grid-column:span 5;background:var(--coral)}.b3{grid-column:span 12;background:var(--ink);color:var(--paper)}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:55px}.product{background:#fffaf0;color:var(--ink);padding:14px;min-height:260px}.art{height:170px;background:#ddd0bf;display:flex;align-items:center;justify-content:center;font:10px 'DM Mono',monospace}.product:nth-child(2) .art{background:var(--lav)}.product:nth-child(3) .art{background:var(--coral)}.product strong{display:block;margin-top:13px}.cta{padding:9vw 5vw;background:var(--lime);display:flex;justify-content:space-between;align-items:end;gap:25px}.cta h2{font-size:clamp(50px,8vw,120px);line-height:.78;letter-spacing:-.09em;margin:0}.cta a{font:10px 'DM Mono',monospace;text-transform:uppercase}.foot{background:var(--ink);color:var(--paper);padding:25px 5vw;display:flex;justify-content:space-between;font:10px 'DM Mono',monospace}.lang{border:1px solid currentColor;border-radius:99px;padding:7px 10px;background:none;color:inherit;font:inherit;cursor:pointer}@media(max-width:700px){.nav{padding:0 20px}.navlinks{gap:14px}.hero{min-height:70vh;padding:70px 20px}.hero h1{font-size:21vw}.shape{width:75vw;height:75vw;right:-15vw;top:25vw}.intro{grid-template-columns:1fr;padding:70px 20px}.details{grid-template-columns:1fr;padding:20px}.b1,.b2,.b3{grid-column:auto}.block{min-height:300px}.products{grid-template-columns:1fr}.cta{padding:70px 20px;display:block}.cta a{display:block;margin-top:30px}.foot{padding:22px 20px;display:block}.foot span{display:block;margin:8px 0}}
+/* Shared chrome for concept pages: studio bar + case notes + footer.
+   Each concept defines its own visual system inline; this file stays neutral. */
+*{box-sizing:border-box}
+body{margin:0}
+.cbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;height:52px;padding:0 4vw;background:#21172b;color:#f5efdf;font:11px/1 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
+.cbar a{color:inherit;text-decoration:none}
+.cbar a:hover{text-decoration:underline;text-underline-offset:4px}
+.cbar .cbrand{font:800 18px/1 Manrope,Arial,sans-serif;letter-spacing:-.06em;text-transform:none}
+.cbar .ctag{background:#b9ff73;color:#21172b;padding:5px 8px;white-space:nowrap}
+.cbar .cright{display:flex;align-items:center;gap:18px}
+.cbar .lang{border:1px solid currentColor;border-radius:99px;padding:6px 10px;background:none;color:inherit;font:inherit;cursor:pointer}
+.cbar :focus-visible,.cnotes :focus-visible,.cfoot :focus-visible{outline:3px solid #b9ff73;outline-offset:3px}
+
+.cnotes{background:#21172b;color:#f5efdf;padding:9vw 6vw;font-family:Manrope,Arial,sans-serif}
+.cnotes .chead{font:11px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#b4a8b5}
+.cnotes h2{font-size:clamp(38px,5vw,72px);line-height:.9;letter-spacing:-.06em;margin:24px 0 56px;max-width:900px}
+.cnotes .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(245,239,223,.25)}
+.cnotes .cgrid>div{padding:28px 28px 28px 0}
+.cnotes .cgrid>div+div{padding-left:28px;border-left:1px solid rgba(245,239,223,.25)}
+.cnotes h3{font:11px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#b9ff73;margin:0 0 14px}
+.cnotes p,.cnotes li{font-size:16px;line-height:1.55;color:#d5cbd2;margin:0}
+.cnotes ul{margin:0;padding-left:18px}
+.cnotes li+li{margin-top:6px}
+.cnotes .ccta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(245,239,223,.25)}
+.cnotes .ccta strong{font-size:clamp(28px,3.4vw,48px);letter-spacing:-.05em;line-height:1}
+.cnotes .ccta a{background:#b9ff73;color:#21172b;padding:16px 20px;font:600 12px 'DM Mono',monospace;text-transform:uppercase;text-decoration:none}
+.cnotes .ccta a:hover{background:#ff6d61}
+
+.cfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:22px 6vw;background:#141016;color:#b4a8b5;font:10px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
+.cfoot a{color:#f5efdf}
+
+@media(max-width:760px){
+  .cbar{padding:0 16px;gap:10px}
+  .cbar .cback-long{display:none}
+  .cnotes{padding:72px 20px}
+  .cnotes .cgrid{grid-template-columns:1fr}
+  .cnotes .cgrid>div,.cnotes .cgrid>div+div{padding:24px 0;border-left:0;border-bottom:1px solid rgba(245,239,223,.25)}
+  .cfoot{padding:20px;flex-direction:column}
+}
+@media(max-width:400px){.cbar .ctag{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
