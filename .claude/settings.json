@@ -9,5 +9,18 @@
   },
   "enabledPlugins": {
     "ecc@ecc": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/ensure-ecc.sh",
+            "timeout": 300
+          }
+        ]
+      }
+    ]
   }
 }
