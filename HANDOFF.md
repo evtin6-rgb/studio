@@ -43,7 +43,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 4. QA: Playwright with `/opt/pw-browsers/chromium` at 375/768/1440, all 4 pages. No horizontal overflow, no missing RU keys, no JS errors; interactions verified. Google Fonts are blocked in the sandbox, so screenshots use fallback fonts.
 5. Home page additions (session 2):
    - "How it works": Brief 1–2 days → Structure 3–5 days → Design ~1 week → Build & launch ~1 week; typical total 2–3 weeks landing / 4–6 weeks full site. **Timelines are my proposal; Ivan to confirm.**
-   - "Price & scope": landing from €500 (scope as agreed), full site from €900+, "not included" list; nav link "Pricing".
+   - "Price & scope": landing from €300 / 30 000 ₽, full site from €500 / 50 000 ₽ (prices updated by Ivan after launch), "not included" list; nav link "Pricing".
    - FAQ (`<details>`, no JS): timeline, revisions, domain/hosting, support.
    - Work card copy for the three concepts updated; full EN/RU for everything.
 6. SEO: robots.txt, sitemap.xml, canonical, OG/Twitter tags + og.png; README explains why there is no hreflang (RU is a same-URL toggle).
@@ -53,7 +53,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 9. ECC audit pass (session 2): Lighthouse CLI plus the ECC agents a11y-architect, seo-specialist, code-reviewer and security-reviewer. The ECC chrome-devtools MCP cannot start Chrome in this container (runs as root, no /opt/google/chrome), so Lighthouse runs from the CLI against /opt/pw-browsers chromium. Fixed:
    - a11y: kicker, 06:42 and Atelier contrast; dark focus ring on light sections; burger focus management; scroll-padding under sticky bars; language button names ("RU — Русская версия"); duplicate mock links removed from tab order; FAQ marker excluded from the accessible name; NOIR ticker pause button, size-state fill, product-labelled size groups, announced toast; Atelier floor plan focus ring, aria-pressed, translated room names; aria-atomic on live regions; submit uses aria-disabled.
    - Bugs: 06:42 status follows St. Petersburg time; NOIR mobile hero no longer clipped; no hole when filtering the drop; ticker gap on wide screens; form status retranslates on language switch; 15s fetch timeout; maxlength on fields.
-   - SEO: keyword title/description (EN+RU), JSON-LD (WebSite, Person, ProfessionalService with €500/€900 offers), og:site_name/locale, twitter:image, kicker "EVTIN STUDIO — WEB DESIGN".
+   - SEO: keyword title/description (EN+RU), JSON-LD (WebSite, Person, ProfessionalService with offers in EUR and RUB), og:site_name/locale, twitter:image, kicker "EVTIN STUDIO — WEB DESIGN".
    - Security: CSP and other headers; inline scripts moved to files; repo-only files return 404.
    - Fonts: Oswald (cyrillic) behind Anton, Manrope behind Instrument Sans, Fraunces 400; above-the-fold fonts preloaded (CLS on NOIR 0.205 → 0, Atelier 0.136 → 0.017).
    - Result: Lighthouse accessibility 100 on all 4 pages; best practices 100 on concepts, 96 on home only because of the missing portrait; SEO 100 on home (concepts are noindex by design).
@@ -63,7 +63,8 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
    - Footer mail link labelled "Gmail" in both languages.
    - 06:42: live clock, open status and timeline all use the visitor's local time (Ivan chose this); hours 07:30–19:00; coffee card uses Region / Process: Washed / Roasted / Best for / Tasting notes.
    - Prices carry both values (`data-eur` / `data-rub`), formatted by `concept.js` on language switch: RU → RUB, EN → EUR. NOIR RUB = EUR×100 (Ivan's example). 06:42 EUR menu prices are my proposal.
-   - Still open with Ivan: home pricing in RUB, 06:42 "Where" and "Beans" copy, work-card tags / CTA / disclaimer wording.
+   - Home pricing: €300 / 30 000 ₽ landing, €500 / 50 000 ₽ full site (data-eur/data-rub, formatted in script.js).
+   - Still open with Ivan: 06:42 "Where" and "Beans" copy, work-card tags / CTA / disclaimer wording.
 
 ## Next steps
 1. Optionally replace the drawn mock of the musician project with a real screenshot.
