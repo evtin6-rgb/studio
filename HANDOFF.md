@@ -14,6 +14,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - Language key in localStorage: `evtin-lang` (shared by the home page and the concept pages).
 - Domain (confirmed by Ivan, session 2): https://evtinstudio.netlify.app/ — used in canonical, OG, JSON-LD, robots.txt and sitemap.xml.
 - Deadline (Ivan, session 2): test launch by **2026-10-08**.
+- Ivan's personal/musician brand profile (archetypes, anchors, palette, tone): `docs/ivan-profile.md`. Read it before touching About, the musician case or copy tone.
 - The sandbox proxy blocks `*.netlify.app`, so the live site cannot be fetched from here.
 
 ## Repo layout (static site, no build)
