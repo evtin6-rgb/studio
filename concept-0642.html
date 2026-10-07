@@ -102,7 +102,7 @@ body{background:var(--paper);color:var(--esp);font-family:'Instrument Sans',Manr
 <body>
 <header class="cbar">
   <a class="cbrand" href="./">EVTIN®</a>
-  <span class="ctag" data-i18n="bar.tag">Concept / Demo · 02</span>
+  <span class="ctag" data-i18n="bar.tag">Concept 02</span>
   <div class="cright"><a href="./#work" data-i18n="bar.back">← <span class="cback-long">Back to </span>work</a><button class="lang" type="button" data-lang aria-label="RU — Русская версия">RU</button></div>
 </header>
 
@@ -115,38 +115,39 @@ body{background:var(--paper);color:var(--esp);font-family:'Instrument Sans',Manr
 <section class="r-hero">
   <div class="r-clock">
     <div class="r-open r-small" id="open"><span class="r-dot" aria-hidden="true"></span><span id="openText">Open now</span></div>
-    <h1 aria-label="06:42">06<i>:</i>42</h1>
-    <p class="r-lede" data-i18n="r.lede">The first batch comes out of the roaster at 06:42. <em>Everything else can wait a minute.</em></p>
+    <h1 id="clock"><span id="clockH">06</span><i>:</i><span id="clockM">42</span></h1>
+    <p class="r-lede" data-i18n="r.lede">That's your time. <em>Ours starts with the first batch out of the roaster.</em></p>
   </div>
   <aside class="r-today" aria-labelledby="today-t">
-    <div><span class="r-small" style="color:#b9a58f" data-i18n="r.t.k">On the grinder today</span><h2 id="today-t">Ethiopia<br>Guji, Hambela</h2></div>
-    <dl><dt data-i18n="r.t.process">Process</dt><dd data-i18n="r.t.washed">Washed</dd><dt data-i18n="r.t.roast">Roasted</dt><dd id="roastDate">—</dd><dt data-i18n="r.t.for">Best for</dt><dd data-i18n="r.t.filter">Filter, V60, AeroPress</dd></dl>
-    <div class="r-notes"><span data-i18n="r.t.n1">Bergamot</span><span data-i18n="r.t.n2">White peach</span><span data-i18n="r.t.n3">Black tea</span></div>
+    <div><span class="r-small" style="color:#b9a58f" data-i18n="r.t.k">On the grinder today</span><h2 id="today-t" data-i18n="r.t.country">Ethiopia</h2></div>
+    <dl><dt data-i18n="r.t.region">Region</dt><dd>Guji, Hambela</dd><dt data-i18n="r.t.process">Process</dt><dd data-i18n="r.t.washed">Washed</dd><dt data-i18n="r.t.roast">Roasted</dt><dd id="roastDate">—</dd><dt data-i18n="r.t.for">Best for</dt><dd data-i18n="r.t.filter">V60, AeroPress, filter</dd></dl>
+    <div><span class="r-small" style="color:#b9a58f" data-i18n="r.t.notes">Tasting notes</span>
+    <div class="r-notes" style="margin-top:12px"><span data-i18n="r.t.n1">Bergamot</span><span data-i18n="r.t.n2">White peach</span><span data-i18n="r.t.n3">Black tea</span></div></div>
   </aside>
 </section>
 
 <section class="r-menu" id="menu">
-  <aside><span class="r-small" data-i18n="r.m.k">Menu first</span><h2 data-i18n="r.m.t">Short menu.<br>Long mornings.</h2><p data-i18n="r.m.p">Six drinks, two things to eat, beans to take home. If we can't make it well at 06:42, it isn't on the board.</p></aside>
+  <aside><span class="r-small" data-i18n="r.m.k">Menu first</span><h2 data-i18n="r.m.t">Short menu.<br>Long mornings.</h2><p data-i18n="r.m.p">The best things are simple. Six drinks, two things to eat and beans to take home.</p></aside>
   <div class="r-cols">
     <div>
       <h3 data-i18n="r.m.coffee">Coffee</h3>
       <ul>
-        <li><div><b>Espresso</b><small data-i18n="r.i.esp">Today's roast, 18 g in, 36 g out</small></div><span class="r-lead"></span><span>180 ₽</span></li>
-        <li><div><b>Flat white</b><small data-i18n="r.i.fw">Double shot, steamed whole milk</small></div><span class="r-lead"></span><span>260 ₽</span></li>
-        <li><div><b>Filter</b><small data-i18n="r.i.fil">Brewed by the cup, ask what's on</small></div><span class="r-lead"></span><span>240 ₽</span></li>
-        <li><div><b>Cold brew</b><small data-i18n="r.i.cb">Steeped 16 hours, served neat</small></div><span class="r-lead"></span><span>250 ₽</span></li>
+        <li><div><b>Espresso</b><small data-i18n="r.i.esp">Today's roast, 18 g in, 36 g out</small></div><span class="r-lead"></span><span data-eur="2.5" data-rub="180">180 ₽</span></li>
+        <li><div><b>Flat white</b><small data-i18n="r.i.fw">Double shot, steamed whole milk</small></div><span class="r-lead"></span><span data-eur="4" data-rub="260">260 ₽</span></li>
+        <li><div><b>Filter</b><small data-i18n="r.i.fil">Brewed by the cup, ask what's on</small></div><span class="r-lead"></span><span data-eur="3.5" data-rub="240">240 ₽</span></li>
+        <li><div><b>Cold brew</b><small data-i18n="r.i.cb">Steeped 16 hours, served neat</small></div><span class="r-lead"></span><span data-eur="4" data-rub="250">250 ₽</span></li>
       </ul>
     </div>
     <div>
       <h3 data-i18n="r.m.other">Not coffee</h3>
       <ul>
-        <li><div><b data-i18n="r.i.tea">Black tea</b><small data-i18n="r.i.tea.d">Loose leaf, pot for one</small></div><span class="r-lead"></span><span>200 ₽</span></li>
-        <li><div><b data-i18n="r.i.cocoa">Cocoa</b><small data-i18n="r.i.cocoa.d">70% chocolate, no syrup</small></div><span class="r-lead"></span><span>230 ₽</span></li>
+        <li><div><b data-i18n="r.i.tea">Black tea</b><small data-i18n="r.i.tea.d">Loose leaf, pot for one</small></div><span class="r-lead"></span><span data-eur="3" data-rub="200">200 ₽</span></li>
+        <li><div><b data-i18n="r.i.cocoa">Cocoa</b><small data-i18n="r.i.cocoa.d">70% chocolate, no syrup</small></div><span class="r-lead"></span><span data-eur="3.5" data-rub="230">230 ₽</span></li>
       </ul>
       <h3 data-i18n="r.m.food">To eat</h3>
       <ul>
-        <li><div><b data-i18n="r.i.bun">Cardamom bun</b><small data-i18n="r.i.bun.d">Baked next door at 6</small></div><span class="r-lead"></span><span>190 ₽</span></li>
-        <li><div><b data-i18n="r.i.toast">Rye toast</b><small data-i18n="r.i.toast.d">Butter, salt, nothing else</small></div><span class="r-lead"></span><span>160 ₽</span></li>
+        <li><div><b data-i18n="r.i.bun">Cardamom bun</b><small data-i18n="r.i.bun.d">Baked next door at 6</small></div><span class="r-lead"></span><span data-eur="3" data-rub="190">190 ₽</span></li>
+        <li><div><b data-i18n="r.i.toast">Rye toast</b><small data-i18n="r.i.toast.d">Butter, salt, nothing else</small></div><span class="r-lead"></span><span data-eur="3" data-rub="160">160 ₽</span></li>
       </ul>
     </div>
   </div>
@@ -156,10 +157,10 @@ body{background:var(--paper);color:var(--esp);font-family:'Instrument Sans',Manr
   <span class="r-small" data-i18n="r.d.k">A day at the roastery</span>
   <h2 data-i18n="r.d.t">The timeline is the brand.</h2>
   <ol class="r-line" id="timeline">
-    <li data-from="0642" data-to="0730"><time>06:42</time><p data-i18n="r.d.1">First batch out of the roaster. Doors open, the room still smells like toast.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
-    <li data-from="0730" data-to="1000"><time>07:30</time><p data-i18n="r.d.2">Regulars. Same order, no small talk required.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
-    <li data-from="1000" data-to="1300"><time>10:00</time><p data-i18n="r.d.3">Beans packed and labelled by hand, roast date on every bag.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
-    <li data-from="1300" data-to="1500"><time>13:00</time><p data-i18n="r.d.4">Cupping table. Anyone can sit in; we close at 15:00.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
+    <li data-from="0730" data-to="1000"><time>07:30</time><p data-i18n="r.d.1">First batch out of the roaster. Doors open, the room still smells like toast.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
+    <li data-from="1000" data-to="1300"><time>10:00</time><p data-i18n="r.d.2">Regulars. Same order, no small talk required.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
+    <li data-from="1300" data-to="1600"><time>13:00</time><p data-i18n="r.d.3">Beans packed and labelled by hand, roast date on every bag.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
+    <li data-from="1600" data-to="1900"><time>16:00</time><p data-i18n="r.d.4">Cupping table. Anyone can sit in; we close at 19:00.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
   </ol>
 </section>
 
@@ -168,14 +169,14 @@ body{background:var(--paper);color:var(--esp);font-family:'Instrument Sans',Manr
   <div class="r-calc">
     <label><span class="r-small"><span data-i18n="r.b.coffee">Coffee</span>: <output id="gOut">18</output> g</span><input type="range" id="grams" min="10" max="40" value="18"></label>
     <div><span class="r-small" data-i18n="r.b.ratio">Ratio</span><div class="r-ratios" role="group" aria-label="Ratio" style="margin-top:10px"><button type="button" data-r="15" aria-pressed="false" data-i18n="r.b.strong">1:15 strong</button><button type="button" data-r="16" aria-pressed="true" data-i18n="r.b.bal">1:16 balanced</button><button type="button" data-r="17" aria-pressed="false" data-i18n="r.b.light">1:17 light</button></div></div>
-    <div class="r-out" aria-live="polite" aria-atomic="true"><div><span class="r-small" data-i18n="r.b.water">Water</span><strong><span id="water">288</span> ml</strong></div><div><span class="r-small" data-i18n="r.b.time">Brew time</span><strong id="time">3:00</strong></div></div>
+    <div class="r-out" aria-live="polite" aria-atomic="true"><div><span class="r-small" data-i18n="r.b.water">Water</span><strong><span id="water">288</span> <span data-i18n="r.b.ml">ml</span></strong></div><div><span class="r-small" data-i18n="r.b.time">Brew time</span><strong id="time">3:00</strong></div></div>
   </div>
 </section>
 
 <section class="r-visit">
-  <div><span class="r-small" data-i18n="r.v.where">Where</span><p data-i18n="r.v.where.p">A side street in St. Petersburg. Fictional address.</p></div>
-  <div><span class="r-small" data-i18n="r.v.when">When</span><p data-i18n="r.v.when.p">Every day 06:42–15:00</p></div>
-  <div><span class="r-small" data-i18n="r.v.beans">Beans</span><p data-i18n="r.v.beans.p">250 g bags, roasted this week</p></div>
+  <div><span class="r-small" data-i18n="r.v.where">Where</span><p data-i18n="r.v.where.p">St. Petersburg. A street you won't find on the map.</p></div>
+  <div><span class="r-small" data-i18n="r.v.when">When</span><p data-i18n="r.v.when.p">Every day, 07:30–19:00</p></div>
+  <div><span class="r-small" data-i18n="r.v.beans">Beans</span><p data-i18n="r.v.beans.p">We roast on Mondays. By Friday, it's whatever's left.</p></div>
 </section>
 </main>
 
@@ -187,9 +188,9 @@ body{background:var(--paper);color:var(--esp);font-family:'Instrument Sans',Manr
     <div><h3 data-i18n="notes.d.h">Decisions</h3><ul><li data-i18n="notes.d.1">The name is a time, so the whole site is built around a clock: live open status and a timeline that highlights the current hour.</li><li data-i18n="notes.d.2">Menu before story. Prices are visible, the story comes after.</li><li data-i18n="notes.d.3">Soft serif, paper tones and one terracotta accent instead of the usual brown-and-gold coffee look.</li></ul></div>
     <div><h3 data-i18n="notes.x.h">What you'd get</h3><ul><li data-i18n="notes.x.1">Identity-led one-pager with an editable menu</li><li data-i18n="notes.x.2">Live opening hours and a small useful tool (brew calculator)</li><li data-i18n="notes.x.3">Map, beans shop or delivery link when needed</li></ul></div>
   </div>
-  <div class="ccta"><strong data-i18n="notes.cta">Want your own version?</strong><a href="./#contact" data-i18n="notes.btn">Start a real project ↗</a></div>
+  <div class="ccta"><strong data-i18n="notes.cta">Want your own version?</strong><a href="./#contact" data-i18n="notes.btn">Start a real project ↗︎</a></div>
 </section>
-<footer class="cfoot"><span data-i18n="foot.l">Concept / demo — original practice work, not a client. Menu, prices and address are fictional.</span><a href="./#work" data-i18n="foot.r">Back to EVTIN Studio ↗</a></footer>
+<footer class="cfoot"><span data-i18n="foot.l">Concept / demo — original practice work, not a client. Menu, prices and address are fictional.</span><a href="./#work" data-i18n="foot.r">Back to EVTIN Studio ↗︎</a></footer>
 
 <script src="concept-0642.i18n.js"></script>
 <script src="concept.js"></script>

@@ -1,17 +1,23 @@
 (function(){
   var T=window.CONCEPT_I18N,html=document.documentElement,L=function(k){return (T[html.lang]||T.en)[k]};
-  // The shop lives in St. Petersburg, so status and timeline follow its clock, not the visitor's.
-  var spb=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Moscow',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
-  function hhmm(d){var p={};spb.formatToParts(d).forEach(function(x){p[x.type]=x.value});return (+p.hour)*100+(+p.minute)}
+  // Variant B: the clock, open status and timeline all follow the visitor's own local time.
+  var OPEN=730,CLOSE=1900;
+  function hhmm(d){return d.getHours()*100+d.getMinutes()}
+  function pad(n){return String(n).padStart(2,'0')}
   function refresh(){
-    var now=hhmm(new Date()),open=now>=642&&now<1500,el=document.getElementById('open');
+    var d=new Date(),now=hhmm(d),open=now>=OPEN&&now<CLOSE,el=document.getElementById('open');
+    document.getElementById('clockH').textContent=pad(d.getHours());
+    document.getElementById('clockM').textContent=pad(d.getMinutes());
+    document.getElementById('clock').setAttribute('aria-label',pad(d.getHours())+':'+pad(d.getMinutes()));
     el.classList.toggle('closed',!open);
     document.getElementById('openText').textContent=L(open?'r.open':'r.closed');
     document.querySelectorAll('#timeline li').forEach(function(li){var on=now>=+li.dataset.from&&now<+li.dataset.to;li.classList.toggle('now',on);if(on)li.setAttribute('aria-current','time');else li.removeAttribute('aria-current')});
-    var d=new Date();d.setDate(d.getDate()-2);
-    document.getElementById('roastDate').textContent=d.toLocaleDateString(html.lang==='ru'?'ru-RU':'en-GB',{day:'numeric',month:'long'});
+    var r=new Date();r.setDate(r.getDate()-(r.getDay()+6)%7);
+    document.getElementById('roastDate').textContent=r.toLocaleDateString(html.lang==='ru'?'ru-RU':'en-GB',{day:'numeric',month:'long'});
   }
-  refresh();setInterval(refresh,60000);
+  // Tick on the minute boundary so the clock never lags behind the system clock.
+  function tick(){refresh();setTimeout(tick,60000-Date.now()%60000+50)}
+  tick();
   new MutationObserver(refresh).observe(html,{attributes:true,attributeFilter:['lang']});
 
   var g=document.getElementById('grams'),ratio=16,btns=document.querySelectorAll('[data-r]');

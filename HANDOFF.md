@@ -14,7 +14,16 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - Language key in localStorage: `evtin-lang` (shared by the home page and the concept pages).
 - Domain (confirmed by Ivan, session 2): https://evtinstudio.netlify.app/ — used in canonical, OG, JSON-LD, robots.txt and sitemap.xml.
 - Deadline (Ivan, session 2): test launch by **2026-10-08**.
+- Ivan's personal/musician brand profile (archetypes, anchors, palette, tone): `docs/ivan-profile.md`. Read it before touching About, the musician case or copy tone.
 - The sandbox proxy blocks `*.netlify.app`, so the live site cannot be fetched from here.
+
+## Musician socials (context, session 3, 2026-10-07)
+- Instagram: main **@evtinivan** (id 17841411995686660), second **@evtinmusic** (id 17841430879062343). Both, plus TikTok "Ivan Evtin | Музыкант | Питер", are connected through the **Windsor.ai** connector (stats + publishing). Publish or reply to comments only after Ivan's explicit "yes".
+- Telegram, both current: **@wwwwhhhaat** = Ivan's own channel, the pinned post has all info; **t.me/video_s_meropriyatiy** = video channel.
+- Ivan is in **Vladivostok until 2026-10-20** (calendar time zone Vladivostok is correct for now).
+- Instagram audit (30 days to 2026-10-06): 160 836 views, 79% from two collab reels owned by **ТЦ «Море»** and the brand **«Хозяин Барин»** ("спеть с артистом в ТЦ" / "первый раз спеть на публику"); only ~35 new followers. Own reels: 300–600 views; best retention when Ivan is in frame talking or playing live (10–12 s avg watch); ads and announcements are skipped 72–78% of the time.
+- Ivan's formats (his words, 2026-10-07): (1) **music performances in public places that boost reach for brands** (main); (2) **events**: ideally private and large corporate events, events for well-known people; (3) **teaching piano and vocals**, sign-up via Telegram DM **@SPB_Ivan_Evtin**. Audience: not only Russian-speaking, so bio and captions go EN + RU.
+- «Спой со мной» is **a one-episode test, not the main format**; Ivan switches to it only if the video takes off. Workflow: Ivan shoots, Claude edits with ffmpeg; publishing via Windsor needs a public video URL, otherwise Ivan posts the file himself. Bio is changed by Ivan in the app (the API cannot).
 
 ## Repo layout (static site, no build)
 - `index.html`, `styles.css`, `script.js`: home page (Hero → Approach → Work → What I do → How it works → Price & scope → About → FAQ → Contact, numbered 01–09)
@@ -43,7 +52,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 4. QA: Playwright with `/opt/pw-browsers/chromium` at 375/768/1440, all 4 pages. No horizontal overflow, no missing RU keys, no JS errors; interactions verified. Google Fonts are blocked in the sandbox, so screenshots use fallback fonts.
 5. Home page additions (session 2):
    - "How it works": Brief 1–2 days → Structure 3–5 days → Design ~1 week → Build & launch ~1 week; typical total 2–3 weeks landing / 4–6 weeks full site. **Timelines are my proposal; Ivan to confirm.**
-   - "Price & scope": landing from €500 (scope as agreed), full site from €900+, "not included" list; nav link "Pricing".
+   - "Price & scope": landing from €300 / 30 000 ₽, full site from €500 / 50 000 ₽ (prices updated by Ivan after launch), "not included" list; nav link "Pricing".
    - FAQ (`<details>`, no JS): timeline, revisions, domain/hosting, support.
    - Work card copy for the three concepts updated; full EN/RU for everything.
 6. SEO: robots.txt, sitemap.xml, canonical, OG/Twitter tags + og.png; README explains why there is no hreflang (RU is a same-URL toggle).
@@ -53,10 +62,19 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 9. ECC audit pass (session 2): Lighthouse CLI plus the ECC agents a11y-architect, seo-specialist, code-reviewer and security-reviewer. The ECC chrome-devtools MCP cannot start Chrome in this container (runs as root, no /opt/google/chrome), so Lighthouse runs from the CLI against /opt/pw-browsers chromium. Fixed:
    - a11y: kicker, 06:42 and Atelier contrast; dark focus ring on light sections; burger focus management; scroll-padding under sticky bars; language button names ("RU — Русская версия"); duplicate mock links removed from tab order; FAQ marker excluded from the accessible name; NOIR ticker pause button, size-state fill, product-labelled size groups, announced toast; Atelier floor plan focus ring, aria-pressed, translated room names; aria-atomic on live regions; submit uses aria-disabled.
    - Bugs: 06:42 status follows St. Petersburg time; NOIR mobile hero no longer clipped; no hole when filtering the drop; ticker gap on wide screens; form status retranslates on language switch; 15s fetch timeout; maxlength on fields.
-   - SEO: keyword title/description (EN+RU), JSON-LD (WebSite, Person, ProfessionalService with €500/€900 offers), og:site_name/locale, twitter:image, kicker "EVTIN STUDIO — WEB DESIGN".
+   - SEO: keyword title/description (EN+RU), JSON-LD (WebSite, Person, ProfessionalService with offers in EUR and RUB), og:site_name/locale, twitter:image, kicker "EVTIN STUDIO — WEB DESIGN".
    - Security: CSP and other headers; inline scripts moved to files; repo-only files return 404.
    - Fonts: Oswald (cyrillic) behind Anton, Manrope behind Instrument Sans, Fraunces 400; above-the-fold fonts preloaded (CLS on NOIR 0.205 → 0, Atelier 0.136 → 0.017).
    - Result: Lighthouse accessibility 100 on all 4 pages; best practices 100 on concepts, 96 on home only because of the missing portrait; SEO 100 on home (concepts are noindex by design).
+
+10. Copy & logic pass from Ivan's brief (session 2, after launch):
+   - Hero "Websites / that sound / like you." (RU "Сайты, / которые звучат / как вы."); musician card = press kit + booking; Ivan's own texts for work intro and the three concept cards.
+   - Footer mail link labelled "Gmail" in both languages.
+   - 06:42: live clock, open status and timeline all use the visitor's local time (Ivan chose this); hours 07:30–19:00; coffee card uses Region / Process: Washed / Roasted / Best for / Tasting notes.
+   - Prices carry both values (`data-eur` / `data-rub`), formatted by `concept.js` on language switch: RU → RUB, EN → EUR. NOIR RUB = EUR×100 (Ivan's example). 06:42 EUR menu prices are my proposal.
+   - Home pricing: €300 / 30 000 ₽ landing, €500 / 50 000 ₽ full site (data-eur/data-rub, formatted in script.js).
+   - 06:42 facts: "St. Petersburg. A street you won't find on the map." / "We roast on Mondays. By Friday, it's whatever's left." (roast date shows the latest Monday); calculator unit "мл" in RU.
+   - Tags: "Concept 01/02/03" (RU "Концепт") on home cards and concept bars. CTA "View concept" and disclaimer wording unchanged.
 
 ## Next steps
 1. Optionally replace the drawn mock of the musician project with a real screenshot.
