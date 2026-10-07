@@ -17,6 +17,13 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - Ivan's personal/musician brand profile (archetypes, anchors, palette, tone): `docs/ivan-profile.md`. Read it before touching About, the musician case or copy tone.
 - The sandbox proxy blocks `*.netlify.app`, so the live site cannot be fetched from here.
 
+## Musician socials (context, session 3, 2026-10-07)
+- Instagram: main **@evtinivan** (id 17841411995686660), second **@evtinmusic** (id 17841430879062343). Both, plus TikTok "Ivan Evtin | Музыкант | Питер", are connected through the **Windsor.ai** connector (stats + publishing). Publish or reply to comments only after Ivan's explicit "yes".
+- Telegram, both current: **@wwwwhhhaat** = Ivan's own channel, the pinned post has all info; **t.me/video_s_meropriyatiy** = video channel.
+- Ivan is in **Vladivostok until 2026-10-20** (calendar time zone Vladivostok is correct for now).
+- Instagram audit (30 days to 2026-10-06): 160 836 views, 79% from two collab reels owned by **ТЦ «Море»** and the brand **«Хозяин Барин»** ("спеть с артистом в ТЦ" / "первый раз спеть на публику"); only ~35 new followers. Own reels: 300–600 views; best retention when Ivan is in frame talking or playing live (10–12 s avg watch); ads and announcements are skipped 72–78% of the time.
+- Decided: launch the **«Спой со мной»** series on Ivan's own account (Ivan shoots, Claude edits with ffmpeg; publishing via Windsor needs a public video URL). Rewrite the Instagram bio (Ivan changes it in the app; the API cannot).
+
 ## Repo layout (static site, no build)
 - `index.html`, `styles.css`, `script.js`: home page (Hero → Approach → Work → What I do → How it works → Price & scope → About → FAQ → Contact, numbered 01–09)
 - `concept-noir.html`, `concept-0642.html`, `concept-atelier07.html`: three concepts. Each one keeps its own visual system in an inline `<style>`.
