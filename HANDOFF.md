@@ -22,7 +22,8 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - Telegram, both current: **@wwwwhhhaat** = Ivan's own channel, the pinned post has all info; **t.me/video_s_meropriyatiy** = video channel.
 - Ivan is in **Vladivostok until 2026-10-20** (calendar time zone Vladivostok is correct for now).
 - Instagram audit (30 days to 2026-10-06): 160 836 views, 79% from two collab reels owned by **ТЦ «Море»** and the brand **«Хозяин Барин»** ("спеть с артистом в ТЦ" / "первый раз спеть на публику"); only ~35 new followers. Own reels: 300–600 views; best retention when Ivan is in frame talking or playing live (10–12 s avg watch); ads and announcements are skipped 72–78% of the time.
-- Decided: launch the **«Спой со мной»** series on Ivan's own account (Ivan shoots, Claude edits with ffmpeg; publishing via Windsor needs a public video URL). Rewrite the Instagram bio (Ivan changes it in the app; the API cannot).
+- Ivan's formats (his words, 2026-10-07): (1) **music performances in public places that boost reach for brands** (main); (2) **events**: ideally private and large corporate events, events for well-known people; (3) **teaching piano and vocals**, sign-up via Telegram DM **@SPB_Ivan_Evtin**. Audience: not only Russian-speaking, so bio and captions go EN + RU.
+- «Спой со мной» is **a one-episode test, not the main format**; Ivan switches to it only if the video takes off. Workflow: Ivan shoots, Claude edits with ffmpeg; publishing via Windsor needs a public video URL, otherwise Ivan posts the file himself. Bio is changed by Ivan in the app (the API cannot).
 
 ## Repo layout (static site, no build)
 - `index.html`, `styles.css`, `script.js`: home page (Hero → Approach → Work → What I do → How it works → Price & scope → About → FAQ → Contact, numbered 01–09)
