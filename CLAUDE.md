@@ -1,34 +1,50 @@
-# CLAUDE.md
+# Инструкция для Claude — Иван Евтин и EVTIN Studio
 
-## Project
+## Обо мне
+- Я Иван Евтин, пианист и вокалист из Санкт-Петербурга: пою и играю одновременно. Выступаю в ресторанах, ТЦ, на камерных вечерах, частных событиях и на улице. Сейчас основной доход — выступления.
+- Параллельно запускаю EVTIN Studio — свою студию дизайна и разработки сайтов. Первый реальный кейс — мой сайт музыканта evtinivan.netlify.app.
+- Характер (по разбору блога): **Творец** — свои версии песен, поиск звучания, сценический образ; **Искатель** — спонтанность, поездки (Грузия), велосипед, Петербург, новые знакомства; **Шут** — душа компании, люблю шутить и создавать настроение.
+- Меня узнают по белым очкам, кудрям, яркой одежде (красная куртка, кепка) и по тому, что я пою и играю одновременно.
+- Меня вдохновляют артисты с узнаваемым голосом, стилем и личностью. Хочу больше говорить на камеру и раскрываться, а не оставаться только человеком за инструментом. На раннего Эда Ширана я похож, но копировать его не хочу.
 
-Evtin Studio website: Next.js 14 (App Router), React 18, TypeScript (strict), Tailwind CSS, framer-motion.
+## Мои цели
+- **Музыка:** узнаваемое имя артиста. Instagram @evtinivan вырастить до 100 000 подписчиков (сейчас ~190). Больше заказов на выступления. Позже — коллаборации, свои концерты, бренды.
+- **Студия:** запустить сайт (тест до 08.10.2026) и получить первых клиентов, в том числе иностранных.
+- Для меня важнее конкретный результат (заявки, бронирования, клиенты), чем красивые цифры.
 
-The `site` file in the repo root is a bash bootstrap script that generates the Next.js project
-(`package.json`, `app/`, `components/`, `hooks/`, `lib/`, `types/`). Edit it as a script, and keep
-the heredoc contents valid TypeScript/TSX.
+## Как со мной работать
+- Пиши по-русски: коротко, по делу, с конкретикой, можно с лёгким юмором. Без канцелярита и фраз вроде «незабываемая атмосфера».
+- Задачи ставлю короткими сообщениями и жду готовый результат, а не список вариантов. Если выбор действительно за мной, предложи один рекомендуемый вариант.
+- Материалы присылаю как docx, слайды, скриншоты и фото. Тексты и правки часто пишу сам: бери их дословно и переводи на EN аккуратно.
+- Быстро принимаю решения и могу передумать после запуска (например, цены). Новое решение важнее старого, отражай его везде: код, `HANDOFF.md`, эта инструкция.
+- Работаю с несколькими ИИ: ChatGPT координирует, Grok критикует, Kimi пишет черновики, Claude (Claude Code) проверяет и правит настоящий код. Не начинай стратегию заново: сохраняй удачные решения и меняй то, что слабо по фактам.
+- Технические вещи объясняй простыми словами. Шаги, которые делаю я сам (Instagram, Formspree, Netlify), давай чек-листом.
+- НИКОГДА не выдумывай факты обо мне, клиентов, отзывы, цифры и кейсы. Где не хватает данных, оставь `[заполнить]` или спроси.
 
-Commands (after the project is generated): `npm run dev`, `npm run build`, `npm run lint`.
+## Студия: проект
+- Репозиторий `evtin6-rgb/studio`: статический двуязычный сайт без сборки (HTML/CSS/JS), деплой на Netlify. Домен: https://evtinstudio.netlify.app/
+- Файлы: `index.html` / `styles.css` / `script.js` — главная; `concept-noir`, `concept-0642`, `concept-atelier07` (.html + .i18n.js + .js) — три концепта; общие `concept.css` / `concept.js`; шрифты лежат локально в `fonts/`; заголовки безопасности и CSP — в `netlify.toml`.
+- Перед работой прочитай `HANDOFF.md`, `README.md` и `docs/ivan-profile.md`. Полный разбор блога лежит в `docs/ivan-blog-review.md`, кит для Instagram — в `docs/instagram/README.md`. В конце сессии обнови `HANDOFF.md`.
+- Сайт по умолчанию на английском, русский включается переключателем RU/EN.
+- Позиционирование: «независимая студия с агентским мышлением, без агентских накладных расходов». Hero: «Websites that sound like you» / «Сайты, которые звучат как вы». Один реальный кейс плюс три концепта с пометкой Concept 01–03.
+- Палитра студии: plum #21172b, paper #f5efdf, lime #b9ff73, coral #ff6d61; шрифты Manrope + DM Mono. Палитру музыканта (чёрный/белый/графит + красный, розовый, горчичный; винтажный коллаж) со студией не смешивать.
+
+## Неизменные факты
+- Email: evtin6@gmail.com (mailto, ссылка подписана «Gmail»). Никакого Mail.ru.
+- Форма: Formspree `https://formspree.io/f/mnpagjqg`, тема «New enquiry — EVTIN Studio».
+- Instagram: instagram.com/evtinivan · Telegram: t.me/video_s_meropriyatiy
+- Язык хранится в localStorage под ключом `evtin-lang`.
+- Цены студии: лендинг от €300 / 30 000 ₽, полный сайт от €500 / 50 000 ₽. EN показывает EUR, RU — RUB (`data-eur` / `data-rub`). Сроки (2–3 недели лендинг, 4–6 недель сайт) ещё не подтверждены.
+
+## Правила работы с кодом
+- Каждый текст делай сразу на EN и RU (data-i18n), не теряя ключи.
+- Без inline-скриптов (CSP). Новый внешний скрипт, шрифт или эндпоинт — сначала добавь его в CSP в `netlify.toml`.
+- Доступность (WCAG AA), SEO и мобильная вёрстка обязательны.
+- Прежде чем говорить «готово», проверь в браузере: Playwright с `/opt/pw-browsers/chromium`, ширины 375/768/1440, EN и RU, без горизонтального скролла и ошибок JS. Lighthouse запускай из CLI.
+- Коммиты делай в формате conventional commits. PR не создавай без моей просьбы. В main напрямую не пушь.
 
 ## ECC (everything-claude-code)
-
-The `ecc@ecc` plugin is enabled in `.claude/settings.json`. Rule packs live in `.claude/rules/ecc/`
-(`common` always loads; `typescript`, `react`, `web` load for matching files).
-
-Use ECC proactively, without waiting to be asked:
-
-- **Before non-trivial work** (new feature, multi-file change): plan with `ecc:planner`;
-  for structural decisions consult `ecc:architect`.
-- **While writing code**: follow `ecc:tdd-workflow` where tests are practical; consult
-  `ecc:frontend-patterns`, `ecc:react-patterns`, `ecc:nextjs-turbopack`, `ecc:frontend-design-direction`
-  skills for the relevant area.
-- **After any code change**: review with `ecc:code-reviewer`, plus `ecc:react-reviewer` /
-  `ecc:typescript-reviewer` for `.tsx`/`.ts` changes. Fix CRITICAL and HIGH findings before committing.
-- **Forms, API routes (`app/api/contact`), user input**: run `ecc:security-reviewer`.
-- **Build or type errors**: use `ecc:react-build-resolver` / `ecc:build-error-resolver`.
-- **UI work**: check accessibility with `ecc:a11y-architect`; SEO with `ecc:seo-specialist`;
-  performance with `ecc:performance-optimizer`.
-- **Library/API questions**: use `ecc:docs-lookup` instead of answering from memory.
-
-Run independent reviewers in parallel. Respect ECC hooks (e.g. GateGuard): answer what they ask,
-don't bypass them.
+- Плагин `ecc@ecc` включён в `.claude/settings.json`, наборы правил лежат в `.claude/rules/ecc/` (`common` грузится всегда, `web` — для файлов сайта).
+- Используй ECC сам, без напоминаний: `ecc:planner` для многофайловых задач; после правок `ecc:code-reviewer`, плюс `ecc:a11y-architect`, `ecc:seo-specialist`, `ecc:performance-optimizer` для UI и `ecc:security-reviewer` для формы и `netlify.toml`. Независимых ревьюеров запускай параллельно.
+- Хуки ECC (например, GateGuard) не обходи: отвечай на их вопросы.
+- chrome-devtools MCP в контейнере не запускается, вместо него Playwright и Lighthouse CLI на `/opt/pw-browsers/chromium`.
