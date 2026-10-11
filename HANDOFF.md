@@ -88,6 +88,10 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - Upload `assets/ivan-03.webp` (and `ivan-01.webp` if wanted).
 - Has the live site changed since the dossier build? If so, send the current files.
 
+## Claude Code mod: work-meter
+- `.claude/skills/work-meter/` is a Claude Code mod that loads in every session of this repo: a "Работа и контекст" pane with the current step (animated), the last 8 steps, the branch's context fill bar and memory (CLAUDE.md + rules) tokens; the desktop/terminal spinner line shows the step and context %. `/work-meter` reopens the pane.
+- Check after edits: `claude plugin validate .claude/skills/work-meter` and `claude plugin test .claude/skills/work-meter`.
+
 ## Working rules
 - Ivan writes in Russian; answer in Russian.
 - Multi-model workflow: ChatGPT coordinates, Grok critiques, Kimi builds, Claude Code audits and implements in the real code.

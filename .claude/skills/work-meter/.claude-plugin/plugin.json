@@ -1,0 +1,1 @@
+{ "name": "work-meter", "version": "0.1.0", "description": "Анимированные этапы работы Claude и заполненность контекста и памяти", "types": "./types/index.d.ts" }
