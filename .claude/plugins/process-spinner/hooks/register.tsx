@@ -2,10 +2,12 @@ import { atom, read, update } from 'claude-code'
 import type { EngineInterface, Register, Timer } from 'claude-code'
 
 import type { Spinner } from '../types'
+import { ASCII_DONE, OCTOPUS_DONE_SVG, OCTOPUS_SVG, asciiOctopus } from './octopus'
 
 const FRAMES = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
 const TICK_MS = 200
 const DONE_VISIBLE_MS = 4000
+const PUSH_AFTER_SECONDS = 60
 const DETAIL_MAX = 48
 const IDLE_LABEL = 'Думаю'
 
@@ -108,8 +110,22 @@ async function finish($: EngineInterface): Promise<void> {
   clock.active.clear()
   const seconds = Math.round(((await $.clock.now()) - clock.startedAt) / 1000)
   const prev = await read($, spinner)
-  await publish($, { ...prev, phase: 'done', seconds })
+  const done: Spinner = { ...prev, phase: 'done', seconds }
+  await publish($, done)
+  if (seconds >= PUSH_AFTER_SECONDS) void pushDone($, done).catch(() => undefined)
   clock.clearTimer = $.clock.after(DONE_VISIBLE_MS, () => void publish($, IDLE))
+}
+
+export const pushText = (s: Spinner): string => {
+  const minutes = Math.floor(s.seconds / 60)
+  const rest = s.seconds % 60
+  const time = minutes > 0 ? `${minutes} мин ${rest} с` : `${rest} с`
+  const toolsNote = s.tools > 0 ? ` · инструментов: ${s.tools}` : ''
+  return `🐙 Claude закончил за ${time}${toolsNote}`
+}
+
+async function pushDone($: EngineInterface, s: Spinner): Promise<void> {
+  await $.tool.call({ tool: 'PushNotification', message: pushText(s), status: 'proactive' })
 }
 
 export const register: Register = on => {
@@ -141,10 +157,33 @@ export const register: Register = on => {
     const text = statusText(s)
     if (e.props.hasSurvey || text === undefined) return next(e)
 
+    const color = s.phase === 'done' ? 'green' : 'magenta'
+
+    if (e.surface === 'desktop') {
+      const { Box, Svg, Text } = $.ui.resolve(e)
+      return (
+        <Box flexDirection="row" alignItems="center" gap={1}>
+          <Svg
+            source={s.phase === 'done' ? OCTOPUS_DONE_SVG : OCTOPUS_SVG}
+            alt="Осьминожек Claude"
+            width={56}
+            height={52}
+            isInteractive
+          />
+          <Text color={color}>{text}</Text>
+        </Box>
+      )
+    }
+
     const { Box, Text } = $.ui.resolve(e)
+    const [head, legs] = s.phase === 'done' ? ASCII_DONE : asciiOctopus(s.frame)
     return (
-      <Box>
-        <Text color={s.phase === 'done' ? 'green' : 'magenta'}>{text}</Text>
+      <Box flexDirection="row" alignItems="center" gap={1}>
+        <Box flexDirection="column">
+          <Text color="#d97757">{head}</Text>
+          <Text color="#d97757">{legs}</Text>
+        </Box>
+        <Text color={color}>{text}</Text>
       </Box>
     )
   })

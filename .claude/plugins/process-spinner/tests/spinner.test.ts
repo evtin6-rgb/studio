@@ -1,7 +1,8 @@
 import type { RenderElement } from 'claude-code'
 import { expect, mock, test } from 'claude-code/testing'
 
-import { describeTool } from '../hooks/register'
+import { asciiOctopus } from '../hooks/octopus'
+import { describeTool, pushText } from '../hooks/register'
 
 const BAND_PROPS = {
   hasSurvey: false,
@@ -41,6 +42,44 @@ test('draws an animated band above the prompt while a turn runs', async ($, on) 
     expect(text).toBeDefined()
     await ui.unmount()
   }
+})
+
+test('desktop draws the SVG octopus, terminal the ASCII one', async ($, on) => {
+  const clock = mock.clock(on)
+  on('ui.status', () => ({ value: undefined }))
+  on('prompt.submit', (_$, e) => ({ text: e.text }))
+  await $.prompt.submit({ text: 'привет', wait: false, origin: { kind: 'composer' } })
+  await clock.advance(400)
+
+  const desktop = await $.ui.mount({
+    plugin: 'process-spinner',
+    surface: 'desktop',
+    component: 'AbovePrompt',
+    props: BAND_PROPS,
+  })
+  expect(await desktop.find({ type: 'Svg' })).toBeDefined()
+  await desktop.unmount()
+
+  const terminal = await $.ui.mount({
+    plugin: 'process-spinner',
+    surface: 'terminal',
+    component: 'AbovePrompt',
+    props: BAND_PROPS,
+  })
+  expect(await terminal.find({ type: 'Text', text: /▿/ })).toBeDefined()
+  await terminal.unmount()
+})
+
+test('ascii octopus moves its legs between frames', () => {
+  expect(asciiOctopus(0)[1]).not.toBe(asciiOctopus(1)[1])
+})
+
+test('push text names time and tools', () => {
+  const base = { phase: 'done' as const, frame: 0, label: '' }
+  expect(pushText({ ...base, seconds: 125, tools: 7 })).toBe(
+    '🐙 Claude закончил за 2 мин 5 с · инструментов: 7',
+  )
+  expect(pushText({ ...base, seconds: 61, tools: 0 })).toBe('🐙 Claude закончил за 1 мин 1 с')
 })
 
 test('band stays empty when nothing runs', async ($, on) => {
