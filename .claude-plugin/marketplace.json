@@ -5,7 +5,7 @@
     {
       "name": "process-spinner",
       "source": "./.claude/plugins/process-spinner",
-      "description": "Живой спиннер в статус-строке: что Claude делает прямо сейчас и сколько секунд"
+      "description": "Живой спиннер над полем ввода: что Claude делает прямо сейчас и сколько секунд"
     }
   ]
 }
