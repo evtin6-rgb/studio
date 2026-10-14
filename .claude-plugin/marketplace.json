@@ -1,0 +1,11 @@
+{
+  "name": "evtin",
+  "owner": { "name": "Ivan Evtin" },
+  "plugins": [
+    {
+      "name": "process-spinner",
+      "source": "./.claude/plugins/process-spinner",
+      "description": "Живой спиннер в статус-строке: что Claude делает прямо сейчас и сколько секунд"
+    }
+  ]
+}
