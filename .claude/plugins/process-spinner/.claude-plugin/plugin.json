@@ -1,1 +1,6 @@
-{ "name": "process-spinner", "version": "0.1.0", "description": "Живой спиннер в статус-строке: что Claude делает прямо сейчас и сколько секунд" }
+{
+  "name": "process-spinner",
+  "version": "0.4.0",
+  "description": "Пиксельный осьминожек Claude над полем ввода показывает, что идёт сейчас; push на телефон после задач дольше минуты",
+  "types": "./types/index.d.ts"
+}

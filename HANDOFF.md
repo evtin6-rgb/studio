@@ -77,7 +77,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
    - Tags: "Concept 01/02/03" (RU "Концепт") on home cards and concept bars. CTA "View concept" and disclaimer wording unchanged.
 
 ## Claude mod: process-spinner (session 2026-10-14)
-- `.claude/plugins/process-spinner/` — Claude Code mod: animated spinner in the status line with the current action and a timer (`⠹ Читаю: index.html · 7s`, then `✓ Готово за 38s · инструментов: 9`).
+- `.claude/plugins/process-spinner/` — Claude Code mod: animated band above the prompt (plus the status line) with the current action and a timer (`⠹ Читаю: index.html · 7s`, then `✓ Готово за 38s · инструментов: 9`). v0.2.0: Ivan did not see the status-line version, so it moved to the `AbovePrompt` band. The band is drawn only on terminal and desktop surfaces; the mobile app does not draw it (checked: `$.session.surfaces()` is empty from the phone). v0.4.0: Clawd, the pixel octopus from the Claude Code welcome screen (`▐▛███▜▌`), in the band (pixel SVG on desktop, the block characters in the terminal; legs step, eyes blink) and a phone push via the `PushNotification` tool when a turn takes 60 s or more (`🐙 Claude закончил за 2 мин 5 с · инструментов: 7`).
 - Registered via the repo marketplace `.claude-plugin/marketplace.json` (name `evtin`) and enabled in `.claude/settings.json` as `process-spinner@evtin`; the marketplace is fetched from GitHub `evtin6-rgb/studio` default branch, so it works in new sessions only after this branch is merged into `main`.
 - `/.claude-plugin/*` is blocked in `netlify.toml` like `/.claude/*`.
 - Check: `claude plugin validate .claude/plugins/process-spinner` and `claude plugin test .claude/plugins/process-spinner`.
