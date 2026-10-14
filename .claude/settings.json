@@ -5,9 +5,16 @@
         "source": "github",
         "repo": "affaan-m/everything-claude-code"
       }
+    },
+    "evtin": {
+      "source": {
+        "source": "github",
+        "repo": "evtin6-rgb/studio"
+      }
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "ecc@ecc": true,
+    "process-spinner@evtin": true
   }
 }

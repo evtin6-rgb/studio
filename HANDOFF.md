@@ -76,6 +76,12 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
    - 06:42 facts: "St. Petersburg. A street you won't find on the map." / "We roast on Mondays. By Friday, it's whatever's left." (roast date shows the latest Monday); calculator unit "мл" in RU.
    - Tags: "Concept 01/02/03" (RU "Концепт") on home cards and concept bars. CTA "View concept" and disclaimer wording unchanged.
 
+## Claude mod: process-spinner (session 2026-10-14)
+- `.claude/plugins/process-spinner/` — Claude Code mod: animated spinner in the status line with the current action and a timer (`⠹ Читаю: index.html · 7s`, then `✓ Готово за 38s · инструментов: 9`).
+- Registered via the repo marketplace `.claude-plugin/marketplace.json` (name `evtin`) and enabled in `.claude/settings.json` as `process-spinner@evtin`; the marketplace is fetched from GitHub `evtin6-rgb/studio` default branch, so it works in new sessions only after this branch is merged into `main`.
+- `/.claude-plugin/*` is blocked in `netlify.toml` like `/.claude/*`.
+- Check: `claude plugin validate .claude/plugins/process-spinner` and `claude plugin test .claude/plugins/process-spinner`.
+
 ## Next steps
 1. Optionally replace the drawn mock of the musician project with a real screenshot.
 2. Portraits added (session 2): `assets/ivan-03.webp` in the hero; `ivan-01.webp` and `ivan-02.webp` are spare shots from the same session (could go into About instead of the IE circle if Ivan wants).
