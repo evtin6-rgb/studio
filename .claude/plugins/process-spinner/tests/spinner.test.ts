@@ -66,12 +66,14 @@ test('desktop draws the SVG octopus, terminal the ASCII one', async ($, on) => {
     component: 'AbovePrompt',
     props: BAND_PROPS,
   })
-  expect(await terminal.find({ type: 'Text', text: /▿/ })).toBeDefined()
+  expect(await terminal.find({ type: 'Text', text: /▐▛███▜▌|▐█████▌/ })).toBeDefined()
   await terminal.unmount()
 })
 
-test('ascii octopus moves its legs between frames', () => {
-  expect(asciiOctopus(0)[1]).not.toBe(asciiOctopus(1)[1])
+test('Clawd steps its legs and blinks', () => {
+  expect(asciiOctopus(0)).toEqual([' ▐▛███▜▌', '▝▜█████▛▘', '  ▘▘ ▝▝ '])
+  expect(asciiOctopus(1)[2]).toBe('  ▝▝ ▘▘ ')
+  expect(asciiOctopus(14)[0]).toBe(' ▐█████▌')
 })
 
 test('push text names time and tools', () => {

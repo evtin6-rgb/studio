@@ -1,42 +1,72 @@
-/** Claude's octopus: an SMIL-animated SVG for desktop, two-line ASCII frames for the terminal. */
+/**
+ * Clawd, the pixel octopus from the Claude Code welcome screen:
+ *
+ *    ▐▛███▜▌
+ *   ▝▜█████▛▘
+ *     ▘▘ ▝▝
+ *
+ * Desktop draws the same pixels as an animated SVG; the terminal draws the
+ * block characters themselves, legs stepping and eyes blinking.
+ */
 
-const BODY = '#d97757'
-const SHADE = '#b85c3f'
-const EYE = '#21172b'
+const ORANGE = '#d77757'
 
-const tentacle = (x: number, delay: number): string => `
-  <path d="M${x} 34 q-3 7 0 12 q3 5 0 9" fill="none" stroke="${BODY}" stroke-width="4" stroke-linecap="round">
-    <animateTransform attributeName="transform" type="rotate" values="-14 ${x} 34;14 ${x} 34;-14 ${x} 34"
-      dur="0.9s" begin="${delay}s" repeatCount="indefinite"/>
-  </path>`
+/** Pixel rows (x from 0), one terminal quadrant each: half a cell wide, half a cell tall. */
+const BODY_ROWS: readonly (readonly number[])[] = [
+  range(3, 14),
+  [3, 4, ...range(6, 11), 13, 14],
+  range(1, 16),
+  range(3, 14),
+]
+const EYES = [5, 12]
+const LEGS_A = [4, 6, 11, 13]
+const LEGS_B = [5, 7, 10, 12]
 
-export const OCTOPUS_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" width="56" height="52">
-  <g>
-    <animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="1.2s" repeatCount="indefinite"/>
-    ${tentacle(18, 0)}${tentacle(27, 0.15)}${tentacle(37, 0.3)}${tentacle(46, 0.45)}
-    <ellipse cx="32" cy="24" rx="20" ry="17" fill="${BODY}"/>
-    <ellipse cx="32" cy="31" rx="17" ry="7" fill="${SHADE}" opacity="0.35"/>
-    <g fill="${EYE}">
-      <ellipse cx="25" cy="22" rx="3" ry="3.6">
-        <animate attributeName="ry" values="3.6;3.6;0.4;3.6" keyTimes="0;0.9;0.95;1" dur="3s" repeatCount="indefinite"/>
-      </ellipse>
-      <ellipse cx="39" cy="22" rx="3" ry="3.6">
-        <animate attributeName="ry" values="3.6;3.6;0.4;3.6" keyTimes="0;0.9;0.95;1" dur="3s" repeatCount="indefinite"/>
-      </ellipse>
-    </g>
-    <path d="M28 29 q4 3 8 0" fill="none" stroke="${EYE}" stroke-width="1.8" stroke-linecap="round"/>
+function range(from: number, to: number): number[] {
+  return Array.from({ length: to - from + 1 }, (_, i) => from + i)
+}
+
+const PIXEL_W = 4
+const PIXEL_H = 8
+
+const rect = (x: number, y: number, extra = ''): string =>
+  `<rect x="${x * PIXEL_W}" y="${y * PIXEL_H}" width="${PIXEL_W}" height="${PIXEL_H}"${extra}/>`
+
+const legs = (xs: readonly number[], visibility: string): string =>
+  `<g>${xs.map(x => rect(x, 4)).join('')}
+    <animate attributeName="visibility" values="${visibility}" dur="0.5s" calcMode="discrete" repeatCount="indefinite"/></g>`
+
+const body = BODY_ROWS.flatMap((xs, y) => xs.map(x => rect(x, y))).join('')
+
+const blink = `<animate attributeName="opacity" values="0;0;1;0" keyTimes="0;0.92;0.96;1" dur="3s" calcMode="discrete" repeatCount="indefinite"/>`
+const lids = EYES.map(x => rect(x, 1, ` opacity="0"`).replace('/>', `>${blink}</rect>`)).join('')
+
+const WIDTH = 18 * PIXEL_W
+const HEIGHT = 6 * PIXEL_H
+
+export const OCTOPUS_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -${PIXEL_H / 2} ${WIDTH} ${HEIGHT}" width="${WIDTH}" height="${HEIGHT}" shape-rendering="crispEdges">
+  <g fill="${ORANGE}">
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -2;0 0" dur="0.5s" calcMode="discrete" repeatCount="indefinite"/>
+    ${body}${lids}
+    ${legs(LEGS_A, 'visible;hidden')}${legs(LEGS_B, 'hidden;visible')}
   </g>
 </svg>`
 
-export const OCTOPUS_DONE_SVG = OCTOPUS_SVG.replace(/<animate[^>]*\/>|<animateTransform[^>]*\/>/g, '')
+export const OCTOPUS_DONE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -${PIXEL_H / 2} ${WIDTH} ${HEIGHT}" width="${WIDTH}" height="${HEIGHT}" shape-rendering="crispEdges">
+  <g fill="${ORANGE}">${body}${LEGS_A.map(x => rect(x, 4)).join('')}</g>
+</svg>`
 
-const HEADS = ['(°▿°)', '(°▿°)', '(°▿°)', '(°▿°)', '(-▿-)']
-const LEGS = ['/\\/\\/', '\\/\\/\\']
+const TOP_OPEN = ' ▐▛███▜▌'
+const TOP_BLINK = ' ▐█████▌'
+const MIDDLE = '▝▜█████▛▘'
+const LEGS_TEXT = ['  ▘▘ ▝▝ ', '  ▝▝ ▘▘ ']
+const BLINK_EVERY = 15
 
-/** Two lines of the terminal octopus for a spinner frame. */
-export const asciiOctopus = (frame: number): [string, string] => [
-  ` ${HEADS[frame % HEADS.length]}`,
-  ` ${LEGS[frame % LEGS.length]}`,
+/** The three terminal lines of Clawd for a spinner frame. */
+export const asciiOctopus = (frame: number): [string, string, string] => [
+  frame % BLINK_EVERY === BLINK_EVERY - 1 ? TOP_BLINK : TOP_OPEN,
+  MIDDLE,
+  LEGS_TEXT[frame % LEGS_TEXT.length] ?? LEGS_TEXT[0]!,
 ]
 
-export const ASCII_DONE: [string, string] = [' (^▿^)', ' \\o/ ']
+export const ASCII_DONE: [string, string, string] = [TOP_OPEN, MIDDLE, LEGS_TEXT[0]!]

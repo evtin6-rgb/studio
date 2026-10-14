@@ -5,7 +5,7 @@
     {
       "name": "process-spinner",
       "source": "./.claude/plugins/process-spinner",
-      "description": "Осьминожек Claude над полем ввода показывает, что идёт сейчас; push на телефон после задач дольше минуты"
+      "description": "Пиксельный осьминожек Claude над полем ввода показывает, что идёт сейчас; push на телефон после задач дольше минуты"
     }
   ]
 }

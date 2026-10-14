@@ -165,9 +165,9 @@ export const register: Register = on => {
         <Box flexDirection="row" alignItems="center" gap={1}>
           <Svg
             source={s.phase === 'done' ? OCTOPUS_DONE_SVG : OCTOPUS_SVG}
-            alt="Осьминожек Claude"
-            width={56}
-            height={52}
+            alt="Пиксельный осьминожек Claude"
+            width={72}
+            height={48}
             isInteractive
           />
           <Text color={color}>{text}</Text>
@@ -176,12 +176,15 @@ export const register: Register = on => {
     }
 
     const { Box, Text } = $.ui.resolve(e)
-    const [head, legs] = s.phase === 'done' ? ASCII_DONE : asciiOctopus(s.frame)
+    const lines = s.phase === 'done' ? ASCII_DONE : asciiOctopus(s.frame)
     return (
       <Box flexDirection="row" alignItems="center" gap={1}>
         <Box flexDirection="column">
-          <Text color="#d97757">{head}</Text>
-          <Text color="#d97757">{legs}</Text>
+          {lines.map((line, i) => (
+            <Text key={`clawd-${i}`} color="#d77757">
+              {line}
+            </Text>
+          ))}
         </Box>
         <Text color={color}>{text}</Text>
       </Box>
