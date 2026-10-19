@@ -82,17 +82,25 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - `/.claude-plugin/*` is blocked in `netlify.toml` like `/.claude/*`.
 - Check: `claude plugin validate .claude/plugins/process-spinner` and `claude plugin test .claude/plugins/process-spinner`.
 
+## Night pass (2026-10-19, Ivan asleep, full autonomy + merge rights)
+- Copy rewritten on all four pages in human voice: formal «вы» everywhere in RU, no AI tells (stacked dashes, «не X, а Y», slogan triads), facts only from CLAUDE.md/profile. Ivan's own lines kept verbatim (hero, work.intro, concept cards, «Всё гениальное — просто», hours).
+- Every visible UI label now translates (section numbers, hero strips, caption, footer, NOIR ticker/cover, ATELIER units/durations). aria-label/alt translate via `data-i18n-aria` / `data-i18n-alt` (script.js and concept.js).
+- Proofreader agent fixes: 06:42 roasts daily (roast date = yesterday, new coffee on Mondays); NOIR line «Двенадцать вещей. Тринадцатой не будет.» (it has seasons); ATELIER process durations fit its projects; «Копчёный дуб» (smoked oak); «Как я работаю» (one-person studio); hero strip «Петербург · удалённо».
+- Musician card: real screenshot `assets/case-musician.webp`, rendered locally from repo `evtin6-rgb/evtin-studio-` (the evtinivan site; the sandbox can't reach *.netlify.app). Re-shoot it the same way if that site changes.
+- About: `ivan-02.webp` in the circle instead of «IE».
+- a11y: ticker facts duplicated in an sr-only list, «View concept» links named with the project title, lang on concept toggles.
+- Checks: Playwright 5 pages × 320/375/768/1440 × EN/RU with production CSP, clean; Lighthouse a11y/best-practices 100 everywhere, home SEO 100 (concepts noindex by design); ECC code-reviewer approve; ECC a11y no AA failures.
+- Chrome: neither the Claude-in-Chrome extension nor chrome-devtools MCP is reachable from this cloud container, so the live site can't be opened from here. Live checks stay with Ivan (checklist in the morning report).
+
 ## Next steps
-1. Optionally replace the drawn mock of the musician project with a real screenshot.
-2. Portraits added (session 2): `assets/ivan-03.webp` in the hero; `ivan-01.webp` and `ivan-02.webp` are spare shots from the same session (could go into About instead of the IE circle if Ivan wants).
-3. After Ivan approves: open a PR into `main` → Netlify deploy → live QA (form, links, language, mobile).
-4. Formspree dashboard (Ivan): turn on spam filtering/CAPTCHA and restrict the form to the final domain.
-5. Remaining low-priority a11y: some English-only aria-labels and decorative strings in RU mode (nav 'Main', burger 'Menu', NOIR ticker, 06:42 menu item names); no visible 'required' cue on the form.
-6. Later: cookie-less analytics (Plausible/Umami) with a form-submit goal; outreach plan.
+1. Ivan: live check on the phone after deploy (form, RU/EN, prices ₽/€, 06:42 clock).
+2. Ivan: Formspree dashboard — spam filter/CAPTCHA, restrict to evtinstudio.netlify.app.
+3. Client search plan: see the Google Doc linked in the night report (or docs/client-plan.md).
+4. Later: cookie-less analytics (Plausible/Umami) with a form-submit goal (add host to CSP); own domain.
+5. Timelines (2–3 / 4–6 weeks) still unconfirmed by Ivan.
 
 ## Open questions for Ivan
-- Upload `assets/ivan-03.webp` (and `ivan-01.webp` if wanted).
-- Has the live site changed since the dossier build? If so, send the current files.
+- Timelines on the site: confirm or give your own.
 
 ## Working rules
 - Ivan writes in Russian; answer in Russian.

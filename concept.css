@@ -2,6 +2,7 @@ html{scroll-padding-top:72px}
 /* Shared chrome for concept pages: studio bar + case notes + footer.
    Each concept defines its own visual system inline; this file stays neutral. */
 *{box-sizing:border-box}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 body{margin:0}
 .cbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;height:52px;padding:0 4vw;background:#21172b;color:#f5efdf;font:11px/1 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
 .cbar a{color:inherit;text-decoration:none}
