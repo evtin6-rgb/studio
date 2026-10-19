@@ -103,13 +103,13 @@ body{background:var(--paper);color:var(--esp);font-family:'Instrument Sans',Manr
 <header class="cbar">
   <a class="cbrand" href="./">EVTIN®</a>
   <span class="ctag" data-i18n="bar.tag">Concept 02</span>
-  <div class="cright"><a href="./#work" data-i18n="bar.back">← <span class="cback-long">Back to </span>work</a><button class="lang" type="button" data-lang aria-label="RU — Русская версия">RU</button></div>
+  <div class="cright"><a href="./#work" data-i18n="bar.back">← <span class="cback-long">Back to </span>work</a><button class="lang" type="button" data-lang aria-label="RU — Русская версия" lang="ru">RU</button></div>
 </header>
 
 <main>
 <div class="r-top">
   <span class="r-logo">06:42</span>
-  <nav class="r-small" aria-label="Demo site"><a href="#menu" data-i18n="r.nav.menu">Menu</a><a href="#day" data-i18n="r.nav.day">Our day</a><a href="#brew" data-i18n="r.nav.brew">Brew at home</a></nav>
+  <nav class="r-small" aria-label="Demo site" data-i18n-aria="r.aria.nav"><a href="#menu" data-i18n="r.nav.menu">Menu</a><a href="#day" data-i18n="r.nav.day">Our day</a><a href="#brew" data-i18n="r.nav.brew">Brew at home</a></nav>
 </div>
 
 <section class="r-hero">
@@ -132,7 +132,7 @@ body{background:var(--paper);color:var(--esp);font-family:'Instrument Sans',Manr
     <div>
       <h3 data-i18n="r.m.coffee">Coffee</h3>
       <ul>
-        <li><div><b>Espresso</b><small data-i18n="r.i.esp">Today's roast, 18 g in, 36 g out</small></div><span class="r-lead"></span><span data-eur="2.5" data-rub="180">180 ₽</span></li>
+        <li><div><b>Espresso</b><small data-i18n="r.i.esp">This week's beans, 18 g in, 36 g out</small></div><span class="r-lead"></span><span data-eur="2.5" data-rub="180">180 ₽</span></li>
         <li><div><b>Flat white</b><small data-i18n="r.i.fw">Double shot, steamed whole milk</small></div><span class="r-lead"></span><span data-eur="4" data-rub="260">260 ₽</span></li>
         <li><div><b>Filter</b><small data-i18n="r.i.fil">Brewed by the cup, ask what's on</small></div><span class="r-lead"></span><span data-eur="3.5" data-rub="240">240 ₽</span></li>
         <li><div><b>Cold brew</b><small data-i18n="r.i.cb">Steeped 16 hours, served neat</small></div><span class="r-lead"></span><span data-eur="4" data-rub="250">250 ₽</span></li>
@@ -155,20 +155,20 @@ body{background:var(--paper);color:var(--esp);font-family:'Instrument Sans',Manr
 
 <section class="r-day" id="day">
   <span class="r-small" data-i18n="r.d.k">A day at the roastery</span>
-  <h2 data-i18n="r.d.t">The timeline is the brand.</h2>
+  <h2 data-i18n="r.d.t">How our day goes.</h2>
   <ol class="r-line" id="timeline">
-    <li data-from="0730" data-to="1000"><time>07:30</time><p data-i18n="r.d.1">First batch out of the roaster. Doors open, the room still smells like toast.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
+    <li data-from="0730" data-to="1000"><time>07:30</time><p data-i18n="r.d.1">Doors open. The first batch has cooled and the room smells of fresh roast.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
     <li data-from="1000" data-to="1300"><time>10:00</time><p data-i18n="r.d.2">Regulars. Same order, no small talk required.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
     <li data-from="1300" data-to="1600"><time>13:00</time><p data-i18n="r.d.3">Beans packed and labelled by hand, roast date on every bag.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
-    <li data-from="1600" data-to="1900"><time>16:00</time><p data-i18n="r.d.4">Cupping table. Anyone can sit in; we close at 19:00.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
+    <li data-from="1600" data-to="1900"><time>16:00</time><p data-i18n="r.d.4">Cupping table, anyone can sit in. We close at 19:00.</p><span class="r-badge r-small" data-i18n="r.now">Right now</span></li>
   </ol>
 </section>
 
 <section class="r-brew" id="brew">
-  <div><span class="r-small" data-i18n="r.b.k">Brew at home</span><h2 data-i18n="r.b.t">Take the ritual with you.</h2><p data-i18n="r.b.p">Every bag ships with a recipe. This little calculator is the same one printed on the label.</p></div>
+  <div><span class="r-small" data-i18n="r.b.k">Brew at home</span><h2 data-i18n="r.b.t">Same coffee, your kitchen.</h2><p data-i18n="r.b.p">Every bag has the recipe on the label. Here it is again, with a calculator.</p></div>
   <div class="r-calc">
-    <label><span class="r-small"><span data-i18n="r.b.coffee">Coffee</span>: <output id="gOut">18</output> g</span><input type="range" id="grams" min="10" max="40" value="18"></label>
-    <div><span class="r-small" data-i18n="r.b.ratio">Ratio</span><div class="r-ratios" role="group" aria-label="Ratio" style="margin-top:10px"><button type="button" data-r="15" aria-pressed="false" data-i18n="r.b.strong">1:15 strong</button><button type="button" data-r="16" aria-pressed="true" data-i18n="r.b.bal">1:16 balanced</button><button type="button" data-r="17" aria-pressed="false" data-i18n="r.b.light">1:17 light</button></div></div>
+    <label><span class="r-small"><span data-i18n="r.b.coffee">Coffee</span>: <output id="gOut">18</output> <span data-i18n="r.b.g">g</span></span><input type="range" id="grams" min="10" max="40" value="18"></label>
+    <div><span class="r-small" data-i18n="r.b.ratio">Ratio</span><div class="r-ratios" role="group" aria-label="Ratio" data-i18n-aria="r.b.ratio" style="margin-top:10px"><button type="button" data-r="15" aria-pressed="false" data-i18n="r.b.strong">1:15 strong</button><button type="button" data-r="16" aria-pressed="true" data-i18n="r.b.bal">1:16 balanced</button><button type="button" data-r="17" aria-pressed="false" data-i18n="r.b.light">1:17 light</button></div></div>
     <div class="r-out" aria-live="polite" aria-atomic="true"><div><span class="r-small" data-i18n="r.b.water">Water</span><strong><span id="water">288</span> <span data-i18n="r.b.ml">ml</span></strong></div><div><span class="r-small" data-i18n="r.b.time">Brew time</span><strong id="time">3:00</strong></div></div>
   </div>
 </section>
@@ -176,21 +176,21 @@ body{background:var(--paper);color:var(--esp);font-family:'Instrument Sans',Manr
 <section class="r-visit">
   <div><span class="r-small" data-i18n="r.v.where">Where</span><p data-i18n="r.v.where.p">St. Petersburg. A street you won't find on the map.</p></div>
   <div><span class="r-small" data-i18n="r.v.when">When</span><p data-i18n="r.v.when.p">Every day, 07:30–19:00</p></div>
-  <div><span class="r-small" data-i18n="r.v.beans">Beans</span><p data-i18n="r.v.beans.p">We roast on Mondays. By Friday, it's whatever's left.</p></div>
+  <div><span class="r-small" data-i18n="r.v.beans">Beans</span><p data-i18n="r.v.beans.p">We roast every morning. A new coffee comes in every Monday.</p></div>
 </section>
 </main>
 
 <section class="cnotes" aria-labelledby="notes-t">
   <div class="chead" data-i18n="notes.k">Case notes — how this concept was designed</div>
-  <h2 id="notes-t" data-i18n="notes.t">A local brand told through time, not through stock photos of latte art.</h2>
+  <h2 id="notes-t" data-i18n="notes.t">A coffee place told through time, with no stock photos of latte art.</h2>
   <div class="cgrid">
-    <div><h3 data-i18n="notes.b.h">Brief</h3><p data-i18n="notes.b.p">A tiny fictional roastery that opens when the first batch is ready. It needs to feel warm and specific, and answer “is it open, what's on, what's good today” in three seconds.</p></div>
+    <div><h3 data-i18n="notes.b.h">Brief</h3><p data-i18n="notes.b.p">A tiny fictional roastery. The site has to feel warm and specific and answer “is it open, what's on, what should I get” in three seconds.</p></div>
     <div><h3 data-i18n="notes.d.h">Decisions</h3><ul><li data-i18n="notes.d.1">The name is a time, so the whole site is built around a clock: live open status and a timeline that highlights the current hour.</li><li data-i18n="notes.d.2">Menu before story. Prices are visible, the story comes after.</li><li data-i18n="notes.d.3">Soft serif, paper tones and one terracotta accent instead of the usual brown-and-gold coffee look.</li></ul></div>
-    <div><h3 data-i18n="notes.x.h">What you'd get</h3><ul><li data-i18n="notes.x.1">Identity-led one-pager with an editable menu</li><li data-i18n="notes.x.2">Live opening hours and a small useful tool (brew calculator)</li><li data-i18n="notes.x.3">Map, beans shop or delivery link when needed</li></ul></div>
+    <div><h3 data-i18n="notes.x.h">What you'd get</h3><ul><li data-i18n="notes.x.1">A one-page site in the brand's own style, with a menu that's easy to update</li><li data-i18n="notes.x.2">Opening hours with a live “open” status, plus a small useful tool (brew calculator)</li><li data-i18n="notes.x.3">Map, beans shop or delivery link when needed</li></ul></div>
   </div>
   <div class="ccta"><strong data-i18n="notes.cta">Want your own version?</strong><a href="./#contact" data-i18n="notes.btn">Start a real project ↗︎</a></div>
 </section>
-<footer class="cfoot"><span data-i18n="foot.l">Concept / demo — original practice work, not a client. Menu, prices and address are fictional.</span><a href="./#work" data-i18n="foot.r">Back to EVTIN Studio ↗︎</a></footer>
+<footer class="cfoot"><span data-i18n="foot.l">Studio concept, made without a client. Menu, prices and address are fictional.</span><a href="./#work" data-i18n="foot.r">Back to EVTIN Studio ↗︎</a></footer>
 
 <script src="concept-0642.i18n.js"></script>
 <script src="concept.js"></script>
