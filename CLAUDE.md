@@ -37,7 +37,7 @@
 ## Студия: проект
 - Репозиторий `evtin6-rgb/studio`: статический двуязычный сайт без сборки (HTML/CSS/JS), деплой на Netlify. Домен: https://evtinstudio.netlify.app/
 - Файлы: `index.html` / `styles.css` / `script.js` — главная; `concept-noir`, `concept-0642`, `concept-atelier07` (.html + .i18n.js + .js) — три концепта; общие `concept.css` / `concept.js`; шрифты лежат локально в `fonts/`; заголовки безопасности и CSP — в `netlify.toml`.
-- Перед работой прочитай `HANDOFF.md`, `README.md` и `docs/ivan-profile.md`. Полный разбор блога лежит в `docs/ivan-blog-review.md`, кит для Instagram — в `docs/instagram/README.md`. В конце сессии обнови `HANDOFF.md`.
+- Перед работой прочитай `docs/session-context.md` (текущее состояние: открытые PR, последние правки Ивана, план редизайна), затем `HANDOFF.md`, `README.md` и `docs/ivan-profile.md`. Полный разбор блога лежит в `docs/ivan-blog-review.md`, кит для Instagram — в `docs/instagram/README.md`. В конце сессии обнови `HANDOFF.md`.
 - Сайт по умолчанию на английском, русский включается переключателем RU/EN.
 - Позиционирование: «независимая студия с агентским мышлением, без агентских накладных расходов». Hero (Иван, 21.10.2026: старый «Сайты, которые звучат как вы» звучит неестественно): «Websites that show who you are» / «Сайты, по которым сразу понятно, кто вы». Один реальный кейс плюс три концепта с пометкой Concept 01–03.
 - Палитра студии: plum #21172b, paper #f5efdf, lime #b9ff73, coral #ff6d61; шрифты Manrope + DM Mono. Палитру музыканта (чёрный/белый/графит + красный, розовый, горчичный; винтажный коллаж) со студией не смешивать.
