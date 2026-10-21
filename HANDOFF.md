@@ -99,6 +99,7 @@ Ivan's brief: «пересобрать мой сайт, чтобы он выгл
 - Palette and fonts kept (plum/paper/lime/coral, Manrope); DM Mono is no longer used on the home page. Lime is used as a highlighter, coral only for the hand-drawn marks; coral-ink #b23a2e for link underlines (contrast).
 - Copy: first person, «вы», plain words; Ivan's own lines kept verbatim (hero, concept descriptions, «Сайты делаю так же, как песни…»). Facts only from CLAUDE.md/profile/musician site (Avito reviews are on evtinivan.netlify.app).
 - Checks: Playwright 5 pages × 320/375/768/1440 × EN/RU with production CSP, no overflow/JS errors; Lighthouse home mobile 99/100/100/100, desktop 100/100/100/100; ECC code-reviewer (no critical), ECC a11y (fixed: link underline contrast, input borders, FAQ +/– read aloud, skip target, list roles, required-fields note, menu reset on resize); copy proofreader fixes applied.
+- Hero changed (Ivan, 2026-10-21: «Сайты, которые звучат как вы» sounds unnatural) → «Сайты, по которым сразу понятно, кто вы» / "Websites that show who you are".
 - Merged? No: left as a PR with a Netlify preview for Ivan to look at first.
 
 ## Next steps
