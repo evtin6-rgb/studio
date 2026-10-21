@@ -11,7 +11,7 @@ en:{
 "hero.cta":"Message me","hero.link":"See my work",
 "hero.price":"Landing page from <span data-eur=\"300\" data-rub=\"30000\">€300</span>, full website from <span data-eur=\"500\" data-rub=\"50000\">€500</span>.",
 "hero.alt":"Ivan Evtin, web designer and developer",
-"hero.cap":"That's me.",
+"hero.cap":"That's me.","hero.chip":"Taking on first projects",
 "work.title":"What I've made so far",
 "work.real":"Live site, 2026",
 "work.music.t":"My musician site",
@@ -72,7 +72,7 @@ ru:{
 "hero.cta":"Написать мне","hero.link":"Смотреть работы",
 "hero.price":"Лендинг от <span data-eur=\"300\" data-rub=\"30000\">30 000 ₽</span>, сайт от <span data-eur=\"500\" data-rub=\"50000\">50 000 ₽</span>.",
 "hero.alt":"Иван Евтин, веб-дизайнер и разработчик",
-"hero.cap":"Это я.",
+"hero.cap":"Это я.","hero.chip":"Беру первые проекты",
 "work.title":"Что я уже сделал",
 "work.real":"Работающий сайт, 2026",
 "work.music.t":"Мой сайт музыканта",
@@ -165,4 +165,18 @@ form.reset();say('form.ok','ok');
 }catch(err){say('form.err','err')}
 btn.removeAttribute('aria-disabled');
 });
+}
+
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduce&&'IntersectionObserver' in window){
+const items=document.querySelectorAll('.work h2,.case,.tries-head,.try-list li,.prices h2,.price-row,.steps li,.about-photo,.about-text,.faq h2,.faq details,.contact-text,#contact-form');
+document.documentElement.classList.add('js-reveal');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+items.forEach(e=>io.observe(e));
+}
+const media=document.querySelector('.intro-photo');
+if(media&&!reduce&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+let raf=0;
+media.addEventListener('pointermove',e=>{const r=media.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{media.style.setProperty('--rx',(-y*6).toFixed(2)+'deg');media.style.setProperty('--ry',(x*8).toFixed(2)+'deg')})});
+media.addEventListener('pointerleave',()=>{cancelAnimationFrame(raf);media.style.setProperty('--rx','0deg');media.style.setProperty('--ry','0deg')});
 }
