@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#6ec6ff">
+<title>Чух-Чух!</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<!-- Игровой интерфейс -->
+<div id="hud" class="hidden">
+  <button id="btnHome" class="round" aria-label="Домой">🏠</button>
+  <div id="stars"><span class="star">⭐</span><b id="starCount">0</b></div>
+  <div id="progress"></div>
+  <button id="btnHonk" class="round big" aria-label="Гудок">📯</button>
+</div>
+
+<!-- Главное меню -->
+<div id="menu">
+  <button id="btnParents" class="parents" aria-label="Для взрослых">👪 Для взрослых</button>
+  <h1 class="logo">Чух-Чух!</h1>
+  <button id="btnPlay" class="play" aria-label="Играть"><span>▶</span></button>
+  <div class="pickers">
+    <div class="row" id="worlds"></div>
+    <div class="row" id="locos"></div>
+  </div>
+</div>
+
+<!-- Родительский контроль -->
+<div id="gate" class="overlay hidden">
+  <div class="card gate-card">
+    <button class="close" data-close="gate" aria-label="Закрыть">✕</button>
+    <h2>Для взрослых</h2>
+    <p class="muted">Нажмите цифры по порядку:</p>
+    <p id="gateTask" class="gate-task"></p>
+    <div id="gateDots" class="dots"></div>
+    <div id="gatePad" class="pad"></div>
+  </div>
+</div>
+
+<!-- Раздел для родителей -->
+<div id="parents" class="overlay hidden">
+  <div class="card">
+    <button class="close" data-close="parents" aria-label="Закрыть">✕</button>
+    <h2>Для взрослых</h2>
+    <div class="list">
+      <div class="item">
+        <div><b>Звук</b><div class="muted">Гудки и весёлые звуки</div></div>
+        <button id="btnSound" class="toggle"></button>
+      </div>
+      <div class="item">
+        <div><b>Музыка</b><div class="muted">Тихая мелодия во время поездки</div></div>
+        <button id="btnMusic" class="toggle"></button>
+      </div>
+      <div class="item">
+        <div><b>Чух-Чух! Плюс</b><div id="subStatus" class="muted"></div></div>
+        <button id="btnSub" class="btn"></button>
+      </div>
+      <div class="item">
+        <div><b>Восстановить покупки</b><div class="muted">Если подписка уже оформлена</div></div>
+        <button id="btnRestore" class="btn ghost">Восстановить</button>
+      </div>
+    </div>
+    <p class="muted small">Без рекламы. Приложение не собирает личные данные и не требует интернета для игры.
+      <a href="privacy.html">Политика конфиденциальности</a> · <a href="privacy.html#terms">Условия</a></p>
+    <p id="demoNote" class="muted small hidden">Демо-режим браузера: покупки имитируются. <a href="#" id="demoReset">Сбросить</a></p>
+  </div>
+</div>
+
+<!-- Подписка -->
+<div id="paywall" class="overlay hidden">
+  <div class="card pay-card">
+    <button class="close" data-close="paywall" aria-label="Закрыть">✕</button>
+    <h2>Чух-Чух! Плюс</h2>
+    <ul class="perks">
+      <li>❄️ 🌵 🌙 Три новых мира: зима, пустыня и ночь</li>
+      <li>🚃 Тепловоз, электричка и радужный паровоз</li>
+      <li>🎁 Все новые поезда и миры — без доплат</li>
+      <li>🚫 Никакой рекламы — как и в бесплатной версии</li>
+    </ul>
+    <div id="plans" class="plans"></div>
+    <button id="btnBuy" class="btn cta"></button>
+    <p id="payTerms" class="muted small"></p>
+    <p class="small"><a href="#" id="payRestore">Восстановить покупки</a> · <a href="privacy.html#terms">Условия</a> · <a href="privacy.html">Конфиденциальность</a></p>
+    <p id="payMsg" class="msg"></p>
+  </div>
+</div>
+
+<script src="billing.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
