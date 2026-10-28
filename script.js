@@ -12,12 +12,12 @@ en:{
 "hero.price":"Landing page from <span data-eur=\"300\" data-rub=\"30000\">€300</span>, full website from <span data-eur=\"500\" data-rub=\"50000\">€500</span>.",
 "hero.alt":"Ivan Evtin, web designer and developer",
 "hero.cap":"That's me.","hero.chip":"Taking on first projects",
-"work.title":"What I've made so far",
+"work.title":"My work",
 "work.real":"Live site, 2026",
 "work.music.t":"My musician site",
 "work.music":"My first real website was for myself. Event organisers don't have time to scroll through my Instagram. They need to see in a minute who I am, how I sound and how to book me. So the site has videos from my gigs, my Avito reviews and one main button: message me on Telegram.",
 "work.open":"Open the site ↗︎",
-"tries.title":"And three made-up clients",
+"tries.title":"And three concepts",
 "tries.text":"So far I have one real project. To show that I can work in more than one style, I made up three businesses and built them websites. Nobody ordered them, and each one is labelled as a concept.",
 "tries.noir":"clothing store","tries.coffee":"coffee roastery","tries.atelier":"interior studio",
 "work.concept":"Concept","work.view":"Take a look ↗︎",
@@ -39,7 +39,7 @@ en:{
 "process.note":"A landing page usually takes 2–3 weeks, a full site 4–6. It goes fastest when the copy and photos are ready in advance.",
 "about.title":"A bit about me",
 "about.alt":"Ivan Evtin sitting on the floor next to a chair",
-"about.one":"I live in St. Petersburg. I sing and play piano at the same time, and I perform at restaurants and private events. I'm easy to spot: curly hair and white glasses.",
+"about.one":"I live in St. Petersburg. I sing and play piano at the same time, and I perform at restaurants and private events.",
 "about.two":"On a website, I want people to find the main thing fast and not get lost. Anything extra goes.",
 "about.three":"EVTIN Studio is just me. You talk to me about the job, and I'm the one who does it. If something goes wrong, I'm the one who answers for it too.",
 "about.now":"<strong>Right now:</strong> launching the studio and taking on my first projects.",
@@ -56,9 +56,9 @@ en:{
 "form.req":"All fields are required.","form.name":"Your name","form.email":"Email","form.type":"What do you need?","form.choose":"Choose one",
 "form.website":"A website from scratch","form.redesign":"A redesign","form.landing":"A landing page","form.support":"Help with an existing site",
 "form.message":"A few words about the job","form.submit":"Send","form.sending":"Sending…",
-"form.ok":"Got it, thanks! I'll get back to you soon.",
+"form.ok":"Got it, thanks!",
 "form.err":"That didn't go through. Write to me directly: evtin6@gmail.com",
-"foot.copy":"© 2026 EVTIN Studio, Ivan Evtin. Last updated October 2026."
+"foot.copy":"© 2026 EVTIN Studio, Ivan Evtin."
 },
 ru:{
 "meta.title":"EVTIN Studio — веб-дизайн и лендинги, Иван Евтин",
@@ -73,12 +73,12 @@ ru:{
 "hero.price":"Лендинг от <span data-eur=\"300\" data-rub=\"30000\">30 000 ₽</span>, сайт от <span data-eur=\"500\" data-rub=\"50000\">50 000 ₽</span>.",
 "hero.alt":"Иван Евтин, веб-дизайнер и разработчик",
 "hero.cap":"Это я.","hero.chip":"Беру первые проекты",
-"work.title":"Что я уже сделал",
+"work.title":"Мои работы",
 "work.real":"Работающий сайт, 2026",
 "work.music.t":"Мой сайт музыканта",
 "work.music":"Первый настоящий сайт я сделал для себя. Организатору некогда листать мой Instagram: ему нужно за минуту понять, кто я, как звучу и как меня пригласить. Поэтому на сайте видео с выступлений, отзывы с Авито и одна главная кнопка: написать мне в Telegram.",
 "work.open":"Открыть сайт ↗︎",
-"tries.title":"И три выдуманных заказчика",
+"tries.title":"И три концепта",
 "tries.text":"Реальный проект у меня пока один. Чтобы показать, что умею работать в разных стилях, я придумал три бизнеса и сделал им сайты. Их никто не заказывал, и на каждом так и написано: концепт.",
 "tries.noir":"магазин одежды","tries.coffee":"обжарочная","tries.atelier":"интерьерная студия",
 "work.concept":"Концепт","work.view":"Посмотреть ↗︎",
@@ -100,7 +100,7 @@ ru:{
 "process.note":"Лендинг обычно занимает 2–3 недели, сайт 4–6. Быстрее всего, когда тексты и фото готовы заранее.",
 "about.title":"Немного обо мне",
 "about.alt":"Иван Евтин сидит на полу рядом со стулом",
-"about.one":"Я живу в Петербурге. Пою и играю на пианино одновременно, выступаю в ресторанах и на частных мероприятиях. Узнать меня легко: кудри и белые очки.",
+"about.one":"Я живу в Петербурге. Пою и играю на пианино одновременно, выступаю в ресторанах и на частных мероприятиях.",
 "about.two":"В сайте мне важно, чтобы человек быстро нашёл главное и не запутался. Лишнее убираю.",
 "about.three":"EVTIN Studio — это я. Задачу вы обсуждаете со мной, и делаю её тоже я. Если что-то пойдёт не так, отвечаю я.",
 "about.now":"<strong>Сейчас:</strong> запускаю студию и беру первые проекты.",
@@ -117,9 +117,9 @@ ru:{
 "form.req":"Все поля обязательны.","form.name":"Как вас зовут","form.email":"Почта","form.type":"Что нужно?","form.choose":"Выберите вариант",
 "form.website":"Сайт с нуля","form.redesign":"Редизайн","form.landing":"Лендинг","form.support":"Помощь с сайтом, который уже есть",
 "form.message":"Пара слов о задаче","form.submit":"Отправить","form.sending":"Отправляю…",
-"form.ok":"Получил, спасибо! Отвечу сам.",
+"form.ok":"Получил, спасибо!",
 "form.err":"Не отправилось. Напишите мне напрямую: evtin6@gmail.com",
-"foot.copy":"© 2026 EVTIN Studio, Иван Евтин. Обновлено в октябре 2026."
+"foot.copy":"© 2026 EVTIN Studio, Иван Евтин."
 }};
 const status=document.getElementById('form-status');
 const store={get(){try{return localStorage.getItem('evtin-lang')}catch(e){return null}},set(l){try{localStorage.setItem('evtin-lang',l)}catch(e){}}};
