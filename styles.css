@@ -46,6 +46,7 @@ h2{font-size:clamp(32px,4.2vw,54px);letter-spacing:-.03em;margin-bottom:28px}
 .intro-photo figcaption::before{content:"";position:absolute;left:0;top:-12px;width:38px;height:32px;background:var(--arrow) no-repeat;transform:rotate(-4deg)}
 
 .work{max-width:1440px;margin:0 auto;padding-bottom:clamp(72px,10vw,150px)}
+.work>h2{text-align:center;width:calc((100% - clamp(28px,4vw,64px))*.675)}
 .case{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(28px,4vw,64px);align-items:center}
 .case-shot{display:block;position:relative;padding:0 12% 9% 0}
 .shot-desk{width:100%;border:1px solid var(--line);border-radius:6px}
@@ -133,6 +134,7 @@ footer p{margin:0}
 .intro-photo{max-width:420px}
 .about-photo{max-width:460px}
 .case{grid-template-columns:1fr}
+.work>h2{width:auto}
 }
 @media (max-width:850px){
 .burger{display:inline-flex;flex-direction:column;justify-content:center;gap:6px;width:44px;height:44px;padding:0 11px;background:none;border:1.5px solid var(--ink);border-radius:50%;cursor:pointer}
