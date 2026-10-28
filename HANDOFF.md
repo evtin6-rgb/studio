@@ -102,6 +102,9 @@ Ivan's brief: «пересобрать мой сайт, чтобы он выгл
 - Hero changed (Ivan, 2026-10-21: «Сайты, которые звучат как вы» sounds unnatural) → «Сайты, по которым сразу понятно, кто вы» / "Websites that show who you are".
 - Merged? No: left as a PR with a Netlify preview for Ivan to look at first.
 
+- 2026-10-28: Ivan edited RU copy himself in the Google Sheet «EVTIN Studio — тексты сайта (правь здесь)» (https://docs.google.com/spreadsheets/d/1XqxPw3VgVP8H1y6HYDX5hPmaSgfn5lzYSTcj4wkr3lo); Claude imported the changes and translated EN. Workflow for future copy edits: Ivan edits column «Русский», says «запускай», Claude diffs the sheet against the code by key, applies RU + EN, updates the sheet EN column.
+- 2026-10-28: all lime green removed from the site (Ivan). Buttons/accents now coral, focus rings paper. Do not reintroduce lime.
+
 ## Next steps
 0. Ivan: look at the PR preview of the rebuilt homepage and say «сливай» or what to change. Best upgrade next: real photos from gigs (at the piano, white glasses, red jacket) to replace the studio portraits.
 1. Ivan: live check on the phone after deploy (form, RU/EN, prices ₽/€, 06:42 clock).
