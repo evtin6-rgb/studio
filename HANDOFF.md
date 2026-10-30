@@ -1,6 +1,6 @@
 # EVTIN Studio — handoff for the next Claude Code session
 
-_Last updated: 2026-10-05 (session 2). Working branch: `claude/studio-audit-fixes` (not merged into `main` yet, no PR opened)._
+_Last updated: 2026-10-21 (night pass 2; earlier header said 2026-10-05). Working branch: `claude/studio-audit-fixes` (not merged into `main` yet, no PR opened)._
 
 ## What the project is
 EVTIN Studio is Ivan Evtin's independent web design / development studio. The site is a sales tool for international cold traffic: English by default, Russian via an RU/EN toggle. Positioning: "independent studio with agency-level thinking, without the agency overhead". It shows one real project (Ivan's musician site) plus three clearly labelled concept/demo projects. No fake clients, testimonials or metrics, ever.
@@ -26,11 +26,11 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - «Спой со мной» is **a one-episode test, not the main format**; Ivan switches to it only if the video takes off. Workflow: Ivan shoots, Claude edits with ffmpeg; publishing via Windsor needs a public video URL, otherwise Ivan posts the file himself. Bio is changed by Ivan in the app (the API cannot).
 
 ## Repo layout (static site, no build)
-- `index.html`, `styles.css`, `script.js`: home page (Hero → Approach → Work → What I do → How it works → Price & scope → About → FAQ → Contact, numbered 01–09)
+- `index.html`, `styles.css`, `script.js`: home page (Intro → What I've made [real case + three concepts as a list] → What it costs + How we'll work → About → FAQ → Contact). Rebuilt 2026-10-21, see "Night pass 2".
 - `concept-noir.html`, `concept-0642.html`, `concept-atelier07.html`: three concepts. Each one keeps its own visual system in an inline `<style>`.
 - `concept.css`: shared concept chrome (top bar with the CONCEPT/DEMO tag, case notes, footer)
 - `concept.js`: shared i18n for the concept pages. It reads `window.CONCEPT_I18N` and applies `data-i18n` via innerHTML.
-- `fonts/`: self-hosted woff2 (latin + cyrillic) plus `fonts/fonts.css`, shared by all pages. DM Mono has no Cyrillic, so RU mono labels fall back to the system monospace (same as before).
+- `fonts/`: self-hosted woff2 (latin + cyrillic) plus root `fonts.css` for the concept pages; home and 404 get Manrope from the top of `styles.css`. DM Mono has no Cyrillic, so RU mono labels fall back to the system monospace (same as before).
 - `robots.txt`, `sitemap.xml` (home only; concepts are `noindex`), `assets/og.png` (1200×630)
 - `netlify.toml` (publish ".", long cache on `/fonts/*`), `assets/` (portraits ivan-01/02/03.webp, og.png)
 - `.claude/settings.json` enables the ECC plugin (`ecc@ecc`, affaan-m/everything-claude-code)
@@ -92,7 +92,23 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - Checks: Playwright 5 pages × 320/375/768/1440 × EN/RU with production CSP, clean; Lighthouse a11y/best-practices 100 everywhere, home SEO 100 (concepts noindex by design); ECC code-reviewer approve; ECC a11y no AA failures.
 - Chrome: neither the Claude-in-Chrome extension nor chrome-devtools MCP is reachable from this cloud container, so the live site can't be opened from here. Live checks stay with Ivan (checklist in the morning report).
 
+## Night pass 2 (2026-10-21): homepage rebuilt to look hand-made, not AI-made
+Ivan's brief: «пересобрать мой сайт, чтобы он выглядел как мой сайт, а не как сайт, сделанный ИИ; все формулировки живыми, как будто я сам обращаюсь к клиенту». Chrome on Ivan's laptop is not reachable from the cloud container, so research was done with web search (sources: capitalandcompute.net/blog/fix-ai-slop-design, github.com/funboy322/avoid-ai-design, 925studios.co/blog/ai-slop-design-tells, Ильяхов «Пиши, сокращай»; personal-site references: frankchimero.com, craigmod.com, sive.rs/now, ilyabirman.ru).
+- Removed AI/template tells: numbered mono eyebrows («/ 02 — ПОДХОД»), all-caps micro labels, orbiting text, blobs, grain, giant tight-tracked `<br>` headings, colour-block card grids, slogan headings («Без пакетов с подвохом», «Четыре шага. Без чёрного ящика»).
+- New layout: personal letter-like intro (dateline, Ivan's own hero line with one hand-drawn coral underline, two plain paragraphs, price line), real photo with a caption and a drawn arrow; real case shown as desktop + phone screenshots (`assets/case-musician-phone.webp`); concepts as a list «И три выдуманных заказчика» with real screenshots (`assets/concept-*.webp`); prices as a price list with dotted leaders; process as a plain numbered list; About with a «Сейчас:» line; letter-style contact with a small avatar (`assets/ivan-01-avatar.webp`). 404 rewritten in the same voice. New OG image (`assets/og.png`) with the hero line.
+- Palette and fonts kept (plum/paper/lime/coral, Manrope); DM Mono is no longer used on the home page. Lime is used as a highlighter, coral only for the hand-drawn marks; coral-ink #b23a2e for link underlines (contrast).
+- Copy: first person, «вы», plain words; Ivan's own lines kept verbatim (concept descriptions, «Также я музыкант — поющий пианист»); 2026-10-21 Ivan removed shopping centres, the curls caption and «Сайты делаю как песни» (now «В сайте мне важно, чтобы человек быстро нашёл главное и не запутался. Лишнее убираю.»). Facts only from CLAUDE.md/profile/musician site (Avito reviews are on evtinivan.netlify.app).
+- Checks: Playwright 5 pages × 320/375/768/1440 × EN/RU with production CSP, no overflow/JS errors; Lighthouse home mobile 99/100/100/100, desktop 100/100/100/100; ECC code-reviewer (no critical), ECC a11y (fixed: link underline contrast, input borders, FAQ +/– read aloud, skip target, list roles, required-fields note, menu reset on resize); copy proofreader fixes applied.
+- Hero changed (Ivan, 2026-10-21: «Сайты, которые звучат как вы» sounds unnatural) → «Сайты, по которым сразу понятно, кто вы» / "Websites that show who you are".
+- Merged? No: left as a PR with a Netlify preview for Ivan to look at first.
+
+- 2026-10-28: Ivan edited RU copy himself in the Google Sheet «EVTIN Studio — тексты сайта (правь здесь)» (https://docs.google.com/spreadsheets/d/1XqxPw3VgVP8H1y6HYDX5hPmaSgfn5lzYSTcj4wkr3lo); Claude imported the changes and translated EN. Workflow for future copy edits: Ivan edits column «Русский», says «запускай», Claude diffs the sheet against the code by key, applies RU + EN, updates the sheet EN column.
+- 2026-10-28: all lime green removed from the site (Ivan). Buttons/accents now coral, focus rings paper. Do not reintroduce lime.
+- 2026-10-30: terracotta palette (#a84b2a) replaces coral; hero badge «Сейчас активно ищу заказчиков» with pulsing dot; About «Сейчас:» line terracotta; hand-drawn animation (hero rise, underline draws, photo settles, arrow draws, section h2 strokes on scroll), all under prefers-reduced-motion: no-preference. Approved by Ivan from a prototype video.
+- 2026-10-30 (2): motion set 2 approved by Ivan from a video: hand-drawn rings around prices, process line that grows on scroll with steps lighting up, concept cards rise in, phone screenshot parallax on the musician case, magnetic buttons (desktop). All inside prefers-reduced-motion: no-preference; SVG rings aria-hidden. Price description for the full site: «Полноценный сайт, несколько страниц, сложное оформление».
+
 ## Next steps
+0. Ivan: look at the PR preview of the rebuilt homepage and say «сливай» or what to change. Best upgrade next: real photos from gigs (at the piano, white glasses, red jacket) to replace the studio portraits.
 1. Ivan: live check on the phone after deploy (form, RU/EN, prices ₽/€, 06:42 clock).
 2. Ivan: Formspree dashboard — spam filter/CAPTCHA, restrict to evtinstudio.netlify.app.
 3. Client search plan: see the Google Doc linked in the night report (or docs/client-plan.md).
@@ -106,3 +122,14 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - Ivan writes in Russian; answer in Russian.
 - Multi-model workflow: ChatGPT coordinates, Grok critiques, Kimi builds, Claude Code audits and implements in the real code.
 - Verify in the browser before calling anything done. Do not create PRs unless asked. Do not restart the strategy; preserve good decisions and change what the evidence says is weak.
+
+## 30.10.2026 — человечек, плавность, полная проверка
+
+- Кружки вокруг цен убраны (Иван).
+- `buddy.js`: нарисованный Иван (кудри, белые очки, терракотовая куртка) гуляет по низу экрана, играет на синтезаторе, машет, прыгает от клика; прокрутка поднимает его вместе со страницей, потом он падает обратно. Прячется у контактов, у подвала и когда фокус клавиатуры внизу экрана. В подвале кнопка «Спрятать человечка / Вернуть человечка» (`evtin-buddy` в localStorage). При «меньше движения» его нет. На телефоне не перехватывает нажатия.
+- Motion set 3: блоки мягко проявляются при прокрутке (`.rv`), фото «Обо мне» раскрывается, скриншоты приподнимаются при наведении, ответы FAQ плавно открываются, тень у шапки при прокрутке, плавная смена RU/EN.
+- По итогам ревью (код, доступность, скорость, безопасность): `/CLAUDE.md` закрыт 404; `fonts/fonts.css` → корневой `fonts.css` только для концептов, Manrope для главной в начале `styles.css`; кэш `/assets/*` на сутки; «меньше движения» выключает все анимации; пульс плашки на transform; контраст номеров шагов; убран backdrop-filter у шапки.
+- Lighthouse: mobile 98/100/100/100, desktop 100/100/100/100, CLS 0.
+- Схема запуска и ссылок для Ивана: `docs/launch-plan.md`.
+- Серый прямоугольник внизу превью — Netlify Drawer, заблокированный CSP; на живом сайте его нет. Выключается в настройках Netlify (см. launch-plan).
+- Отложено из ревью: адаптивные `srcset` для фото, вынос сайта в `public/`.
