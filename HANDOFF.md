@@ -108,7 +108,7 @@ Ivan's brief: «пересобрать мой сайт, чтобы он выгл
 - 2026-10-30 (2): motion set 2 approved by Ivan from a video: hand-drawn rings around prices, process line that grows on scroll with steps lighting up, concept cards rise in, phone screenshot parallax on the musician case, magnetic buttons (desktop). All inside prefers-reduced-motion: no-preference; SVG rings aria-hidden. Price description for the full site: «Полноценный сайт, несколько страниц, сложное оформление».
 
 ## Next steps
-0. Ivan: look at the PR preview of the rebuilt homepage and say «сливай» or what to change. Best upgrade next: real photos from gigs (at the piano, white glasses, red jacket) to replace the studio portraits.
+0. Done 30.10.2026: PR #16 merged on Ivan's go («Отличный сайт, можно запускать в работу»). Next for Ivan: the checklist in `docs/launch-plan.md` (Formspree test, Search Console, link in bio). Best upgrade next: real photos from gigs (at the piano, white glasses, red jacket) to replace the studio portraits.
 1. Ivan: live check on the phone after deploy (form, RU/EN, prices ₽/€, 06:42 clock).
 2. Ivan: Formspree dashboard — spam filter/CAPTCHA, restrict to evtinstudio.netlify.app.
 3. Client search plan: see the Google Doc linked in the night report (or docs/client-plan.md).
