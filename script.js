@@ -11,7 +11,7 @@ en:{
 "hero.cta":"Message me","hero.link":"See my work",
 "hero.price":"Landing page from <span data-eur=\"300\" data-rub=\"30000\">€300</span>, full website from <span data-eur=\"500\" data-rub=\"50000\">€500</span>.",
 "hero.alt":"Ivan Evtin, web designer and developer",
-"hero.cap":"That's me.",
+"hero.cap":"That's me.","hero.hire":"Now actively looking for clients",
 "work.title":"My work",
 "work.real":"Live site, 2026",
 "work.music.t":"Musician website",
@@ -72,7 +72,7 @@ ru:{
 "hero.cta":"Написать мне","hero.link":"Смотреть работы",
 "hero.price":"Лендинг от <span data-eur=\"300\" data-rub=\"30000\">30 000 ₽</span>, сайт от <span data-eur=\"500\" data-rub=\"50000\">50 000 ₽</span>.",
 "hero.alt":"Иван Евтин, веб-дизайнер и разработчик",
-"hero.cap":"Это я.",
+"hero.cap":"Это я.","hero.hire":"Сейчас активно ищу заказчиков",
 "work.title":"Мои работы",
 "work.real":"Работающий сайт, 2026",
 "work.music.t":"Сайт музыканта",
@@ -103,7 +103,7 @@ ru:{
 "about.one":"Я живу в Петербурге. Пою и играю на пианино одновременно, выступаю в ресторанах и на частных мероприятиях.",
 "about.two":"В сайте мне важно, чтобы человек быстро нашёл главное и не запутался. Лишнее убираю.",
 "about.three":"EVTIN Studio — это я. Задачу вы обсуждаете со мной, и делаю её тоже я. Если что-то пойдёт не так, отвечаю я.",
-"about.now":"<strong>Сейчас:</strong> запускаю студию и беру первые проекты.",
+"about.now":"<strong>Сейчас:</strong> активно ищу заказчиков.",
 "about.music":"Сайт музыканта ↗︎",
 "faq.title":"Что обычно спрашивают",
 "faq.time.q":"Сколько это занимает?","faq.time.a":"Лендинг обычно 2–3 недели, сайт 4–6. Точные сроки назову вместе с ценой. Больше всего они зависят от того, как быстро будут готовы тексты и фото.",
@@ -166,3 +166,8 @@ form.reset();say('form.ok','ok');
 btn.removeAttribute('aria-disabled');
 });
 }
+
+if('IntersectionObserver' in window){
+const drawn=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');drawn.unobserve(e.target)}}),{rootMargin:'0px 0px -15% 0px'});
+document.querySelectorAll('main h2').forEach(h=>drawn.observe(h));
+}else document.querySelectorAll('main h2').forEach(h=>h.classList.add('in'));

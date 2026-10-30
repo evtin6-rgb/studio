@@ -104,6 +104,7 @@ Ivan's brief: «пересобрать мой сайт, чтобы он выгл
 
 - 2026-10-28: Ivan edited RU copy himself in the Google Sheet «EVTIN Studio — тексты сайта (правь здесь)» (https://docs.google.com/spreadsheets/d/1XqxPw3VgVP8H1y6HYDX5hPmaSgfn5lzYSTcj4wkr3lo); Claude imported the changes and translated EN. Workflow for future copy edits: Ivan edits column «Русский», says «запускай», Claude diffs the sheet against the code by key, applies RU + EN, updates the sheet EN column.
 - 2026-10-28: all lime green removed from the site (Ivan). Buttons/accents now coral, focus rings paper. Do not reintroduce lime.
+- 2026-10-30: terracotta palette (#a84b2a) replaces coral; hero badge «Сейчас активно ищу заказчиков» with pulsing dot; About «Сейчас:» line terracotta; hand-drawn animation (hero rise, underline draws, photo settles, arrow draws, section h2 strokes on scroll), all under prefers-reduced-motion: no-preference. Approved by Ivan from a prototype video.
 
 ## Next steps
 0. Ivan: look at the PR preview of the rebuilt homepage and say «сливай» or what to change. Best upgrade next: real photos from gigs (at the piano, white glasses, red jacket) to replace the studio portraits.
