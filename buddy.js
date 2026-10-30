@@ -1,6 +1,9 @@
 // Little doodle Ivan who wanders along the bottom of the screen. Decoration only.
 (()=>{
-if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+if(motion.matches)return;
+const KEY='evtin-buddy';
+const store={get(){try{return localStorage.getItem(KEY)}catch(e){return null}},set(v){try{localStorage.setItem(KEY,v)}catch(e){}}};
 const svg='<svg viewBox="0 0 64 88" focusable="false"><g class="b-flip"><g class="b-bob">'+
 '<path class="leg leg-a" d="M28 62l-3 20h-4"/><path class="leg leg-b" d="M37 62l2 20h5"/>'+
 '<path class="arm arm-l" d="M22 44l-6 13"/><path class="arm arm-r" d="M43 44l6 13"/>'+
@@ -14,45 +17,70 @@ const svg='<svg viewBox="0 0 64 88" focusable="false"><g class="b-flip"><g class
 const el=document.createElement('div');
 el.className='buddy';el.setAttribute('aria-hidden','true');el.innerHTML='<div class="b-jump">'+svg+'</div>';
 document.body.appendChild(el);
+
+const GRAVITY=2600,TOP_GAP=90,FOCUS_ZONE=110;
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const rand=(a,b)=>a+Math.random()*(b-a);
-let x=-80,y=0,away=false;
+let x=-80,y=0,busy=false,off=store.get()==='off';
+const reasons=new Set();
+const sync=()=>el.classList.toggle('away',off||reasons.size>0);
+const hideFor=(why,on)=>{if(on)reasons.add(why);else reasons.delete(why);sync()};
+const isAway=()=>off||reasons.size>0||document.hidden;
 const place=()=>{el.style.transform='translate('+x+'px,'+(-y)+'px)'};
 const face=left=>el.classList.toggle('left',left);
+const size=()=>({w:el.offsetWidth,h:el.offsetHeight});
+let dims=size();
+const maxX=()=>innerWidth-dims.w-8;
+const maxY=()=>Math.max(0,innerHeight-dims.h-TOP_GAP);
 const note=()=>{const n=document.createElement('span');n.className='b-note';n.textContent=Math.random()<.5?'♪':'♫';n.style.setProperty('--dx',rand(-18,18)+'px');el.appendChild(n);setTimeout(()=>n.remove(),1700)};
-function walkTo(t){return new Promise(done=>{face(t<x);el.classList.add('walk');let last=performance.now();const speed=innerWidth<700?42:60;
-const step=now=>{const d=Math.min(now-last,50)/1000;last=now;const left=t-x;const move=Math.sign(left)*Math.min(Math.abs(left),speed*d);x+=move;place();
+const dt=(now,last)=>Math.max(0,Math.min(now-last,50))/1000;
+
+function walkTo(target){return new Promise(done=>{face(target<x);el.classList.add('walk');let last=performance.now();const speed=innerWidth<700?42:60;
+const step=now=>{const t=Math.min(target,maxX());const move=Math.sign(t-x)*Math.min(Math.abs(t-x),speed*dt(now,last));last=now;x+=move;place();
 if(Math.abs(t-x)<.5){el.classList.remove('walk');done()}else requestAnimationFrame(step)};requestAnimationFrame(step)})}
 async function act(name,ms){el.classList.add(name);await wait(ms);el.classList.remove(name)}
 async function play(){el.classList.add('play');for(let i=0;i<7;i++){note();await wait(450)}el.classList.remove('play')}
-async function look(){face(!el.classList.contains('left'));await wait(900);face(!el.classList.contains('left'));await wait(700)}
-const maxX=()=>innerWidth-el.offsetWidth-8;
+async function look(){const start=el.classList.contains('left');face(!start);await wait(900);face(start);await wait(700)}
+
 async function life(){await wait(3800);
-while(true){
-if(away){await wait(800);continue}
+for(;;){
+if(isAway()){await wait(800);continue}
+busy=true;
 const r=Math.random();
 if(r<.5){let t=rand(8,maxX());if(Math.abs(t-x)<120)t=x<innerWidth/2?Math.min(x+rand(140,320),maxX()):Math.max(x-rand(140,320),8);await walkTo(t)}
 else if(r<.72)await play();
 else if(r<.84)await act('wave',1800);
 else if(r<.94)await look();
 else await act('blink2',1200);
+busy=false;
 await wait(rand(500,1600));
 }}
+
 el.addEventListener('click',()=>{if(el.classList.contains('jump'))return;el.classList.add('jump');note();setTimeout(note,120);setTimeout(note,240);setTimeout(()=>el.classList.remove('jump'),520)});
 let lastWave=0;
-window.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'||el.classList.contains('walk')||el.classList.contains('play'))return;
-const cx=x+el.offsetWidth/2,dy=innerHeight-e.clientY;if(Math.abs(e.clientX-cx)<140&&dy<200&&performance.now()-lastWave>4000){lastWave=performance.now();face(e.clientX<cx);act('wave',1400)}},{passive:true});
-const contact=document.querySelector('#contact');
-if(contact)new IntersectionObserver(es=>{away=es[0].isIntersecting;el.classList.toggle('away',away)},{threshold:.15}).observe(contact);
+addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'||busy||isAway())return;
+const cx=x+dims.w/2,dy=innerHeight-e.clientY;if(Math.abs(e.clientX-cx)<140&&dy<200&&performance.now()-lastWave>4000){lastWave=performance.now();busy=true;face(e.clientX<cx);act('wave',1400).then(()=>{busy=false})}},{passive:true});
+
+// Step aside whenever he could cover something: the contact form, the footer, or a focused control near the bottom.
+const watch=new IntersectionObserver(es=>es.forEach(e=>hideFor(e.target.tagName,e.isIntersecting)),{threshold:.05});
+['#contact','footer'].forEach(sel=>{const n=document.querySelector(sel);if(n)watch.observe(n)});
+document.addEventListener('focusin',e=>{const r=e.target.getBoundingClientRect?e.target.getBoundingClientRect():null;hideFor('focus',!!r&&r.bottom>innerHeight-FOCUS_ZONE)});
+document.addEventListener('focusout',()=>hideFor('focus',false));
+
 // The page is his ground: scrolling carries him up, then he drops back to the bottom edge.
 let lastY=scrollY,still=0,falling=false;
-const GRAVITY=2600,TOP_GAP=90;
 function fall(){if(falling||y<=0)return;falling=true;el.classList.add('fall');let v=0,last=performance.now();
-const step=now=>{const d=Math.min(now-last,40)/1000;last=now;v+=GRAVITY*d;y=Math.max(0,y-v*d);place();
+const step=now=>{const d=dt(now,last);last=now;v+=GRAVITY*d;y=Math.max(0,y-v*d);place();
 if(y>0)requestAnimationFrame(step);else{falling=false;el.classList.remove('fall','ride');el.classList.add('land');setTimeout(()=>el.classList.remove('land'),260)}};requestAnimationFrame(step)}
-addEventListener('scroll',()=>{const dy=scrollY-lastY;lastY=scrollY;if(falling)return;
-y=Math.min(Math.max(y+dy,0),innerHeight-el.offsetHeight-TOP_GAP);place();el.classList.toggle('ride',y>0);
+addEventListener('scroll',()=>{const dy=scrollY-lastY;lastY=scrollY;if(falling||isAway())return;
+y=Math.min(Math.max(y+dy,0),maxY());place();el.classList.toggle('ride',y>0);
 clearTimeout(still);still=setTimeout(fall,260)},{passive:true});
-addEventListener('resize',()=>{if(x>maxX()){x=maxX();place()}},{passive:true});
-place();life();
+addEventListener('resize',()=>{dims=size();x=Math.min(x,maxX());y=Math.min(y,maxY());place()},{passive:true});
+
+// Footer switch to hide him for good (remembered), and a live reduced-motion change removes him.
+const toggle=document.querySelector('[data-buddy-toggle]');
+const applyOff=()=>{document.documentElement.classList.toggle('buddy-off',off);sync()};
+if(toggle){toggle.hidden=false;toggle.addEventListener('click',()=>{off=!off;store.set(off?'off':'on');applyOff()})}
+if(motion.addEventListener)motion.addEventListener('change',e=>{if(e.matches){el.remove();if(toggle)toggle.hidden=true}});
+applyOff();place();life();
 })();

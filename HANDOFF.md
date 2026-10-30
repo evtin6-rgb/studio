@@ -30,7 +30,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 - `concept-noir.html`, `concept-0642.html`, `concept-atelier07.html`: three concepts. Each one keeps its own visual system in an inline `<style>`.
 - `concept.css`: shared concept chrome (top bar with the CONCEPT/DEMO tag, case notes, footer)
 - `concept.js`: shared i18n for the concept pages. It reads `window.CONCEPT_I18N` and applies `data-i18n` via innerHTML.
-- `fonts/`: self-hosted woff2 (latin + cyrillic) plus `fonts/fonts.css`, shared by all pages. DM Mono has no Cyrillic, so RU mono labels fall back to the system monospace (same as before).
+- `fonts/`: self-hosted woff2 (latin + cyrillic) plus root `fonts.css` for the concept pages; home and 404 get Manrope from the top of `styles.css`. DM Mono has no Cyrillic, so RU mono labels fall back to the system monospace (same as before).
 - `robots.txt`, `sitemap.xml` (home only; concepts are `noindex`), `assets/og.png` (1200×630)
 - `netlify.toml` (publish ".", long cache on `/fonts/*`), `assets/` (portraits ivan-01/02/03.webp, og.png)
 - `.claude/settings.json` enables the ECC plugin (`ecc@ecc`, affaan-m/everything-claude-code)
@@ -122,3 +122,14 @@ Ivan's brief: «пересобрать мой сайт, чтобы он выгл
 - Ivan writes in Russian; answer in Russian.
 - Multi-model workflow: ChatGPT coordinates, Grok critiques, Kimi builds, Claude Code audits and implements in the real code.
 - Verify in the browser before calling anything done. Do not create PRs unless asked. Do not restart the strategy; preserve good decisions and change what the evidence says is weak.
+
+## 30.10.2026 — человечек, плавность, полная проверка
+
+- Кружки вокруг цен убраны (Иван).
+- `buddy.js`: нарисованный Иван (кудри, белые очки, терракотовая куртка) гуляет по низу экрана, играет на синтезаторе, машет, прыгает от клика; прокрутка поднимает его вместе со страницей, потом он падает обратно. Прячется у контактов, у подвала и когда фокус клавиатуры внизу экрана. В подвале кнопка «Спрятать человечка / Вернуть человечка» (`evtin-buddy` в localStorage). При «меньше движения» его нет. На телефоне не перехватывает нажатия.
+- Motion set 3: блоки мягко проявляются при прокрутке (`.rv`), фото «Обо мне» раскрывается, скриншоты приподнимаются при наведении, ответы FAQ плавно открываются, тень у шапки при прокрутке, плавная смена RU/EN.
+- По итогам ревью (код, доступность, скорость, безопасность): `/CLAUDE.md` закрыт 404; `fonts/fonts.css` → корневой `fonts.css` только для концептов, Manrope для главной в начале `styles.css`; кэш `/assets/*` на сутки; «меньше движения» выключает все анимации; пульс плашки на transform; контраст номеров шагов; убран backdrop-filter у шапки.
+- Lighthouse: mobile 98/100/100/100, desktop 100/100/100/100, CLS 0.
+- Схема запуска и ссылок для Ивана: `docs/launch-plan.md`.
+- Серый прямоугольник внизу превью — Netlify Drawer, заблокированный CSP; на живом сайте его нет. Выключается в настройках Netlify (см. launch-plan).
+- Отложено из ревью: адаптивные `srcset` для фото, вынос сайта в `public/`.
