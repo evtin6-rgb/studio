@@ -193,3 +193,53 @@ main h2.in::after,.work>h2.in .ht::after{clip-path:inset(0 0 0 0)}
 .shot-phone{transform:translateY(var(--py,0px));will-change:transform}
 .btn,.nav-cta,form button{transition:background .2s,transform .25s cubic-bezier(.3,1.4,.5,1)}
 }
+/* Buddy: a small doodle Ivan walking along the bottom edge (buddy.js) */
+.buddy{position:fixed;left:0;bottom:2px;z-index:40;width:60px;height:83px;pointer-events:none;transition:opacity .4s}
+.buddy.away{opacity:0}
+.buddy svg{width:100%;height:100%;overflow:visible;pointer-events:auto;cursor:pointer;filter:drop-shadow(0 0 1.5px var(--paper)) drop-shadow(0 0 1.5px var(--paper))}
+.buddy.away svg{pointer-events:none}
+.b-jump{width:100%;height:100%}
+.b-flip{transform-origin:32px 0;transition:transform .18s}
+.buddy.left .b-flip{transform:scaleX(-1)}
+.buddy .leg,.buddy .arm,.buddy .frame,.buddy .mouth,.buddy .keys path{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.buddy .jacket{fill:var(--terra);stroke:var(--ink);stroke-width:2.4;stroke-linejoin:round}
+.buddy .face{fill:var(--paper);stroke:var(--ink);stroke-width:2.4}
+.buddy .curls{fill:var(--ink)}
+.buddy .lens{fill:#fff;stroke:var(--ink);stroke-width:2}
+.buddy .eyes{fill:var(--ink);transform-origin:37px 27.3px;animation:b-blink 4.2s infinite}
+.buddy .keys{opacity:0;transition:opacity .2s}
+.buddy .keys rect{fill:#fff;stroke:var(--ink);stroke-width:2.2}
+.buddy .keys path{stroke-width:1.8}
+.leg-a{transform-origin:28px 62px}.leg-b{transform-origin:37px 62px}
+.arm-l{transform-origin:22px 44px}.arm-r{transform-origin:43px 44px}
+.b-head{transform-origin:33px 38px}
+.buddy.walk .leg-a{animation:b-step .44s ease-in-out infinite alternate}
+.buddy.walk .leg-b{animation:b-step .44s ease-in-out infinite alternate-reverse}
+.buddy.walk .b-bob{animation:b-bob .22s ease-in-out infinite alternate}
+.buddy.walk .arm-l{animation:b-swing .44s ease-in-out infinite alternate-reverse}
+.buddy.walk .arm-r{animation:b-swing .44s ease-in-out infinite alternate}
+.buddy.wave .arm-r{animation:b-wave .28s ease-in-out infinite alternate}
+.buddy.play .keys{opacity:1}
+.buddy.play .arm-l{animation:b-tap .22s ease-in-out infinite alternate}
+.buddy.play .arm-r{animation:b-tap .22s ease-in-out infinite alternate-reverse}
+.buddy.play .b-head{animation:b-nod .45s ease-in-out infinite alternate}
+.buddy.blink2 .eyes{animation:b-blink .4s 3}
+.buddy.jump .b-jump{animation:b-jump .5s cubic-bezier(.3,.7,.4,1)}
+.b-note{position:absolute;left:40%;top:4px;color:var(--terra);font:800 19px/1 Manrope,sans-serif;pointer-events:none;text-shadow:0 0 2px var(--paper);animation:b-note 1.6s ease-out forwards}
+@keyframes b-step{from{transform:rotate(-16deg)}to{transform:rotate(16deg)}}
+@keyframes b-swing{from{transform:rotate(-20deg)}to{transform:rotate(20deg)}}
+@keyframes b-bob{to{transform:translateY(-2px)}}
+@keyframes b-wave{from{transform:rotate(-150deg)}to{transform:rotate(-110deg)}}
+@keyframes b-tap{from{transform:rotate(-8deg)}to{transform:rotate(6deg) translateY(-1px)}}
+@keyframes b-nod{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+@keyframes b-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes b-jump{40%{transform:translateY(-30px)}70%{transform:translateY(0) scaleY(.92)}}
+@keyframes b-note{from{opacity:0;transform:translate(0,0)}15%{opacity:1}to{opacity:0;transform:translate(var(--dx),-64px) rotate(14deg)}}
+@media (max-width:600px){.buddy{width:46px;height:64px}}
+.buddy.ride .arm-l{transform:rotate(55deg)}.buddy.ride .arm-r{transform:rotate(-55deg)}
+.buddy.ride .b-head{animation:b-nod .5s ease-in-out infinite alternate}
+.buddy.fall .arm-l{transform:rotate(150deg)}.buddy.fall .arm-r{transform:rotate(-150deg)}
+.buddy.fall .leg-a{transform:rotate(-12deg)}.buddy.fall .leg-b{transform:rotate(12deg)}
+.buddy.land .b-jump{animation:b-land .26s ease-out}
+.b-jump{transform-origin:50% 100%}
+@keyframes b-land{40%{transform:scale(1.12,.84)}}
