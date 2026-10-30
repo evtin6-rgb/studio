@@ -1,3 +1,184 @@
+/* Manrope, self-hosted (SIL OFL). The concept pages load all families from fonts.css. */
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ext-ad04e3.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ffb0f3.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-ext-b4290e.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-cf48e3.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ext-ad04e3.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ffb0f3.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-ext-b4290e.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-cf48e3.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ext-ad04e3.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ffb0f3.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-ext-b4290e.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-cf48e3.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ext-ad04e3.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ffb0f3.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-ext-b4290e.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-cf48e3.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ext-ad04e3.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/manrope-normal-cyrillic-ffb0f3.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-ext-b4290e.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/manrope-normal-latin-cf48e3.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 :root{--ink:#21172b;--paper:#f5efdf;--terra:#a84b2a;--terra-deep:#8c3d21;--terra-soft:#c8643c;--sand:#efe2d0;--muted:#5f5560;--line:rgba(33,23,43,.18);--pad:max(20px,6vw);--scrib:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M2 9c22-5 41-6 62-3s38 4 58-1 46-6 76-1' fill='none' stroke='%23c8643c' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 34'%3E%3Cpath d='M4 31c6-11 13-19 29-24M24 4l10 3-5 9' fill='none' stroke='%23c8643c' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
@@ -11,7 +192,7 @@ h1,h2,h3,h4{margin:0;font-weight:800;line-height:1.08}
 .skip{position:absolute;left:12px;top:-60px;z-index:50;background:var(--ink);color:var(--paper);padding:10px 14px;border-radius:6px}
 .skip:focus{top:12px}
 
-.topbar{position:sticky;top:0;z-index:20;height:68px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px;background:rgba(245,239,223,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar{position:sticky;top:0;z-index:20;height:68px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px;background:rgba(245,239,223,.97);border-bottom:1px solid var(--line)}
 .brand{font-weight:800;font-size:18px;letter-spacing:-.02em;text-decoration:none}
 .nav{display:flex;align-items:center;gap:28px;margin-left:auto;font-size:16px}
 .nav a{text-decoration:none}
@@ -90,6 +271,7 @@ h2{font-size:clamp(32px,4.2vw,54px);letter-spacing:-.03em;margin-bottom:28px}
 .links a{font-weight:700;text-decoration:underline;text-decoration-color:var(--terra);text-decoration-thickness:2px;text-underline-offset:5px}
 
 .faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,6vw,96px);max-width:1440px;margin:0 auto;padding-bottom:clamp(72px,10vw,140px)}
+.faq>h2{align-self:start}
 .faq-list{border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;font-weight:700;font-size:19px;position:relative}
@@ -157,12 +339,13 @@ body{font-size:17px}
 .price-row h3{flex-wrap:wrap;gap:4px 12px}
 footer{flex-direction:column}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 
 /* Terracotta badge and hand-drawn reveals (motion only when the visitor allows it) */
-.hire{display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;padding:8px 16px 8px 12px;border:1.5px solid var(--terra);border-radius:999px;color:var(--terra);font-weight:700;font-size:15px;background:rgba(168,75,42,.06)}
-.hire::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--terra);box-shadow:0 0 0 0 rgba(168,75,42,.5);animation:pulse 2s ease-out infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(168,75,42,.45)}70%{box-shadow:0 0 0 12px rgba(168,75,42,0)}100%{box-shadow:0 0 0 0 rgba(168,75,42,0)}}
+.hire{position:relative;display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;padding:8px 16px 8px 12px;border:1.5px solid var(--terra);border-radius:999px;color:var(--terra);font-weight:700;font-size:15px;background:rgba(168,75,42,.06)}
+.hire::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--terra)}
+.hire::after{content:"";position:absolute;left:12px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--terra);opacity:0;animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{opacity:.45;transform:scale(1)}70%,100%{opacity:0;transform:scale(3.6)}}
 .now{background:var(--terra)!important;color:var(--paper)}
 @media (prefers-reduced-motion:no-preference){
 .intro h1,.intro .lead,.intro p,.intro .hire{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
@@ -185,7 +368,7 @@ main h2.in::after,.work>h2.in .ht::after{clip-path:inset(0 0 0 0)}
 @media (prefers-reduced-motion:no-preference){
 .steps{position:relative}
 .steps::after{content:"";position:absolute;left:9px;top:24px;bottom:24px;width:2px;background:var(--terra-soft);transform-origin:top;transform:scaleY(var(--p,0))}
-.steps li::before{color:#a39488;transition:color .3s,transform .4s cubic-bezier(.3,1.6,.5,1);background:#efe7d2;position:relative;z-index:1;align-self:start;padding-bottom:6px}
+.steps li::before{color:#7d6f62;transition:color .3s,transform .4s cubic-bezier(.3,1.6,.5,1);background:#efe7d2;position:relative;z-index:1;align-self:start;padding-bottom:6px}
 .steps li.on::before{color:var(--terra);transform:scale(1.25)}
 .try-list li{opacity:0;transform:translateY(40px) rotate(-1.2deg);transition:opacity .7s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
 .try-list li.in{opacity:1;transform:none}
@@ -193,3 +376,82 @@ main h2.in::after,.work>h2.in .ht::after{clip-path:inset(0 0 0 0)}
 .shot-phone{transform:translateY(var(--py,0px));will-change:transform}
 .btn,.nav-cta,form button{transition:background .2s,transform .25s cubic-bezier(.3,1.4,.5,1)}
 }
+/* Buddy: a small doodle Ivan walking along the bottom edge (buddy.js) */
+.buddy{position:fixed;left:0;bottom:2px;z-index:40;width:60px;height:83px;pointer-events:none;will-change:transform;transition:opacity .4s,visibility 0s}
+.buddy.away{opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s .4s}
+.buddy.away *{animation-play-state:paused}
+.buddy svg{width:100%;height:100%;overflow:visible;pointer-events:auto;cursor:pointer}
+@media (hover:none){.buddy svg{pointer-events:none}}
+.buddy.away svg{pointer-events:none}
+.b-jump{width:100%;height:100%}
+.b-flip{transform-origin:32px 0;transition:transform .18s}
+.buddy.left .b-flip{transform:scaleX(-1)}
+.buddy .leg,.buddy .arm,.buddy .frame,.buddy .mouth,.buddy .keys path{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.buddy .jacket{fill:var(--terra);stroke:var(--ink);stroke-width:2.4;stroke-linejoin:round}
+.buddy .face{fill:var(--paper);stroke:var(--ink);stroke-width:2.4}
+.buddy .curls{fill:var(--ink)}
+.buddy .lens{fill:#fff;stroke:var(--ink);stroke-width:2}
+.buddy .eyes{fill:var(--ink);transform-origin:37px 27.3px;animation:b-blink 4.2s infinite}
+.buddy .keys{opacity:0;transition:opacity .2s}
+.buddy .keys rect{fill:#fff;stroke:var(--ink);stroke-width:2.2}
+.buddy .keys path{stroke-width:1.8}
+.leg-a{transform-origin:28px 62px}.leg-b{transform-origin:37px 62px}
+.arm-l{transform-origin:22px 44px}.arm-r{transform-origin:43px 44px}
+.b-head{transform-origin:33px 38px}
+.buddy.walk .leg-a{animation:b-step .44s ease-in-out infinite alternate}
+.buddy.walk .leg-b{animation:b-step .44s ease-in-out infinite alternate-reverse}
+.buddy.walk .b-bob{animation:b-bob .22s ease-in-out infinite alternate}
+.buddy.walk .arm-l{animation:b-swing .44s ease-in-out infinite alternate-reverse}
+.buddy.walk .arm-r{animation:b-swing .44s ease-in-out infinite alternate}
+.buddy.wave .arm-r{animation:b-wave .28s ease-in-out infinite alternate}
+.buddy.play .keys{opacity:1}
+.buddy.play .arm-l{animation:b-tap .22s ease-in-out infinite alternate}
+.buddy.play .arm-r{animation:b-tap .22s ease-in-out infinite alternate-reverse}
+.buddy.play .b-head{animation:b-nod .45s ease-in-out infinite alternate}
+.buddy.blink2 .eyes{animation:b-blink .4s 3}
+.buddy.jump .b-jump{animation:b-jump .5s cubic-bezier(.3,.7,.4,1)}
+.b-note{position:absolute;left:40%;top:4px;color:var(--terra);font:800 19px/1 Manrope,sans-serif;pointer-events:none;animation:b-note 1.6s ease-out forwards}
+@keyframes b-step{from{transform:rotate(-16deg)}to{transform:rotate(16deg)}}
+@keyframes b-swing{from{transform:rotate(-20deg)}to{transform:rotate(20deg)}}
+@keyframes b-bob{to{transform:translateY(-2px)}}
+@keyframes b-wave{from{transform:rotate(-150deg)}to{transform:rotate(-110deg)}}
+@keyframes b-tap{from{transform:rotate(-8deg)}to{transform:rotate(6deg) translateY(-1px)}}
+@keyframes b-nod{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+@keyframes b-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes b-jump{40%{transform:translateY(-30px)}70%{transform:translateY(0) scaleY(.92)}}
+@keyframes b-note{from{opacity:0;transform:translate(0,0)}15%{opacity:1}to{opacity:0;transform:translate(var(--dx),-64px) rotate(14deg)}}
+@media (max-width:600px){.buddy{width:46px;height:64px}}
+.buddy.ride .arm-l{transform:rotate(55deg)}.buddy.ride .arm-r{transform:rotate(-55deg)}
+.buddy.ride .b-head{animation:b-nod .5s ease-in-out infinite alternate}
+.buddy.fall .arm-l{transform:rotate(150deg)}.buddy.fall .arm-r{transform:rotate(-150deg)}
+.buddy.fall .leg-a{transform:rotate(-12deg)}.buddy.fall .leg-b{transform:rotate(12deg)}
+.buddy.land .b-jump{animation:b-land .26s ease-out}
+.b-jump{transform-origin:50% 100%}
+@keyframes b-land{40%{transform:scale(1.12,.84)}}
+/* Motion set 3: soft reveals, calmer hovers, smooth language switch */
+.topbar{transition:box-shadow .3s,background .3s}
+.topbar.scrolled{box-shadow:0 6px 24px -14px rgba(33,23,43,.35)}
+.textlink,.links a,.nav a{transition:text-underline-offset .2s,text-decoration-color .2s}
+.textlink:hover,.links a:hover{text-underline-offset:8px}
+input,select,textarea{transition:border-color .2s,background .2s}
+input:focus,select:focus,textarea:focus{background:rgba(245,239,223,.1)}
+.btn:active,.nav-cta:active,form button:active{transform:scale(.97)!important}
+.lang{transition:background .2s,color .2s}
+.lang:hover{background:var(--ink);color:var(--paper)}
+@media (prefers-reduced-motion:no-preference){
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform 1s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv.in,.rv:focus-within{opacity:1;transform:none}
+.about-photo.rv{transform:none;clip-path:inset(12% 0 12% 0 round 4px);transition:opacity .8s ease,clip-path 1.2s cubic-bezier(.2,.7,.2,1)}
+.lang-switched .scrib::after{animation:none;clip-path:none}
+.about-photo.rv.in{clip-path:inset(0 0 0 0 round 4px)}
+.case-shot .shot-desk,.try-shot{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.case-shot:hover .shot-desk,.try-shot:hover{transform:translateY(-4px);box-shadow:0 22px 40px -22px rgba(33,23,43,.45)}
+.faq details[open] p{animation:rise .45s cubic-bezier(.2,.7,.2,1)}
+.faq summary::after{transition:transform .3s}
+.faq summary:hover::after{transform:rotate(90deg)}
+main,footer{transition:opacity .16s ease}
+body.swapping main,body.swapping footer{opacity:0}
+}
+.buddy-toggle{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.buddy-toggle .b-on,.buddy-off .buddy-toggle .b-off{display:none}
+.buddy-off .buddy-toggle .b-on{display:inline}
