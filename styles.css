@@ -175,7 +175,25 @@ footer{flex-direction:column}
 .intro-photo figcaption::before{clip-path:inset(100% 0 0 0);animation:draw .6s 1.7s ease-out forwards}
 .intro-photo figcaption{animation:rise .6s 1.9s both}
 main h2{position:relative;display:inline-block}
-main h2::after{content:"";position:absolute;left:0;bottom:-.18em;width:1.6em;height:.14em;background:var(--scrib) center/100% 100% no-repeat;clip-path:inset(0 100% 0 0);transition:clip-path .8s cubic-bezier(.6,.1,.3,1) .15s}
-main h2.in::after{clip-path:inset(0 0 0 0)}
-.work>h2::after{left:50%;margin-left:-.8em}
+main h2::after,.work>h2 .ht::after{content:"";position:absolute;left:0;bottom:-.18em;width:100%;height:.14em;background:var(--scrib) center/100% 100% no-repeat;clip-path:inset(0 100% 0 0);transition:clip-path .8s cubic-bezier(.6,.1,.3,1) .15s}
+main h2.in::after,.work>h2.in .ht::after{clip-path:inset(0 0 0 0)}
+.work>h2 .ht{position:relative;display:inline-block}
+.work>h2::after{display:none}
+}
+
+/* Motion set 2: drawn price rings, process line, depth on work, magnetic buttons */
+@media (prefers-reduced-motion:no-preference){
+.amount{position:relative}
+.amount .ring{position:absolute;left:-14%;top:-38%;width:128%;height:176%;pointer-events:none;overflow:visible}
+.amount .ring path{fill:none;stroke:#c8643c;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s cubic-bezier(.6,.1,.3,1) .2s}
+.price-row.in .ring path{stroke-dashoffset:0}
+.steps{position:relative}
+.steps::after{content:"";position:absolute;left:9px;top:24px;bottom:24px;width:2px;background:var(--terra-soft);transform-origin:top;transform:scaleY(var(--p,0))}
+.steps li::before{color:#a39488;transition:color .3s,transform .4s cubic-bezier(.3,1.6,.5,1);background:#efe7d2;position:relative;z-index:1;align-self:start;padding-bottom:6px}
+.steps li.on::before{color:var(--terra);transform:scale(1.25)}
+.try-list li{opacity:0;transform:translateY(40px) rotate(-1.2deg);transition:opacity .7s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.try-list li.in{opacity:1;transform:none}
+.try-list li:nth-child(2){transition-delay:.08s}.try-list li:nth-child(3){transition-delay:.16s}
+.shot-phone{transform:translateY(var(--py,0px));will-change:transform}
+.btn,.nav-cta,form button{transition:background .2s,transform .25s cubic-bezier(.3,1.4,.5,1)}
 }

@@ -28,7 +28,7 @@ en:{
 "price.landing.t":"Landing page",
 "price.landing.d":"One page with one job: someone understands what you offer and leaves a request. Up to four sections, two rounds of changes, launch on your domain.",
 "price.site.t":"Full website",
-"price.site.d":"Several pages for a person or a small brand. The final price depends on how many pages there are and what they need to do.",
+"price.site.d":"A full website: several pages and a more complex design.",
 "price.promise":"I'll give you the exact figure after our first conversation. After that, it doesn't change.",
 "price.more":"I also do redesigns and look after sites once they're live. Online stores, a CMS, photo shoots, writing copy from scratch and complex animation are all possible too, but they're priced separately.",
 "process.title":"How we'll work",
@@ -89,7 +89,7 @@ ru:{
 "price.landing.t":"Лендинг",
 "price.landing.d":"Одна страница с одной задачей: человек понял, что вы предлагаете, и оставил заявку. До четырёх блоков, два круга правок, запуск на вашем домене.",
 "price.site.t":"Сайт из нескольких страниц",
-"price.site.d":"Для человека или небольшого бренда. Итоговая цена зависит от того, сколько будет страниц и что они должны уметь.",
+"price.site.d":"Полноценный сайт, несколько страниц, сложное оформление.",
 "price.promise":"Точную сумму назову после первого разговора. Потом она не меняется.",
 "price.more":"Ещё делаю редизайн и помогаю с сайтом после запуска. Интернет-магазин, CMS, фотосъёмку, тексты с нуля и сложную анимацию тоже можно, но это считаю отдельно.",
 "process.title":"Как будем работать",
@@ -184,3 +184,21 @@ if('IntersectionObserver' in window){
 const drawn=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');drawn.unobserve(e.target)}}),{rootMargin:'0px 0px -15% 0px'});
 document.querySelectorAll('main h2').forEach(h=>drawn.observe(h));
 }else document.querySelectorAll('main h2').forEach(h=>h.classList.add('in'));
+
+
+const calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!calm){
+const ring='<svg class="ring" viewBox="0 0 120 50" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M18 9C40 2 92 3 110 14c14 9 6 24-22 30-30 6-70 3-80-8C-3 24 10 12 30 8c10-2 22-3 34-3"/></svg>';
+document.querySelectorAll('.price-row .amount').forEach(a=>a.insertAdjacentHTML('beforeend',ring));
+const seen=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');seen.unobserve(e.target)}}),{rootMargin:'0px 0px -12% 0px'});
+document.querySelectorAll('.price-row,.try-list li').forEach(el=>seen.observe(el));
+const steps=document.querySelector('.steps'),items=steps?[...steps.children]:[],phone=document.querySelector('.shot-phone'),caseEl=document.querySelector('.case');
+let ticking=false;
+const onScroll=()=>{ticking=false;const vh=innerHeight;
+if(steps){const r=steps.getBoundingClientRect(),mark=vh*.6,p=Math.min(1,Math.max(0,(mark-r.top)/r.height));steps.style.setProperty('--p',p.toFixed(3));items.forEach(li=>li.classList.toggle('on',li.getBoundingClientRect().top<mark))}
+if(phone&&caseEl){const r=caseEl.getBoundingClientRect(),c=(r.top+r.height/2-vh/2)/vh;phone.style.setProperty('--py',(c*-70).toFixed(1)+'px')}};
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
+if(matchMedia('(hover:hover) and (pointer:fine)').matches)document.querySelectorAll('.btn,.nav-cta,#contact-form button').forEach(b=>{
+b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)*.25,y=(e.clientY-r.top-r.height/2)*.35;b.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`});
+b.addEventListener('pointerleave',()=>{b.style.transform=''})});
+}
