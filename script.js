@@ -139,7 +139,10 @@ store.set(current);
 }
 applyLanguage(store.get()||'en');
 const toggle=document.querySelector('[data-lang-toggle]');
-if(toggle)toggle.addEventListener('click',()=>applyLanguage(current==='en'?'ru':'en'));
+const SWAP_MS=160;
+if(toggle)toggle.addEventListener('click',()=>{const next=current==='en'?'ru':'en';
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){applyLanguage(next);return}
+document.body.classList.add('swapping');setTimeout(()=>{applyLanguage(next);document.body.classList.remove('swapping')},SWAP_MS)});
 
 const burger=document.querySelector('.burger'),nav=document.getElementById('nav');
 if(burger&&nav){
@@ -177,11 +180,15 @@ const calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!calm){
 const seen=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');seen.unobserve(e.target)}}),{rootMargin:'0px 0px -12% 0px'});
 document.querySelectorAll('.try-list li').forEach(el=>seen.observe(el));
+const REVEAL='.case-shot,.case-text,.tries-head,.price-row,.price-promise,.prices .muted,.about-photo,.about-text>p,.faq-list details,.contact-text>*,#contact-form>:not(button):not([hidden]):not([type=hidden])';
+const groups=new Map();
+document.querySelectorAll(REVEAL).forEach(el=>{const n=groups.get(el.parentElement)||0;groups.set(el.parentElement,n+1);el.style.setProperty('--d',Math.min(n*.07,.35)+'s');el.classList.add('rv');seen.observe(el)});
+const bar=document.querySelector('.topbar');
 const steps=document.querySelector('.steps'),items=steps?[...steps.children]:[],phone=document.querySelector('.shot-phone'),caseEl=document.querySelector('.case');
 let ticking=false;
-const onScroll=()=>{ticking=false;const vh=innerHeight;
+const onScroll=()=>{ticking=false;const vh=innerHeight;if(bar)bar.classList.toggle('scrolled',scrollY>8);
 if(steps){const r=steps.getBoundingClientRect(),mark=vh*.6,p=Math.min(1,Math.max(0,(mark-r.top)/r.height));steps.style.setProperty('--p',p.toFixed(3));items.forEach(li=>li.classList.toggle('on',li.getBoundingClientRect().top<mark))}
-if(phone&&caseEl){const r=caseEl.getBoundingClientRect(),c=(r.top+r.height/2-vh/2)/vh;phone.style.setProperty('--py',(c*-70).toFixed(1)+'px')}};
+if(phone&&caseEl){const r=caseEl.getBoundingClientRect(),c=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/vh));phone.style.setProperty('--py',(c*-(innerWidth<700?18:46)).toFixed(1)+'px')}};
 addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
 if(matchMedia('(hover:hover) and (pointer:fine)').matches)document.querySelectorAll('.btn,.nav-cta,#contact-form button').forEach(b=>{
 b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)*.25,y=(e.clientY-r.top-r.height/2)*.35;b.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`});
