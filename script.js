@@ -42,7 +42,7 @@ en:{
 "about.one":"I live in St. Petersburg. I sing and play piano at the same time, and I perform at restaurants and private events.",
 "about.two":"On a website, I want people to find the main thing fast and not get lost. Anything extra goes.",
 "about.three":"EVTIN Studio is just me. You talk to me about the job, and I'm the one who does it. If something goes wrong, I'm the one who answers for it too.",
-"about.now":"<strong>Right now:</strong> launching the studio and taking on my first projects.",
+"about.now":"<strong>Right now:</strong> actively looking for clients.",
 "about.music":"Music site ↗︎",
 "faq.title":"Questions people ask",
 "faq.time.q":"How long does it take?","faq.time.a":"A landing page usually takes 2–3 weeks, a full website 4–6. I'll give you exact dates together with the price. It mostly depends on how quickly the copy and photos are ready.",
