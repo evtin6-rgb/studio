@@ -175,10 +175,8 @@ document.querySelectorAll('main h2').forEach(h=>drawn.observe(h));
 
 const calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!calm){
-const ring='<svg class="ring" viewBox="0 0 120 50" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M18 9C40 2 92 3 110 14c14 9 6 24-22 30-30 6-70 3-80-8C-3 24 10 12 30 8c10-2 22-3 34-3"/></svg>';
-document.querySelectorAll('.price-row .amount').forEach(a=>a.insertAdjacentHTML('beforeend',ring));
 const seen=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');seen.unobserve(e.target)}}),{rootMargin:'0px 0px -12% 0px'});
-document.querySelectorAll('.price-row,.try-list li').forEach(el=>seen.observe(el));
+document.querySelectorAll('.try-list li').forEach(el=>seen.observe(el));
 const steps=document.querySelector('.steps'),items=steps?[...steps.children]:[],phone=document.querySelector('.shot-phone'),caseEl=document.querySelector('.case');
 let ticking=false;
 const onScroll=()=>{ticking=false;const vh=innerHeight;

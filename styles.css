@@ -181,12 +181,8 @@ main h2.in::after,.work>h2.in .ht::after{clip-path:inset(0 0 0 0)}
 .work>h2::after{display:none}
 }
 
-/* Motion set 2: drawn price rings, process line, depth on work, magnetic buttons */
+/* Motion set 2: process line, depth on work, magnetic buttons */
 @media (prefers-reduced-motion:no-preference){
-.amount{position:relative}
-.amount .ring{position:absolute;left:-14%;top:-38%;width:128%;height:176%;pointer-events:none;overflow:visible}
-.amount .ring path{fill:none;stroke:#c8643c;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s cubic-bezier(.6,.1,.3,1) .2s}
-.price-row.in .ring path{stroke-dashoffset:0}
 .steps{position:relative}
 .steps::after{content:"";position:absolute;left:9px;top:24px;bottom:24px;width:2px;background:var(--terra-soft);transform-origin:top;transform:scaleY(var(--p,0))}
 .steps li::before{color:#a39488;transition:color .3s,transform .4s cubic-bezier(.3,1.6,.5,1);background:#efe7d2;position:relative;z-index:1;align-self:start;padding-bottom:6px}
