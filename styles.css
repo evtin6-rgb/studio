@@ -341,15 +341,11 @@ footer{flex-direction:column}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 
-/* Terracotta badge and hand-drawn reveals (motion only when the visitor allows it) */
-.hire{position:relative;display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;padding:8px 16px 8px 12px;border:1.5px solid var(--terra);border-radius:999px;color:var(--terra);font-weight:700;font-size:15px;background:rgba(168,75,42,.06)}
-.hire::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--terra)}
-.hire::after{content:"";position:absolute;left:12px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--terra);opacity:0;animation:pulse 2s ease-out infinite}
-@keyframes pulse{0%{opacity:.45;transform:scale(1)}70%,100%{opacity:0;transform:scale(3.6)}}
+/* Terracotta "now" line and hand-drawn reveals (motion only when the visitor allows it) */
 .now{background:var(--terra)!important;color:var(--paper)}
 @media (prefers-reduced-motion:no-preference){
-.intro h1,.intro .lead,.intro p,.intro .hire{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
-.intro .hire{animation-delay:.05s}.intro h1{animation-delay:.15s}.intro .lead{animation-delay:.35s}.intro .lead~p{animation-delay:.45s}
+.intro h1,.intro .lead,.intro p{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.intro h1{animation-delay:.15s}.intro .lead{animation-delay:.35s}.intro .lead~p{animation-delay:.45s}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .scrib::after{clip-path:inset(0 100% 0 0);animation:draw .9s .9s cubic-bezier(.6,.1,.3,1) forwards}
 @keyframes draw{to{clip-path:inset(0 0 0 0)}}
@@ -380,8 +376,8 @@ main h2.in::after,.work>h2.in .ht::after{clip-path:inset(0 0 0 0)}
 .buddy{position:fixed;left:0;bottom:2px;z-index:40;width:60px;height:83px;pointer-events:none;will-change:transform;transition:opacity .4s,visibility 0s}
 .buddy.away{opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s .4s}
 .buddy.away *{animation-play-state:paused}
-.buddy svg{width:100%;height:100%;overflow:visible;pointer-events:auto;cursor:pointer}
-@media (hover:none){.buddy svg{pointer-events:none}}
+.buddy svg{width:100%;height:100%;overflow:visible;pointer-events:auto;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}
+.buddy.held svg{cursor:grabbing}
 .buddy.away svg{pointer-events:none}
 .b-jump{width:100%;height:100%}
 .b-flip{transform-origin:32px 0;transition:transform .18s}
@@ -455,3 +451,7 @@ body.swapping main,body.swapping footer{opacity:0}
 .buddy-toggle{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
 .buddy-toggle .b-on,.buddy-off .buddy-toggle .b-off{display:none}
 .buddy-off .buddy-toggle .b-on{display:inline}
+.buddy.held .arm-l{transform:rotate(150deg)}.buddy.held .arm-r{transform:rotate(-150deg)}
+.buddy.held .leg-a{animation:b-step .18s ease-in-out infinite alternate}
+.buddy.held .leg-b{animation:b-step .18s ease-in-out infinite alternate-reverse}
+.buddy.held .b-head{animation:b-nod .3s ease-in-out infinite alternate}

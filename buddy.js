@@ -21,7 +21,7 @@ document.body.appendChild(el);
 const GRAVITY=2600,TOP_GAP=90,FOCUS_ZONE=110;
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const rand=(a,b)=>a+Math.random()*(b-a);
-let x=-80,y=0,busy=false,off=store.get()==='off';
+let x=-80,y=0,busy=false,held=false,off=store.get()==='off';
 const reasons=new Set();
 const sync=()=>el.classList.toggle('away',off||reasons.size>0);
 const hideFor=(why,on)=>{if(on)reasons.add(why);else reasons.delete(why);sync()};
@@ -36,7 +36,7 @@ const note=()=>{const n=document.createElement('span');n.className='b-note';n.te
 const dt=(now,last)=>Math.max(0,Math.min(now-last,50))/1000;
 
 function walkTo(target){return new Promise(done=>{face(target<x);el.classList.add('walk');let last=performance.now();const speed=innerWidth<700?42:60;
-const step=now=>{const t=Math.min(target,maxX());const move=Math.sign(t-x)*Math.min(Math.abs(t-x),speed*dt(now,last));last=now;x+=move;place();
+const step=now=>{if(held){el.classList.remove('walk');done();return}const t=Math.min(target,maxX());const move=Math.sign(t-x)*Math.min(Math.abs(t-x),speed*dt(now,last));last=now;x+=move;place();
 if(Math.abs(t-x)<.5){el.classList.remove('walk');done()}else requestAnimationFrame(step)};requestAnimationFrame(step)})}
 async function act(name,ms){el.classList.add(name);await wait(ms);el.classList.remove(name)}
 async function play(){el.classList.add('play');for(let i=0;i<7;i++){note();await wait(450)}el.classList.remove('play')}
@@ -44,7 +44,7 @@ async function look(){const start=el.classList.contains('left');face(!start);awa
 
 async function life(){await wait(3800);
 for(;;){
-if(isAway()){await wait(800);continue}
+if(isAway()||held){await wait(800);continue}
 busy=true;
 const r=Math.random();
 if(r<.5){let t=rand(8,maxX());if(Math.abs(t-x)<120)t=x<innerWidth/2?Math.min(x+rand(140,320),maxX()):Math.max(x-rand(140,320),8);await walkTo(t)}
@@ -56,9 +56,21 @@ busy=false;
 await wait(rand(500,1600));
 }}
 
-el.addEventListener('click',()=>{if(el.classList.contains('jump'))return;el.classList.add('jump');note();setTimeout(note,120);setTimeout(note,240);setTimeout(()=>el.classList.remove('jump'),520)});
+const jump=()=>{if(el.classList.contains('jump'))return;el.classList.add('jump');note();setTimeout(note,120);setTimeout(note,240);setTimeout(()=>el.classList.remove('jump'),520)};
+
+// Pick him up and carry him anywhere; a tap without moving makes him jump. Let go and he drops to the ground.
+const DRAG_START=4;
+let grab=null;
+const body=el.querySelector('svg');
+body.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();body.setPointerCapture(e.pointerId);
+grab={id:e.pointerId,sx:e.clientX,sy:e.clientY,ox:e.clientX-x,oy:innerHeight-e.clientY-y}});
+body.addEventListener('pointermove',e=>{if(!grab||e.pointerId!==grab.id)return;
+if(!held){if(Math.hypot(e.clientX-grab.sx,e.clientY-grab.sy)<DRAG_START)return;held=true;el.classList.remove('walk','play','wave','ride','fall','land');el.classList.add('held')}
+x=Math.min(Math.max(e.clientX-grab.ox,0),innerWidth-dims.w);y=Math.min(Math.max(innerHeight-e.clientY-grab.oy,0),innerHeight-dims.h);face(e.movementX<0?true:e.movementX>0?false:el.classList.contains('left'));place()});
+const release=e=>{if(!grab||e.pointerId!==grab.id)return;grab=null;if(!held){jump();return}held=false;el.classList.remove('held');falling=false;fall()};
+body.addEventListener('pointerup',release);body.addEventListener('pointercancel',release);
 let lastWave=0;
-addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'||busy||isAway())return;
+addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'||busy||held||isAway())return;
 const cx=x+dims.w/2,dy=innerHeight-e.clientY;if(Math.abs(e.clientX-cx)<140&&dy<200&&performance.now()-lastWave>4000){lastWave=performance.now();busy=true;face(e.clientX<cx);act('wave',1400).then(()=>{busy=false})}},{passive:true});
 
 // Step aside whenever he could cover something: the contact form, the footer, or a focused control near the bottom.
@@ -70,9 +82,9 @@ document.addEventListener('focusout',()=>hideFor('focus',false));
 // The page is his ground: scrolling carries him up, then he drops back to the bottom edge.
 let lastY=scrollY,still=0,falling=false;
 function fall(){if(falling||y<=0)return;falling=true;el.classList.add('fall');let v=0,last=performance.now();
-const step=now=>{const d=dt(now,last);last=now;v+=GRAVITY*d;y=Math.max(0,y-v*d);place();
+const step=now=>{if(held){falling=false;return}const d=dt(now,last);last=now;v+=GRAVITY*d;y=Math.max(0,y-v*d);place();
 if(y>0)requestAnimationFrame(step);else{falling=false;el.classList.remove('fall','ride');el.classList.add('land');setTimeout(()=>el.classList.remove('land'),260)}};requestAnimationFrame(step)}
-addEventListener('scroll',()=>{const dy=scrollY-lastY;lastY=scrollY;if(falling||isAway())return;
+addEventListener('scroll',()=>{const dy=scrollY-lastY;lastY=scrollY;if(falling||held||isAway())return;
 y=Math.min(Math.max(y+dy,0),maxY());place();el.classList.toggle('ride',y>0);
 clearTimeout(still);still=setTimeout(fall,260)},{passive:true});
 addEventListener('resize',()=>{dims=size();x=Math.min(x,maxX());y=Math.min(y,maxY());place()},{passive:true});
