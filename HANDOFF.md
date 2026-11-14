@@ -112,6 +112,7 @@ Ivan's brief: «пересобрать мой сайт, чтобы он выгл
 1. Ivan: live check on the phone after deploy (form, RU/EN, prices ₽/€, 06:42 clock).
 2. Ivan: Formspree dashboard — spam filter/CAPTCHA, restrict to evtinstudio.netlify.app.
 3. Client search plan: see the Google Doc linked in the night report (or docs/client-plan.md).
+4. Demo sites for St Petersburg businesses (evtin-demo.netlify.app, 16 pages, 15 000 ₽ launch): template and rules in docs/demo-sites.md.
 4. Later: cookie-less analytics (Plausible/Umami) with a form-submit goal (add host to CSP); own domain.
 5. Timelines (2–3 / 4–6 weeks) still unconfirmed by Ivan.
 
