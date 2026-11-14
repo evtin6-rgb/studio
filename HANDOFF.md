@@ -19,6 +19,7 @@ The studio must not look like the musician site (https://evtinivan.netlify.app/)
 
 ## Musician socials (context, session 3, 2026-10-07)
 - Instagram: main **@evtinivan** (id 17841411995686660), second **@evtinmusic** (id 17841430879062343). Both, plus TikTok "Ivan Evtin | Музыкант | Питер", are connected through the **Windsor.ai** connector (stats + publishing). Publish or reply to comments only after Ivan's explicit "yes".
+- **2026-11-14: Windsor reads are paused.** The Free plan allows 1 connected account and 3 are connected (2 Instagram + TikTok). Fix: Ivan disconnects @evtinmusic and TikTok at onboard.windsor.ai/app (keep @evtinivan), or upgrades. Instagram profile (bio, name, links, highlights) cannot be changed via API, and instagram.com is blocked from the cloud sandbox, so Ivan edits it in the app (current bio text: `docs/instagram/README.md`, section 1).
 - Telegram, both current: **@wwwwhhhaat** = Ivan's own channel, the pinned post has all info; **t.me/video_s_meropriyatiy** = video channel.
 - Ivan is in **Vladivostok until 2026-10-20** (calendar time zone Vladivostok is correct for now).
 - Instagram audit (30 days to 2026-10-06): 160 836 views, 79% from two collab reels owned by **ТЦ «Море»** and the brand **«Хозяин Барин»** ("спеть с артистом в ТЦ" / "первый раз спеть на публику"); only ~35 new followers. Own reels: 300–600 views; best retention when Ivan is in frame talking or playing live (10–12 s avg watch); ads and announcements are skipped 72–78% of the time.
