@@ -2,6 +2,7 @@ import { atom, read, update } from 'claude-code'
 import type { EngineInterface, Register, Timer } from 'claude-code'
 
 import type { Spinner } from '../types'
+import { sendTelegram } from './telegram'
 import { ASCII_DONE, OCTOPUS_DONE_SVG, OCTOPUS_SVG, asciiOctopus } from './octopus'
 
 const FRAMES = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
@@ -125,7 +126,9 @@ export const pushText = (s: Spinner): string => {
 }
 
 async function pushDone($: EngineInterface, s: Spinner): Promise<void> {
-  await $.tool.call({ tool: 'PushNotification', message: pushText(s), status: 'proactive' })
+  const text = pushText(s)
+  await sendTelegram($, text).catch(() => undefined)
+  await $.tool.call({ tool: 'PushNotification', message: text, status: 'proactive' })
 }
 
 export const register: Register = on => {
