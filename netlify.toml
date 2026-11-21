@@ -21,6 +21,12 @@
   force = true
 
 [[redirects]]
+  from = "/REDESIGN-HANDOFF.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/netlify.toml"
   to = "/404.html"
   status = 404
