@@ -10,6 +10,7 @@ en:{
 "hero.cta":"Message me","hero.link":"See my work",
 "hero.price":"Starter landing for a fixed <span>RUB 10,000</span>. Landing page from <span data-eur=\"300\" data-rub=\"30000\">€300</span>, full website from <span data-eur=\"500\" data-rub=\"50000\">€500</span>.",
 "hero.alt":"Ivan Evtin, web designer and developer",
+"hero.sub":"Design and development for small businesses.","hero.concepts":"Design concepts","hero.starter":"Starter landing — <b>RUB 10,000</b>","hero.name":"Ivan Evtin","statement.aria":"About the studio",
 "hero.cap":"That's me.",
 "work.title":"My work",
 "work.real":"Live site, 2026",
@@ -75,6 +76,7 @@ ru:{
 "hero.cta":"Написать мне","hero.link":"Смотреть работы",
 "hero.price":"Стартовый лендинг за фиксированные <span>10 000 ₽</span>. Лендинг от <span data-eur=\"300\" data-rub=\"30000\">30 000 ₽</span>, сайт от <span data-eur=\"500\" data-rub=\"50000\">50 000 ₽</span>.",
 "hero.alt":"Иван Евтин, веб-дизайнер и разработчик",
+"hero.sub":"Дизайн и разработка для малого бизнеса.","hero.concepts":"Дизайн-концепты","hero.starter":"Стартовый лендинг — <b>10 000 ₽</b>","hero.name":"Иван Евтин","statement.aria":"О студии",
 "hero.cap":"Это я.",
 "work.title":"Мои работы",
 "work.real":"Работающий сайт, 2026",
@@ -179,30 +181,58 @@ btn.removeAttribute('aria-disabled');
 });
 }
 
-if('IntersectionObserver' in window){
-const drawn=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');drawn.unobserve(e.target)}}),{rootMargin:'0px 0px -15% 0px'});
-document.querySelectorAll('main h2').forEach(h=>drawn.observe(h));
-}else document.querySelectorAll('main h2').forEach(h=>h.classList.add('in'));
-
-
+// v2 motion. The page is complete without any of this; it only adds movement.
 const calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!calm){
-const seen=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');seen.unobserve(e.target)}}),{rootMargin:'0px 0px -12% 0px'});
-document.querySelectorAll('.try-list li').forEach(el=>seen.observe(el));
-const REVEAL='.case-shot,.case-text,.tries-head,.price-row,.price-promise,.prices .muted,.about-photo,.about-text>p,.faq-list details,.contact-text>*,#contact-form>:not(button):not([hidden]):not([type=hidden])';
-const groups=new Map();
-document.querySelectorAll(REVEAL).forEach(el=>{const n=groups.get(el.parentElement)||0;groups.set(el.parentElement,n+1);el.style.setProperty('--d',Math.min(n*.07,.35)+'s');el.classList.add('rv');seen.observe(el)});
+const bar=document.querySelector('.topbar'),hero=document.querySelector('.hero');
+const darks=[...document.querySelectorAll('[data-dark],footer')];
+const say=document.querySelector('.say');
+
+// Split the statement into words so each one can fill in as it scrolls past. Re-run after a language switch.
+function splitSay(){
+if(!say||calm)return;
+const words=say.textContent.trim().split(/\s+/);
+say.textContent='';
+words.forEach((w,i)=>{const s=document.createElement('span');s.className='w';s.textContent=w;say.appendChild(s);if(i<words.length-1)say.appendChild(document.createTextNode(' '))});
+}
+const baseApply=applyLanguage;
+applyLanguage=l=>{baseApply(l);splitSay();tick()};
+splitSay();
 
 const steps=document.querySelector('.steps'),items=steps?[...steps.children]:[],phone=document.querySelector('.shot-phone'),caseEl=document.querySelector('.case');
+function tick(){
+const vh=innerHeight;
+if(bar){const y=40,dark=darks.some(d=>{const r=d.getBoundingClientRect();return r.top<=y&&r.bottom>=y});bar.classList.toggle('light',!dark)}
+if(calm)return;
+if(hero){const r=hero.getBoundingClientRect(),p=Math.min(1,Math.max(0,-r.top/Math.max(1,r.height*.8)));hero.style.setProperty('--hp',p.toFixed(3))}
+if(say){const ws=say.querySelectorAll('.w'),r=say.getBoundingClientRect(),start=vh*.85,end=vh*.35,p=Math.min(1,Math.max(0,(start-r.top)/Math.max(1,(start-end)+r.height*.6)));const lit=p*ws.length;ws.forEach((w,i)=>w.style.setProperty('--o',(.18+.82*Math.min(1,Math.max(0,lit-i))).toFixed(2)))}
+if(steps){const r=steps.getBoundingClientRect(),mark=vh*.7,wide=innerWidth>980,p=Math.min(1,Math.max(0,(mark-r.top)/(r.height*(wide?1.4:1))));steps.style.setProperty('--p',p.toFixed(3));items.forEach((li,i)=>li.classList.toggle('on',wide?p>=i/items.length:li.getBoundingClientRect().top<mark))}
+if(phone&&caseEl){const r=caseEl.getBoundingClientRect(),c=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/vh));phone.style.setProperty('--py',(c*-(innerWidth<700?16:44)).toFixed(1)+'px')}
+}
 let ticking=false;
-const onScroll=()=>{ticking=false;const vh=innerHeight;
-if(steps){const r=steps.getBoundingClientRect(),mark=vh*.6,p=Math.min(1,Math.max(0,(mark-r.top)/r.height)),tops=items.map(li=>li.getBoundingClientRect().top);steps.style.setProperty('--p',p.toFixed(3));items.forEach((li,i)=>li.classList.toggle('on',tops[i]<mark))}
-if(phone&&caseEl){const r=caseEl.getBoundingClientRect(),c=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/vh));phone.style.setProperty('--py',(c*-(innerWidth<700?18:46)).toFixed(1)+'px')}};
-addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
-if(matchMedia('(hover:hover) and (pointer:fine)').matches)document.querySelectorAll('.btn,.nav-cta,#contact-form button').forEach(b=>{
-b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)*.25,y=(e.clientY-r.top-r.height/2)*.35;b.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`});
-b.addEventListener('pointerleave',()=>{b.style.transform=''})});
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(()=>{ticking=false;tick()})}},{passive:true});
+addEventListener('resize',tick,{passive:true});
+tick();
+
+if(!calm&&'IntersectionObserver' in window){
+const seen=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');seen.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px'});
+const REVEAL='.case-shot,.case-text,.tries-head,.tile,.pcard,.price-notes,.steps li,.about-photo,.about-text>*,.faq-list details,.contact-text>*,#contact-form';
+const groups=new Map();
+document.querySelectorAll(REVEAL).forEach(el=>{const n=groups.get(el.parentElement)||0;groups.set(el.parentElement,n+1);el.style.setProperty('--d',Math.min(n*.08,.4)+'s');el.classList.add('rv');seen.observe(el)});
 }
 
-const bar=document.querySelector('.topbar');
-if(bar){const shade=()=>bar.classList.toggle('scrolled',scrollY>8);addEventListener('scroll',shade,{passive:true});shade()}
+// Glass highlight follows the pointer on devices that have one.
+if(!calm&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+document.querySelectorAll('.glass,.case-text').forEach(g=>{
+g.addEventListener('pointermove',e=>{const r=g.getBoundingClientRect();g.style.setProperty('--mx',(e.clientX-r.left)+'px');g.style.setProperty('--my',(e.clientY-r.top)+'px')});
+g.addEventListener('pointerleave',()=>{g.style.removeProperty('--mx');g.style.removeProperty('--my')});
+});
+}
+
+// Hero depth: the three windows turn toward the pointer and a warm light follows it, so the scene reads as space rather than a flat picture.
+if(!calm&&hero&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+let raf=0,tx=0,ty=0;
+hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();tx=(e.clientX-r.left)/r.width*2-1;ty=(e.clientY-r.top)/r.height*2-1;
+hero.style.setProperty('--lx',(e.clientX-r.left)+'px');hero.style.setProperty('--ly',(e.clientY-r.top)+'px');
+if(!raf)raf=requestAnimationFrame(()=>{raf=0;hero.style.setProperty('--tx',tx.toFixed(3));hero.style.setProperty('--ty',ty.toFixed(3))})});
+hero.addEventListener('pointerleave',()=>{hero.style.setProperty('--tx',0);hero.style.setProperty('--ty',0)});
+}
