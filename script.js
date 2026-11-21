@@ -61,9 +61,7 @@ en:{
 "form.message":"A few words about the job","form.submit":"Send","form.sending":"Sending…",
 "form.ok":"Sent. I'll reply to the email you gave.",
 "form.err":"That didn't go through. Write to me directly: evtin6@gmail.com",
-"foot.copy":"© 2026 EVTIN Studio, Ivan Evtin.",
-"foot.buddy.hide":"Hide the little guy",
-"foot.buddy.show":"Bring back the little guy"
+"foot.copy":"© 2026 EVTIN Studio, Ivan Evtin."
 },
 ru:{
 "meta.title":"EVTIN Studio — веб-дизайн и лендинги, Иван Евтин",
@@ -127,9 +125,7 @@ ru:{
 "form.message":"Пара слов о задаче","form.submit":"Отправить","form.sending":"Отправляю…",
 "form.ok":"Отправлено. Отвечу на почту, которую вы указали.",
 "form.err":"Не отправилось. Напишите мне напрямую: evtin6@gmail.com",
-"foot.copy":"© 2026 EVTIN Studio, Иван Евтин.",
-"foot.buddy.hide":"Спрятать человечка",
-"foot.buddy.show":"Вернуть человечка"
+"foot.copy":"© 2026 EVTIN Studio, Иван Евтин."
 }};
 const status=document.getElementById('form-status');
 const store={get(){try{return localStorage.getItem('evtin-lang')}catch(e){return null}},set(l){try{localStorage.setItem('evtin-lang',l)}catch(e){}}};
